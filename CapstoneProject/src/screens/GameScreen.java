@@ -10,22 +10,20 @@ import java.util.List;
 import core.DrawingSurface;
 
 
-public class SecondScreen extends Screen {
+public class GameScreen extends Screen {
 	
 	private DrawingSurface surface;
 	
 	private Rectangle screenRect;
 
 	
-	public SecondScreen(DrawingSurface surface) {
+	public GameScreen(DrawingSurface surface) {
 		super(800,600);
 		
 	}
 
 
-	public void spawnNewMario() {
-		
-	}
+	
 
 	// The statements in the setup() function 
 	// execute once when the program begins

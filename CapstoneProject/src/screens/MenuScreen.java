@@ -8,13 +8,13 @@ import java.awt.Rectangle;
 import core.DrawingSurface;
 
 
-public class FirstScreen extends Screen {
+public class MenuScreen extends Screen {
 
 	private DrawingSurface surface;
 	
 	private Rectangle button;
 
-	public FirstScreen(DrawingSurface surface) {
+	public MenuScreen(DrawingSurface surface) {
 		super(800,600);
 		this.surface = surface;
  
