@@ -1,6 +1,4 @@
-package utility;
-
-import utility.field.FieldObject;
+package utility.field;
 
 /**
  * class to represent Inanimate objects on the field. (ex- trees, boulders, etc)
