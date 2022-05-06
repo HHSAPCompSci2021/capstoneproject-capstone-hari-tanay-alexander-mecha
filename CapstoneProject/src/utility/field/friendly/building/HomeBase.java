@@ -1,8 +1,8 @@
 package utility.field.friendly.building;
 
-import utility.field.friendly.Ally;
+import utility.field.friendly.Allied;
 
-public class HomeBase extends Ally {
+public class HomeBase extends Allied {
     
 
     public HomeBase(float x, float y) {
