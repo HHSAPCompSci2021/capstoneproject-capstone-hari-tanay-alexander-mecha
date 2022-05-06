@@ -33,7 +33,7 @@ public class DrawingSurface extends PApplet implements ScreenSwitcher {
 		GameScreen screen2 = new GameScreen(this);
 		screens.add(screen2);
 		
-		activeScreen = screens.get(0);
+		activeScreen = screens.get(0); 
 	}
 	
 	public void setup() {
@@ -66,7 +66,7 @@ public class DrawingSurface extends PApplet implements ScreenSwitcher {
 	}
 
 	public boolean isPressed(Integer code) {
-		return keys.contains(code);
+		return keys.contains(code); 
 	}
 	
 	public void mousePressed() {
@@ -74,11 +74,11 @@ public class DrawingSurface extends PApplet implements ScreenSwitcher {
 	}
 	
 	public void mouseMoved() {
-		activeScreen.mouseMoved();
+		activeScreen.mouseMoved(); 
 	}
 	
 	public void mouseDragged() {
-		activeScreen.mouseDragged();
+		activeScreen.mouseDragged(); 
 	}
 	
 	public void mouseReleased() {
