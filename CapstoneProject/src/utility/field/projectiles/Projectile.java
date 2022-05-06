@@ -18,6 +18,18 @@ public abstract class Projectile extends FieldObject{
         velocity = v;
     }
     
+    public void setDamage(int damage) {
+    	this.damage = damage;
+    }
+    
+    public void setHasSplash(boolean splash) {
+    	splash = hasSplash;
+    }
+    
+    public void setHasDot(boolean dot) {
+    	dot = hasDOT;
+    }
+    
     public int getDamage() {
         return damage; 
     }
