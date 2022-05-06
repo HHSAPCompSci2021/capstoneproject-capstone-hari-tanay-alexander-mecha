@@ -1,5 +1,9 @@
 package utility.field;
 
-public class Projectile {
-
+public abstract class Projectile {
+	private float dmg;
+	
+	public abstract void draw();
+	
+	public abstract void changePos(float xChange, float yChange);
 }
