@@ -24,6 +24,8 @@ public class GameScreen extends Screen {
 	// Will be used to keep track of time when in game. 
 	private int gameClock; 
 	private boolean onPause; 
+
+	
 	
 	private Rectangle screenRect;
 	
@@ -44,6 +46,10 @@ public class GameScreen extends Screen {
 		
 	}
 	
+	public void keyPressed() {
+
+	}
+
 	/**
 	* use <code>surface</code> to access graphics. 
 	* <ul> 
@@ -66,12 +72,17 @@ public class GameScreen extends Screen {
 			
 			// clock and escape section. 
 			// TODO create a proper clock functionality. 
-			surface.rect(DRAWING_WIDTH - 281, 0, 280, 100);
-			surface.textSize(10);
-			
+			float clockSectionWidth = (float)(DRAWING_WIDTH * 0.20); 
+			float clockSectionHeight = (float)(DRAWING_HEIGHT * 0.15); 
+
+
+			surface.rect(DRAWING_WIDTH - clockSectionWidth - 1, 0, clockSectionWidth, clockSectionHeight); 
+			surface.textSize(10); 
+			surface.fill(0, 0, 0);
+			surface.text(" "+gameClock, DRAWING_WIDTH - 200, 20);
+
 			
 
-			surface.text(""+gameClock, DRAWING_WIDTH - 200, 20);
 		}
 		
 	}

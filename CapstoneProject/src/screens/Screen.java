@@ -33,6 +33,8 @@ public abstract class Screen {
 		
 	}
 	
-	
+	public void keyPressed() {
+		
+	}
 	
 }

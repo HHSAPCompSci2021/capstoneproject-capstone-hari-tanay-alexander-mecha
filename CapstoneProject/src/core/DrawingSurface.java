@@ -57,7 +57,9 @@ public class DrawingSurface extends PApplet implements ScreenSwitcher {
 	public void keyPressed() {
 		keys.add(keyCode);
 		if (key == ESC)  // This prevents a processing program from closing on escape key
-			key = 0;
+			key = 0; 
+
+		activeScreen.keyPressed(); 
 	}
 
 	public void keyReleased() {
@@ -84,6 +86,7 @@ public class DrawingSurface extends PApplet implements ScreenSwitcher {
 	public void mouseReleased() {
 		activeScreen.mouseReleased();
 	}
+
 	
 	public Point assumedCoordinatesToActual(Point assumed) {
 		return new Point((int)(assumed.getX()*ratioX), (int)(assumed.getY()*ratioY));
