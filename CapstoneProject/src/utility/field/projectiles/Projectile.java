@@ -4,24 +4,35 @@ import utility.field.FieldObject;
 
 public abstract class Projectile extends FieldObject{
     
-    protected int damage; 
+    private int damage; 
 
     // splash dmg is damage in an area. DOT is damage over time, like burn. 
-    protected boolean hasSplash, hasDOT; 
-    protected double velocity; 
+    private boolean hasSplash, hasDOT; 
+    private double velocity; 
 
-    public int getDamage() {
-        return damage; 
-    }
-
-
-    public Projectile(float x, float y, int damage) {
+    
+    public Projectile(float x, float y, int damage, double v) {
         super(x, y);
         //TODO Auto-generated constructor stub
         this.damage = damage; 
+        velocity = v;
     }
-
-
+    
+    public int getDamage() {
+        return damage; 
+    }
+    
+    public boolean getHasSplash() {
+    	return hasSplash;
+    }
+    
+    public boolean getHasDot() {
+    	return hasDOT;
+    }
+    
+    public double getVelocity() {
+    	return velocity;
+    }
     @Override
     public void changePos(float xChange, float yChange) {
 
