@@ -1,4 +1,4 @@
-package Mechs;
+package utility.field.friendly.unit.mecha;
 import processing.core.PApplet;
 
 public class Mech {
