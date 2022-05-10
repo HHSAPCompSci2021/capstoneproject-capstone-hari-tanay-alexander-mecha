@@ -62,7 +62,7 @@ public class GameScreen extends Screen {
 			"QUIT GAME", 
 			"RESTART", 
 			"CLOSE"
-		}
+		}; 
 	}
 	
 	
@@ -109,8 +109,24 @@ public class GameScreen extends Screen {
 				// surface.text("str", x, y); 
 			}
 
-			for (int i = 0; i < 4, i++) {
+			for (int i = 0; i < 4; i++) {
 				// TODO, make the hover animation too. 
+				float topLeftX = (float)pauseMenuButtonsRectangles[i].getMinX(); 
+				float topLeftY = (float)pauseMenuButtonsRectangles[i].getMinY(); 
+				float boxWidth = (float)pauseMenuButtonsRectangles[i].getWidth(); 
+				float boxHeight = (float)pauseMenuButtonsRectangles[i].getHeight(); 
+
+				if (pauseMenuButtonsRectangles[i].contains(mouseLocation)) {
+					surface.fill(255, 255, 255);
+				} else {
+					surface.fill(200, 200, 200); 
+				}
+
+				surface.rect(topLeftX, topLeftY, boxWidth, boxHeight);
+				surface.textAlign(surface.CENTER, surface.CENTER);
+				surface.fill(0); 
+
+				surface.text(pauseButtonStrings[i], (float)pauseMenuButtonsRectangles[i].getCenterX(), (float)pauseMenuButtonsRectangles[i].getCenterY());
 			}
 			
 		} else {
