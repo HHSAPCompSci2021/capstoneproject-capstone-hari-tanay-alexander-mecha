@@ -1,6 +1,6 @@
 package utility.field;
 
-public abstract class GameUnit extends FieldObject{
+public abstract class GameUnit extends FieldObject {
     private int health; 
 
     public GameUnit(float x, float y) {

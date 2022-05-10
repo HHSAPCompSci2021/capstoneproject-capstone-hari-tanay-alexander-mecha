@@ -62,6 +62,7 @@ public class DrawingSurface extends PApplet implements ScreenSwitcher {
 		activeScreen.keyPressed(); 
 	}
 
+	@SuppressWarnings("deprecation")
 	public void keyReleased() {
 		while(keys.contains(keyCode))
 			keys.remove(new Integer(keyCode));
