@@ -1,14 +1,10 @@
 package screens;
 
 
-import java.awt.Rectangle;
-import java.awt.Shape;
-import java.awt.event.*;
-import java.util.ArrayList;
-import java.util.List;
-
 import core.DrawingSurface;
 import processing.core.PConstants;
+import java.awt.Rectangle; 
+import java.awt.Point; 
 
 /**
 * class for GameScreen. 
@@ -21,23 +17,52 @@ import processing.core.PConstants;
 public class GameScreen extends Screen {
 	
 	private DrawingSurface surface; 
-
+	
 	private int waveLevel; 
 	
 	// Will be used to keep track of time when in game. 
 	private int gameClock, waveClock, prepClock; 
 	private boolean onPause; 	
 	
+	private float pauseButtonX, pauseButtonY; 
+	private Rectangle pauseButton; 
+	
+	private Rectangle[] pauseMenuButtonsRectangles; 
+	private String[] pauseButtonStrings; 
+	
 	public GameScreen(DrawingSurface surface) {
 		super(800,600);
 		gameClock = 0; 
-
+		
 		waveLevel = 1; 
-
+		
 		this.surface = surface; 
 		onPause = false; 
 		prepClock = 60 * 60;  
 		waveClock = 0; 
+		
+		pauseButtonX = DRAWING_WIDTH - 20; 
+		pauseButtonY = 20; 
+		pauseButton = new Rectangle((int)pauseButtonX - 20, (int)pauseButtonY - 20, 30, 30); 
+		
+		// 0 - resume game 
+		// 1 - quit game (go back to home screen) 
+		// 2 - restart (restart game - at select screen) 
+		// 3 - close 
+		pauseMenuButtonsRectangles = new Rectangle[] {
+			new Rectangle((DRAWING_WIDTH / 2) - 150, (int)(DRAWING_HEIGHT * 0.30), 300, 42), 
+			new Rectangle((DRAWING_WIDTH / 2) - 150, (int)(DRAWING_HEIGHT * 0.42), 300, 42), 
+			new Rectangle((DRAWING_WIDTH / 2) - 150, (int)(DRAWING_HEIGHT * 0.54), 300, 42), 
+			new Rectangle((DRAWING_WIDTH / 2) - 150, (int)(DRAWING_HEIGHT * 0.66), 300, 42)
+		}; 
+
+		//TODO implement: 
+		pauseButtonStrings = new String[] {
+			"RESUME", 
+			"QUIT GAME", 
+			"RESTART", 
+			"CLOSE"
+		}
 	}
 	
 	
@@ -54,7 +79,7 @@ public class GameScreen extends Screen {
 			onPause = !onPause; 
 		}
 	}
-
+	
 	/**
 	* use <code>surface</code> to access graphics. 
 	* <ul> 
@@ -63,18 +88,34 @@ public class GameScreen extends Screen {
 	* 		<li>finally draw actors, sprites and other such objects. </li>
 	* </ul>
 	*/
-	public void draw() { 
+	public void draw() {
+		Point mouseLocation = surface.actualCoordinatesToAssumed(new Point(surface.mouseX, surface.mouseY)); 
+		
 		if (onPause) {
 			// TODO implement pause menu. 
-			surface.fill(51, 102, 0); 
-			surface.noStroke(); 
-			surface.rect(DRAWING_WIDTH * 0.25f, DRAWING_HEIGHT * 0.25f, DRAWING_WIDTH * 0.50f, DRAWING_HEIGHT * 0.50f, 10);
+			surface.fill(0, 0, 153); 
+			surface.stroke(204, 153, 0);
+			surface.rect(DRAWING_WIDTH * 0.25f, DRAWING_HEIGHT * 0.20f, DRAWING_WIDTH * 0.50f, DRAWING_HEIGHT * 0.60f, 2); 
+			
+			// TODO add text along with the rectangles. 
+			for (Rectangle rect : pauseMenuButtonsRectangles) {
+				surface.fill(240, 240, 240); 
+				surface.rect((float)rect.getMinX(), (float)rect.getMinY(), (float)rect.getWidth(), (float)rect.getHeight()); 
+				
+				// 0 - resume game 
+				// 1 - quit game (go back to home screen) 
+				// 2 - restart (restart game - at select screen) 
+				// 3 - close 
+				// surface.text("str", x, y); 
+			}
 
-
-
+			for (int i = 0; i < 4, i++) {
+				// TODO, make the hover animation too. 
+			}
+			
 		} else {
 			gameClock += 1; 
-
+			
 			// NOTE Draw runs 60 times per second 
 			// TODO finish actions, called on Map class. 
 			
@@ -84,12 +125,11 @@ public class GameScreen extends Screen {
 			// !clock and escape section. 
 			float clockSectionWidth = (float)(DRAWING_WIDTH * 0.30); 
 			float clockSectionHeight = (float)(DRAWING_HEIGHT * 0.15); 
-
-
+			
 			surface.rect(DRAWING_WIDTH - clockSectionWidth - 1, 0, clockSectionWidth, clockSectionHeight); 
 			surface.textSize(14); 
 			surface.fill(0, 0, 0);
-
+			
 			surface.text("WAVE " + waveLevel, (float)(DRAWING_WIDTH - (clockSectionWidth * 0.98)), clockSectionHeight * 0.50f);
 			surface.text("Time elapsed: " + timeCounterToClockDisplay(gameClock), (float)(DRAWING_WIDTH - (clockSectionWidth * 0.98)), clockSectionHeight * 0.70f); 
 			if (prepClock > 0) {
@@ -99,23 +139,33 @@ public class GameScreen extends Screen {
 				waveClock += 1; 
 				surface.text("Time in current wave: " + timeCounterToClockDisplay(waveClock), (float)(DRAWING_WIDTH - (clockSectionWidth * 0.98)), clockSectionHeight * 0.90f);
 			}
-
+			
 			// !pause button 
-			float pauseButtonX = DRAWING_WIDTH - 20; 
-			float pauseButtonY = 20; 
+			if (pauseButton.contains(mouseLocation)) {
+				surface.fill(255, 30, 30); 
+			} else {
+				surface.fill(0, 0, 0); 
+			}
+			surface.rect(pauseButtonX - 4, pauseButtonY - 10, 2, 15); 
+			surface.rect(pauseButtonX + 3, pauseButtonY - 10, 2, 15);
 			
 			
-
 		}
-
-
+		
+		
 		
 	}
-
+	
+	public void mousePressed() {
+		Point p = surface.actualCoordinatesToAssumed(new Point(surface.mouseX,surface.mouseY));
+		if (pauseButton.contains(p))
+		onPause = true; 
+	}
+	
 	private String timeCounterToClockDisplay(int t) {
 		int seconds = (t / 60) % 60; 
 		int minutes = t / 3600; 
-
+		
 		if (seconds < 10) {
 			return minutes + ":0" + seconds; 			
 		} else {
