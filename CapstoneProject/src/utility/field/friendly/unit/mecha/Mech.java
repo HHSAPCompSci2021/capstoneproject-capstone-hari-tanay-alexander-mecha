@@ -35,11 +35,15 @@ public class Mech implements Controllable {
 		
 	}
 	
-	public void changePos(int change, DrawingSurface surface) {
+	public void changePos(int xposChange, int yposChange,int xnegChange, int ynegChange,DrawingSurface surface) {
 		if (surface.isPressed(1)) {
-			// do something if keycode 1 is pressed 
+			xpos+=xposChange;
 		} else if (surface.isPressed(2)) {
-			// do other stuff. TODO get other. 
+			ypos+=yposChange;
+		} else if (surface.isPressed(3)) {
+			xpos-=xnegChange;
+		} else if(surface.isPressed(4)) {
+			ypos -= ynegChange;
 		}
 	}
 
