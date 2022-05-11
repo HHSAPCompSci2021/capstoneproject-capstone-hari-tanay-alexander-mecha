@@ -99,6 +99,12 @@ public class DrawingSurface extends PApplet implements ScreenSwitcher {
 
 	@Override
 	public void switchScreen(int i) {
+		if (screens.get(i) instanceof GameScreen) {
+			// TODO, completely replace the screen with a new screen. 
+			// this is for game restart functionality. 
+			screens.remove(i); 
+			screens.add(new screens.GameScreen(this)); 
+		}
 		activeScreen = screens.get(i);
 	}
 

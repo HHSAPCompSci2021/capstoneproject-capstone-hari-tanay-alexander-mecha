@@ -55,7 +55,7 @@ public class GameScreen extends Screen {
 			new Rectangle((DRAWING_WIDTH / 2) - 150, (int)(DRAWING_HEIGHT * 0.54), 300, 42), 
 			new Rectangle((DRAWING_WIDTH / 2) - 150, (int)(DRAWING_HEIGHT * 0.66), 300, 42)
 		}; 
-
+		
 		//TODO implement: 
 		pauseButtonStrings = new String[] {
 			"RESUME", 
@@ -108,24 +108,24 @@ public class GameScreen extends Screen {
 				// 3 - close 
 				// surface.text("str", x, y); 
 			}
-
+			
 			for (int i = 0; i < 4; i++) {
 				// TODO, make the hover animation too. 
 				float topLeftX = (float)pauseMenuButtonsRectangles[i].getMinX(); 
 				float topLeftY = (float)pauseMenuButtonsRectangles[i].getMinY(); 
 				float boxWidth = (float)pauseMenuButtonsRectangles[i].getWidth(); 
 				float boxHeight = (float)pauseMenuButtonsRectangles[i].getHeight(); 
-
+				
 				if (pauseMenuButtonsRectangles[i].contains(mouseLocation)) {
 					surface.fill(255, 255, 255);
 				} else {
 					surface.fill(200, 200, 200); 
 				}
-
+				
 				surface.rect(topLeftX, topLeftY, boxWidth, boxHeight);
 				surface.textAlign(surface.CENTER, surface.CENTER);
 				surface.fill(0); 
-
+				
 				surface.text(pauseButtonStrings[i], (float)pauseMenuButtonsRectangles[i].getCenterX(), (float)pauseMenuButtonsRectangles[i].getCenterY());
 			}
 			
@@ -174,8 +174,26 @@ public class GameScreen extends Screen {
 	
 	public void mousePressed() {
 		Point p = surface.actualCoordinatesToAssumed(new Point(surface.mouseX,surface.mouseY));
-		if (pauseButton.contains(p))
-		onPause = true; 
+
+		if (!onPause) {
+			if (pauseButton.contains(p))
+			onPause = true; 
+		} else {
+			if (pauseMenuButtonsRectangles[0].contains(p)) {
+				// Do 0. RESUME 
+				onPause = false; 
+			} else if (pauseMenuButtonsRectangles[1].contains(p)) {
+				// Do 1. QUIT GAME
+				surface.switchScreen(0);
+			} else if (pauseMenuButtonsRectangles[2].contains(p)) {
+				// Do 2. 
+				// TODO ? How
+			} else if (pauseMenuButtonsRectangles[3].contains(p)) {
+				// Do 3. CLOSE GAME. 
+				
+			} 
+		}
+		
 	}
 	
 	private String timeCounterToClockDisplay(int t) {
