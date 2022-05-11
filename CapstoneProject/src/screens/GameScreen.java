@@ -3,6 +3,8 @@ package screens;
 
 import core.DrawingSurface;
 import processing.core.PConstants;
+import utility.Map;
+
 import java.awt.Rectangle; 
 import java.awt.Point; 
 
@@ -29,6 +31,8 @@ public class GameScreen extends Screen {
 	
 	private Rectangle[] pauseMenuButtonsRectangles; 
 	private String[] pauseButtonStrings; 
+
+	private Map gameMap; 
 	
 	public GameScreen(DrawingSurface surface) {
 		super(800,600);
@@ -67,9 +71,14 @@ public class GameScreen extends Screen {
 	
 	
 	
-	
-	// The statements in the setup() function 
-	// execute once when the program begins
+	/**
+	 * setup utility given by <code>DrawingSurface</code>. 
+	 * this setup method will have methods that establish the base functionality of the game, 
+	 * - including initialization of game player characters, 
+	 * - addition of money. 
+	 * 
+	 * TODO to be finished. 
+	 */
 	public void setup() {
 		
 	}
@@ -92,12 +101,10 @@ public class GameScreen extends Screen {
 		Point mouseLocation = surface.actualCoordinatesToAssumed(new Point(surface.mouseX, surface.mouseY)); 
 		
 		if (onPause) {
-			// TODO implement pause menu. 
 			surface.fill(0, 0, 153); 
 			surface.stroke(204, 153, 0);
 			surface.rect(DRAWING_WIDTH * 0.25f, DRAWING_HEIGHT * 0.20f, DRAWING_WIDTH * 0.50f, DRAWING_HEIGHT * 0.60f, 2); 
 			
-			// TODO add text along with the rectangles. 
 			for (Rectangle rect : pauseMenuButtonsRectangles) {
 				surface.fill(240, 240, 240); 
 				surface.rect((float)rect.getMinX(), (float)rect.getMinY(), (float)rect.getWidth(), (float)rect.getHeight()); 
@@ -110,7 +117,6 @@ public class GameScreen extends Screen {
 			}
 			
 			for (int i = 0; i < 4; i++) {
-				// TODO, make the hover animation too. 
 				float topLeftX = (float)pauseMenuButtonsRectangles[i].getMinX(); 
 				float topLeftY = (float)pauseMenuButtonsRectangles[i].getMinY(); 
 				float boxWidth = (float)pauseMenuButtonsRectangles[i].getWidth(); 

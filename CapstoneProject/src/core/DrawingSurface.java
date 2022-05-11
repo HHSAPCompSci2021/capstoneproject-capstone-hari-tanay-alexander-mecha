@@ -8,6 +8,7 @@ import processing.core.PApplet;
 import screens.MenuScreen;
 import screens.Screen;
 import screens.ScreenSwitcher;
+import screens.SelectScreen;
 import screens.GameScreen;
 
 public class DrawingSurface extends PApplet implements ScreenSwitcher {
@@ -32,6 +33,9 @@ public class DrawingSurface extends PApplet implements ScreenSwitcher {
 		
 		GameScreen screen2 = new GameScreen(this);
 		screens.add(screen2);
+
+		SelectScreen selectScreen = new SelectScreen(this); 
+		screens.add(selectScreen); 
 		
 		activeScreen = screens.get(0); 
 	}
@@ -100,10 +104,11 @@ public class DrawingSurface extends PApplet implements ScreenSwitcher {
 	@Override
 	public void switchScreen(int i) {
 		if (screens.get(i) instanceof GameScreen) {
-			// TODO, completely replace the screen with a new screen. 
 			// this is for game restart functionality. 
-			screens.remove(i); 
-			screens.add(new screens.GameScreen(this)); 
+			screens.set(i, new screens.GameScreen(this)); 
+		} else if (screens.get(i) instanceof SelectScreen) {
+			// replace the instance of the SelectScreen with a fresh one, so select preferences won't get carried over. 
+			screens.set(i, new screens.SelectScreen(this)); 
 		}
 		activeScreen = screens.get(i);
 	}
