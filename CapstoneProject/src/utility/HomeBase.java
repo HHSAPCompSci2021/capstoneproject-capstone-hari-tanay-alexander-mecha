@@ -1,4 +1,4 @@
-package utility.field.friendly.building;
+package utility;
 
 import utility.field.friendly.Allied;
 
