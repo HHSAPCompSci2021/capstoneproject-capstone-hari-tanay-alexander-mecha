@@ -108,7 +108,7 @@ public class DrawingSurface extends PApplet implements ScreenSwitcher {
 			screens.set(i, new screens.GameScreen(this)); 
 		} else if (screens.get(i) instanceof SelectScreen) {
 			// replace the instance of the SelectScreen with a fresh one, so select preferences won't get carried over. 
-			screens.set(i, new screens.SelectScreen(this)); 
+			screens.set(i, new SelectScreen(this)); 
 		}
 		activeScreen = screens.get(i);
 	}

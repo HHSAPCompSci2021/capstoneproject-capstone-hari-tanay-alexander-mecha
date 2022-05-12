@@ -30,12 +30,24 @@ public class MenuScreen extends Screen {
 
 
 	public void draw() {
-
+		Point mouseLocation = new Point(surface.mouseX, surface.mouseY); 
 		
 
 		surface.background(255,255,255);
 		
+		if (startButton.contains(mouseLocation)) {
+			surface.fill(200);
+		} else {
+			surface.fill(230); 
+		}
 		surface.rect(startButton.x, startButton.y, startButton.width, startButton.height, 10, 10, 10, 10);
+		
+		
+		if (selectScreenButton.contains(mouseLocation)) {
+			surface.fill(200);
+		} else {
+			surface.fill(230);
+		}
 		surface.rect(selectScreenButton.x, selectScreenButton.y, selectScreenButton.width, selectScreenButton.height, 10, 10, 10, 10);
 
 		surface.fill(0);
