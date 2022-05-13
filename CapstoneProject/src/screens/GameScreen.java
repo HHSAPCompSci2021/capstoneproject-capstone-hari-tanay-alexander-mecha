@@ -224,7 +224,7 @@ public class GameScreen extends Screen {
 				surface.textAlign(surface.CENTER, surface.CENTER);
 				surface.fill(0); 
 				
-				surface.text(pauseButtonStrings[j], (float)pauseMenuButtonsRectangles[j].getCenterX(), (float)pauseMenuButtonsRectangles[j].getCenterY());
+				surface.text(shopButtonStrings[j], (float)shopMenuButtonsRectangles[j].getCenterX(), (float)shopMenuButtonsRectangles[j].getCenterY());
 			}
 			
 		} else {
