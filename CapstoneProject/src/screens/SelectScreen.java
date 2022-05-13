@@ -12,7 +12,6 @@ public class SelectScreen extends Screen {
 
     private DrawingSurface surface; 
     private int selection; 
-    private Vanguard v = new Vanguard(100,200);
     private Rectangle[] selectionsRectangles; 
     private String[] selectionStrings; 
     private Rectangle confirmButton; 
@@ -63,14 +62,17 @@ public class SelectScreen extends Screen {
         } else if (selectionsRectangles[2].contains(p)) {
             // Select Vangaurd. 
             selection = 2; 
-        } else if (confirmButton.contains(p)) {
-            System.out.println("woaaaaaaa");
+        } else if (confirmButton.contains(p)) { 
+            // confirm pick. 
+            surface.switchScreen(1, selection);
+            
         }
     }
 
     public void draw() {
         surface.background(255); 
 
+        //  
         Point mouseLocation = new Point(surface.mouseX, surface.mouseY); 
 
         for (int i = 0; i < selectionsRectangles.length; i++) { 
@@ -93,7 +95,7 @@ public class SelectScreen extends Screen {
             
             
 
-            //
+            
         }
 
         surface.fill(255);
@@ -112,7 +114,6 @@ public class SelectScreen extends Screen {
         
         surface.text("CONFIRM PICK", (float)confirmButton.getCenterX(), (float)confirmButton.getCenterY());
 
-        v.draw(surface);
 
     }
 }

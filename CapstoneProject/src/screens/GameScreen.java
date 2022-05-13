@@ -4,6 +4,11 @@ package screens;
 import core.DrawingSurface;
 import processing.core.PConstants;
 import utility.Map;
+import utility.field.friendly.unit.mecha.Controllable;
+import utility.field.friendly.unit.mecha.Mech;
+import utility.field.friendly.unit.mecha.Melner;
+import utility.field.friendly.unit.mecha.Stelwart;
+import utility.field.friendly.unit.mecha.Vanguard;
 
 import java.awt.Rectangle; 
 import java.awt.Point; 
@@ -33,11 +38,43 @@ public class GameScreen extends Screen {
 	private String[] pauseButtonStrings; 
 
 	private Map gameMap; 
+	private Mech player; 
 	
+	/**
+	 * <p>true recommended use of <code>GameScreen</code> constructor since it correctly initializes 
+	 * the Game with the <code>Mech</code> of the player's preference. </p>
+	 * @param surface PApplet surface being used to draw the game. 
+	 * @param selection integer value indicating which <code>Mech</code> the player selected. 
+	 * @throws IllegalArgumentException 
+	 */
+	public GameScreen(DrawingSurface surface, int selection) throws IllegalArgumentException {
+		this(surface); 
+
+		if (selection == 0) {
+			player = new Melner(0, 0); 
+			System.out.println("Created new Melner");
+		} else if (selection == 1) {
+			player = new Stelwart(0, 0); 
+			System.out.println("Created new Stelwart");
+		} else if (selection == 2) {
+			player = new Vanguard(0, 0); 
+			System.out.println("Created new Vanguard");
+		} else {
+			throw new IllegalArgumentException("invalid mech choice integer key"); 
+		}
+	}
+
+	/**
+	 * constuctor for <code>GameScreen</code> 
+	 * * Unit Melner is created by default when calling the GameScreen constructor. 
+	 * @param surface
+	 */
 	public GameScreen(DrawingSurface surface) {
 		super(800,600);
 		gameClock = 0; 
 		
+		gameMap = new Map(); 
+
 		waveLevel = 1; 
 		
 		this.surface = surface; 
