@@ -6,15 +6,15 @@ import processing.core.PApplet;
 import utility.field.friendly.Allied;
 
 public class HomeBase extends Allied {
-    
-	private Rectangle rect;
 	
-    public HomeBase(Rectangle r, float x, float y) {
+	private double radius;
+	
+    public HomeBase(float x, float y) {
         super(x, y); 
-        rect = r;
+        radius = 50;
     }
     
     public void draw(PApplet p) {
-    //	p.draw(rect);
+    	
     }
 }

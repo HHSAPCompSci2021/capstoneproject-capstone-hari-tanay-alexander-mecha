@@ -32,7 +32,7 @@ public class GameScreen extends Screen {
 	
 	// Will be used to keep track of time when in game. 
 	private int gameClock, waveClock, prepClock; 
-	private boolean onPause; 	
+	private boolean onPause, inShop; 	
 	
 	private int seconds, minutes;
 	
@@ -98,7 +98,7 @@ public class GameScreen extends Screen {
 		onPause = false; 
 		prepClock = 60 * 60;  
 		waveClock = 0; 
-		homeBase = new HomeBase(new Rectangle((int)(DRAWING_WIDTH / 2), (int)(DRAWING_HEIGHT / 2)), (float) (DRAWING_WIDTH / 2), (float) DRAWING_HEIGHT / 2);
+		homeBase = new HomeBase(DRAWING_WIDTH / 2, DRAWING_HEIGHT / 2);
 		
 		pauseButtonX = DRAWING_WIDTH - 20; 
 		pauseButtonY = 20; 
@@ -187,7 +187,6 @@ public class GameScreen extends Screen {
 				// 1 - quit game (go back to home screen) 
 				// 2 - restart (restart game - at select screen) 
 				// 3 - close 
-				// surface.text("str", x, y); 
 				
 			}
 			
@@ -246,6 +245,9 @@ public class GameScreen extends Screen {
 			surface.rect(pauseButtonX - 4, pauseButtonY - 10, 2, 15); 
 			surface.rect(pauseButtonX + 3, pauseButtonY - 10, 2, 15);
 			
+			}
+		
+		if (inShop) {
 			for (Rectangle r : shopMenuButtonsRectangles) {
 				surface.fill(240, 240, 240);
 				surface.rect((float)r.getMinX(), (float)r.getMinY(), (float)r.getWidth(), (float)r.getHeight());
@@ -268,24 +270,37 @@ public class GameScreen extends Screen {
 				surface.fill(0); 
 				
 				surface.text(shopButtonStrings[j], (float)shopMenuButtonsRectangles[j].getCenterX(), (float)shopMenuButtonsRectangles[j].getCenterY());
-				
-				if (shopButton.contains(mouseLocation)) {
-					surface.fill(255, 30, 30); 
-				} else {
-					surface.fill(255, 255, 255); 
-				}
-				surface.rect(shopButtonX - 4, shopButtonY - 10, 40, 20); 
-				surface.fill(0);
-				surface.text("SHOP", shopButtonX + 16, shopButtonY);
 			}
+		} else {
+			if (shopButton.contains(mouseLocation)) {
+				surface.fill(255, 30, 30); 
+			} else {
+				surface.fill(255, 255, 255); 
+			}
+			surface.rect(shopButtonX - 4, shopButtonY - 10, 40, 20); 
+			surface.fill(0);
+			surface.text("SHOP", shopButtonX - 2, shopButtonY + 6);
 		}
-		
-		
 	}
 	
 	public void mousePressed() {
 		Point p = surface.actualCoordinatesToAssumed(new Point(surface.mouseX,surface.mouseY));
 
+		if(!inShop) {
+			if (shopButton.contains(p))
+				inShop = true;
+		} else {
+			if (shopMenuButtonsRectangles[0].contains(p)) {
+				inShop = false; 
+			} else if (shopMenuButtonsRectangles[1].contains(p)) {
+				inShop = false; 
+			} else if (shopMenuButtonsRectangles[2].contains(p)) {
+				inShop = false; 
+			} else if (shopMenuButtonsRectangles[3].contains(p)) {
+				inShop = false; 
+			} 
+		}
+		
 		if (!onPause) {
 			if (pauseButton.contains(p))
 			onPause = true; 
@@ -301,11 +316,10 @@ public class GameScreen extends Screen {
 				// TODO ? How
 			} else if (pauseMenuButtonsRectangles[3].contains(p)) {
 				// Do 3. CLOSE GAME. 
-				
 			} 
 			
 		}
-		
+
 	}
 	
 	private String timeCounterToClockDisplay(int t) {
