@@ -42,6 +42,10 @@ public class GameScreen extends Screen {
 	private Map gameMap; 
 	private Mech player; 
 	
+	private Vanguard v = new Vanguard(100,100);
+	private Melner m = new Melner(200,200);
+	private Stelwart s = new Stelwart(300,300);
+	
 	/**
 	 * <p>true recommended use of <code>GameScreen</code> constructor since it correctly initializes 
 	 * the Game with the <code>Mech</code> of the player's preference. </p>
@@ -51,15 +55,17 @@ public class GameScreen extends Screen {
 	 */
 	public GameScreen(DrawingSurface surface, int selection) throws IllegalArgumentException {
 		this(surface); 
-
 		if (selection == 0) {
-			player = new Melner(0, 0); 
-			System.out.println("Created new Melner");
+			player = new Melner(200,200);
+			System.out.println("Created new Melner"); 
 		} else if (selection == 1) {
-			player = new Stelwart(0, 0); 
+			player = new Stelwart(300,300);
 			System.out.println("Created new Stelwart");
 		} else if (selection == 2) {
-			player = new Vanguard(0, 0); 
+			
+			player = new Vanguard(100,100);
+			
+			//v.draw(surface); 
 			System.out.println("Created new Vanguard");
 		} else {
 			throw new IllegalArgumentException("invalid mech choice integer key"); 
@@ -83,7 +89,6 @@ public class GameScreen extends Screen {
 		onPause = false; 
 		prepClock = 60 * 60;  
 		waveClock = 0; 
-		
 		homeBase = new Rectangle((int)(DRAWING_WIDTH/2), (int)(DRAWING_HEIGHT/2), 10, 10);
 		
 		pauseButtonX = DRAWING_WIDTH - 20; 
@@ -126,6 +131,7 @@ public class GameScreen extends Screen {
 			"UPGRADE TANK",
 			"UPGRADE SOLDIER"
 		};
+		
 	}
 	
 	
@@ -163,6 +169,7 @@ public class GameScreen extends Screen {
 			surface.fill(0, 0, 153); 
 			surface.stroke(204, 153, 0);
 			surface.rect(DRAWING_WIDTH * 0.25f, DRAWING_HEIGHT * 0.20f, DRAWING_WIDTH * 0.50f, DRAWING_HEIGHT * 0.60f, 2); 
+			
 			
 			for (Rectangle rect : pauseMenuButtonsRectangles) {
 				surface.fill(240, 240, 240); 
