@@ -2,6 +2,8 @@ package screens;
 
 import core.DrawingSurface;
 import processing.core.PConstants;
+import utility.field.friendly.unit.mecha.Melner;
+import utility.field.friendly.unit.mecha.Stelwart;
 import utility.field.friendly.unit.mecha.Vanguard;
 
 import java.awt.Rectangle;
@@ -13,6 +15,8 @@ public class SelectScreen extends Screen {
     private DrawingSurface surface; 
     private int selection; 
     private Vanguard v = new Vanguard(100,200);
+    private Melner m = new Melner(600,250);
+    private Stelwart s = new Stelwart(350,250);
     private Rectangle[] selectionsRectangles; 
     private String[] selectionStrings; 
     private Rectangle confirmButton; 
@@ -93,7 +97,7 @@ public class SelectScreen extends Screen {
             
             
 
-            //
+           
         }
 
         surface.fill(255);
@@ -113,6 +117,8 @@ public class SelectScreen extends Screen {
         surface.text("CONFIRM PICK", (float)confirmButton.getCenterX(), (float)confirmButton.getCenterY());
 
         v.draw(surface);
-
+        s.draw(surface);
+        m.draw(surface);
+        
     }
 }

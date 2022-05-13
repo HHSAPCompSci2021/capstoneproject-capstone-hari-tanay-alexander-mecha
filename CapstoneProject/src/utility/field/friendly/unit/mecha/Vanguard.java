@@ -11,7 +11,7 @@ public class Vanguard extends Mech{
 	}
 	public void draw(PApplet drawer) {
 		
-		drawer.image(drawer.loadImage("img/javaspritefallguys.png"),getX(), getY(),30,30);
+		drawer.image(drawer.loadImage("img/mech1.png"),getX(), getY()+50,100,100);
 	}
 	
 	
