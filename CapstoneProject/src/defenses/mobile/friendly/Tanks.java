@@ -1,5 +1,6 @@
 package defenses.mobile.friendly;
 
+import processing.core.PApplet;
 import utility.field.friendly.MobileUnit;
 
 public class Tanks extends MobileUnit {
@@ -10,9 +11,15 @@ public class Tanks extends MobileUnit {
 	public Tanks(float x, float y) {
 		super(x, y);
 	}
+	public float getX() {
+		return posX;
+	}
 	
-	public void draw() {
-		
+	public float getY() {
+		return posY;
+	}
+	public void draw(PApplet drawer) {
+		drawer.image(drawer.loadImage("img/barb.jpg"),getX(),getY(),100,100);
 	}
 	
 	public void changePos(float xChange, float yChange) {
