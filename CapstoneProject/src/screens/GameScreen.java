@@ -32,7 +32,9 @@ public class GameScreen extends Screen {
 	private boolean onPause; 	
 	
 	private float pauseButtonX, pauseButtonY, shopButtonX, shopButtonY; 
-	private Rectangle pauseButton, shopButton; 
+	private float homeX, homeY;
+	private Rectangle pauseButton, shopButton;
+	private Rectangle homeBase;
 	
 	private Rectangle[] pauseMenuButtonsRectangles, shopMenuButtonsRectangles; 
 	private String[] pauseButtonStrings, shopButtonStrings; 
@@ -87,6 +89,8 @@ public class GameScreen extends Screen {
 		onPause = false; 
 		prepClock = 60 * 60;  
 		waveClock = 0; 
+		homeBase = new Rectangle((int)(DRAWING_WIDTH/2), (int)(DRAWING_HEIGHT/2), 10, 10);
+		
 		pauseButtonX = DRAWING_WIDTH - 20; 
 		pauseButtonY = 20; 
 		pauseButton = new Rectangle((int)pauseButtonX - 20, (int)pauseButtonY - 20, 30, 30); 
