@@ -3,6 +3,7 @@ package screens;
 
 import core.DrawingSurface;
 import processing.core.PConstants;
+import utility.HomeBase;
 import utility.Map;
 import utility.field.friendly.unit.mecha.Controllable;
 import utility.field.friendly.unit.mecha.Mech;
@@ -34,7 +35,7 @@ public class GameScreen extends Screen {
 	private float pauseButtonX, pauseButtonY, shopButtonX, shopButtonY; 
 	private float homeX, homeY;
 	private Rectangle pauseButton, shopButton;
-	private Rectangle homeBase;
+	private HomeBase homeBase;
 	
 	private Rectangle[] pauseMenuButtonsRectangles, shopMenuButtonsRectangles; 
 	private String[] pauseButtonStrings, shopButtonStrings; 
@@ -89,7 +90,7 @@ public class GameScreen extends Screen {
 		onPause = false; 
 		prepClock = 60 * 60;  
 		waveClock = 0; 
-		homeBase = new Rectangle((int)(DRAWING_WIDTH/2), (int)(DRAWING_HEIGHT/2), 10, 10);
+		homeBase = new HomeBase(new Rectangle((int)(DRAWING_WIDTH / 2), (int)(DRAWING_HEIGHT / 2)), (float) (DRAWING_WIDTH / 2), (float) DRAWING_HEIGHT / 2);
 		
 		pauseButtonX = DRAWING_WIDTH - 20; 
 		pauseButtonY = 20; 
@@ -218,6 +219,12 @@ public class GameScreen extends Screen {
 				} else {
 					surface.fill(200, 200, 200); 
 				}
+				
+				surface.rect(upperX, upperY, buttonWidth, buttonHeight);
+				surface.textAlign(surface.CENTER, surface.CENTER);
+				surface.fill(0); 
+				
+				surface.text(pauseButtonStrings[j], (float)pauseMenuButtonsRectangles[j].getCenterX(), (float)pauseMenuButtonsRectangles[j].getCenterY());
 			}
 			
 		} else {
