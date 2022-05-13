@@ -11,7 +11,7 @@ import utility.field.friendly.unit.mecha.Stelwart;
 import utility.field.friendly.unit.mecha.Vanguard;
 
 import java.awt.Rectangle; 
-import java.awt.Point; 
+import java.awt.Point;
 
 /**
 * class for GameScreen. 
@@ -31,11 +31,11 @@ public class GameScreen extends Screen {
 	private int gameClock, waveClock, prepClock; 
 	private boolean onPause; 	
 	
-	private float pauseButtonX, pauseButtonY; 
-	private Rectangle pauseButton; 
+	private float pauseButtonX, pauseButtonY, shopButtonX, shopButtonY; 
+	private Rectangle pauseButton, shopButton; 
 	
-	private Rectangle[] pauseMenuButtonsRectangles; 
-	private String[] pauseButtonStrings; 
+	private Rectangle[] pauseMenuButtonsRectangles, shopMenuButtonsRectangles; 
+	private String[] pauseButtonStrings, shopButtonStrings; 
 
 	private Map gameMap; 
 	private Mech player; 
@@ -103,7 +103,25 @@ public class GameScreen extends Screen {
 			"QUIT GAME", 
 			"RESTART", 
 			"CLOSE"
-		}; 
+		};
+		
+		shopButtonX = 20;
+		shopButtonY = DRAWING_HEIGHT - 20;
+		shopButton = new Rectangle((int)shopButtonX - 20, (int)shopButtonY - 20, 15, 15);
+		
+		shopMenuButtonsRectangles = new Rectangle[] {
+			new Rectangle((DRAWING_WIDTH / 2) - 150, (int)(DRAWING_HEIGHT * 0.30), 300, 42), 
+			new Rectangle((DRAWING_WIDTH / 2) - 150, (int)(DRAWING_HEIGHT * 0.42), 300, 42), 
+			new Rectangle((DRAWING_WIDTH / 2) - 150, (int)(DRAWING_HEIGHT * 0.54), 300, 42), 
+			new Rectangle((DRAWING_WIDTH / 2) - 150, (int)(DRAWING_HEIGHT * 0.66), 300, 42)
+		};
+		
+		shopButtonStrings = new String[] {
+			"BUY TANK",
+			"DEPLOY SOLDIER",
+			"UPGRADE TANK",
+			"UPGRADE SOLDIER"
+		};
 	}
 	
 	
@@ -151,6 +169,12 @@ public class GameScreen extends Screen {
 				// 2 - restart (restart game - at select screen) 
 				// 3 - close 
 				// surface.text("str", x, y); 
+				
+			}
+			
+			for (Rectangle r : shopMenuButtonsRectangles) {
+				surface.fill(240, 240, 240);
+				surface.rect((float)r.getMinX(), (float)r.getMinY(), (float)r.getWidth(), (float)r.getHeight());
 			}
 			
 			for (int i = 0; i < 4; i++) {
@@ -170,6 +194,19 @@ public class GameScreen extends Screen {
 				surface.fill(0); 
 				
 				surface.text(pauseButtonStrings[i], (float)pauseMenuButtonsRectangles[i].getCenterX(), (float)pauseMenuButtonsRectangles[i].getCenterY());
+			}
+			
+			for(int j = 0; j < 4; j++) {
+				float upperX = (float) shopMenuButtonsRectangles[j].getMinX();
+				float upperY = (float) shopMenuButtonsRectangles[j].getMinY();
+				float buttonWidth = (float) shopMenuButtonsRectangles[j].getWidth();
+				float buttonHeight = (float) shopMenuButtonsRectangles[j].getHeight();
+				
+				if (shopMenuButtonsRectangles[j].contains(mouseLocation)) {
+					surface.fill(255, 255, 255);
+				} else {
+					surface.fill(200, 200, 200); 
+				}
 			}
 			
 		} else {
