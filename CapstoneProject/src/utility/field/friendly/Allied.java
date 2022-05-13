@@ -7,10 +7,10 @@ import utility.field.GameUnit;
  * - this is to ensure no Ally can damage another ally. 
  * - class is made abstract to avoid any Ally classes made. 
  */
-public abstract class Allied extends GameUnit {
+public abstract class Allied extends GameUnit{
 	
 	public Allied(float x, float y) {
-        super(x, y);
+        super(x,y);
     }
 	
 }

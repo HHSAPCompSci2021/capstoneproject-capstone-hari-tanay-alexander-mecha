@@ -34,6 +34,8 @@ public class GameScreen extends Screen {
 	private int gameClock, waveClock, prepClock; 
 	private boolean onPause; 	
 	
+	private int seconds, minutes;
+	
 	private float pauseButtonX, pauseButtonY, shopButtonX, shopButtonY; 
 	private float homeX, homeY;
 	private Rectangle pauseButton, shopButton;
@@ -273,8 +275,8 @@ public class GameScreen extends Screen {
 					surface.fill(255, 255, 255); 
 				}
 				surface.rect(shopButtonX - 4, shopButtonY - 10, 40, 20); 
+				surface.fill(0);
 				surface.text("SHOP", shopButtonX + 16, shopButtonY);
-				surface.stroke(0);
 			}
 		}
 		
@@ -307,8 +309,8 @@ public class GameScreen extends Screen {
 	}
 	
 	private String timeCounterToClockDisplay(int t) {
-		int seconds = (t / 60) % 60; 
-		int minutes = t / 3600; 
+		seconds = (t / 60) % 60; 
+		minutes = t / 3600; 
 		
 		if (seconds < 10) {
 			return minutes + ":0" + seconds; 			
