@@ -2,6 +2,7 @@ package screens;
 
 
 import core.DrawingSurface;
+import enemies.Barbarian;
 import processing.core.PConstants;
 import utility.HomeBase;
 import utility.Map;
@@ -11,7 +12,8 @@ import utility.field.friendly.unit.mecha.Melner;
 import utility.field.friendly.unit.mecha.Stelwart;
 import utility.field.friendly.unit.mecha.Vanguard;
 
-import java.awt.Rectangle; 
+import java.awt.Rectangle;
+import java.awt.Color;
 import java.awt.Point;
 
 /**
@@ -47,6 +49,8 @@ public class GameScreen extends Screen {
 	private Melner m = new Melner(200,200);
 	private Stelwart s = new Stelwart(300,300);
 	
+	private Barbarian b = new Barbarian((float) 10, (float) 10, 150, (float) 3);
+	
 	/**
 	 * <p>true recommended use of <code>GameScreen</code> constructor since it correctly initializes 
 	 * the Game with the <code>Mech</code> of the player's preference. </p>
@@ -56,6 +60,8 @@ public class GameScreen extends Screen {
 	 */
 	public GameScreen(DrawingSurface surface, int selection) throws IllegalArgumentException {
 		this(surface); 
+		b.draw(surface);
+		
 		if (selection == 0) {
 			player = new Melner(200,200);
 			System.out.println("Created new Melner"); 
@@ -132,7 +138,6 @@ public class GameScreen extends Screen {
 			"UPGRADE TANK",
 			"UPGRADE SOLDIER"
 		};
-		
 	}
 	
 	
@@ -184,11 +189,6 @@ public class GameScreen extends Screen {
 				
 			}
 			
-			for (Rectangle r : shopMenuButtonsRectangles) {
-				surface.fill(240, 240, 240);
-				surface.rect((float)r.getMinX(), (float)r.getMinY(), (float)r.getWidth(), (float)r.getHeight());
-			}
-			
 			for (int i = 0; i < 4; i++) {
 				float topLeftX = (float)pauseMenuButtonsRectangles[i].getMinX(); 
 				float topLeftY = (float)pauseMenuButtonsRectangles[i].getMinY(); 
@@ -206,25 +206,6 @@ public class GameScreen extends Screen {
 				surface.fill(0); 
 				
 				surface.text(pauseButtonStrings[i], (float)pauseMenuButtonsRectangles[i].getCenterX(), (float)pauseMenuButtonsRectangles[i].getCenterY());
-			}
-			
-			for(int j = 0; j < 4; j++) {
-				float upperX = (float) shopMenuButtonsRectangles[j].getMinX();
-				float upperY = (float) shopMenuButtonsRectangles[j].getMinY();
-				float buttonWidth = (float) shopMenuButtonsRectangles[j].getWidth();
-				float buttonHeight = (float) shopMenuButtonsRectangles[j].getHeight();
-				
-				if (shopMenuButtonsRectangles[j].contains(mouseLocation)) {
-					surface.fill(255, 255, 255);
-				} else {
-					surface.fill(200, 200, 200); 
-				}
-				
-				surface.rect(upperX, upperY, buttonWidth, buttonHeight);
-				surface.textAlign(surface.CENTER, surface.CENTER);
-				surface.fill(0); 
-				
-				surface.text(shopButtonStrings[j], (float)shopMenuButtonsRectangles[j].getCenterX(), (float)shopMenuButtonsRectangles[j].getCenterY());
 			}
 			
 		} else {
@@ -263,9 +244,39 @@ public class GameScreen extends Screen {
 			surface.rect(pauseButtonX - 4, pauseButtonY - 10, 2, 15); 
 			surface.rect(pauseButtonX + 3, pauseButtonY - 10, 2, 15);
 			
+			for (Rectangle r : shopMenuButtonsRectangles) {
+				surface.fill(240, 240, 240);
+				surface.rect((float)r.getMinX(), (float)r.getMinY(), (float)r.getWidth(), (float)r.getHeight());
+			}
 			
+			for(int j = 0; j < 4; j++) {
+				float upperX = (float) shopMenuButtonsRectangles[j].getMinX();
+				float upperY = (float) shopMenuButtonsRectangles[j].getMinY();
+				float buttonWidth = (float) shopMenuButtonsRectangles[j].getWidth();
+				float buttonHeight = (float) shopMenuButtonsRectangles[j].getHeight();
+				
+				if (shopMenuButtonsRectangles[j].contains(mouseLocation)) {
+					surface.fill(255, 255, 255);
+				} else {
+					surface.fill(200, 200, 200); 
+				}
+				
+				surface.rect(upperX, upperY, buttonWidth, buttonHeight);
+				surface.textAlign(surface.CENTER, surface.CENTER);
+				surface.fill(0); 
+				
+				surface.text(shopButtonStrings[j], (float)shopMenuButtonsRectangles[j].getCenterX(), (float)shopMenuButtonsRectangles[j].getCenterY());
+				
+				if (shopButton.contains(mouseLocation)) {
+					surface.fill(255, 30, 30); 
+				} else {
+					surface.fill(255, 255, 255); 
+				}
+				surface.rect(shopButtonX - 4, shopButtonY - 10, 40, 20); 
+				surface.text("SHOP", shopButtonX + 16, shopButtonY);
+				surface.stroke(0);
+			}
 		}
-		
 		
 		
 	}
@@ -290,6 +301,7 @@ public class GameScreen extends Screen {
 				// Do 3. CLOSE GAME. 
 				
 			} 
+			
 		}
 		
 	}

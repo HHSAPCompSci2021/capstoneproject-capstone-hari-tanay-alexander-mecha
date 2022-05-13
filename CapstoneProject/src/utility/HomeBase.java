@@ -15,6 +15,6 @@ public class HomeBase extends Allied {
     }
     
     public void draw(PApplet p) {
-    	p.draw(rect);
+    //	p.draw(rect);
     }
 }

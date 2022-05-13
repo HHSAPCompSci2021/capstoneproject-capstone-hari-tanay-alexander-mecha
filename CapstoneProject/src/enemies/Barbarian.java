@@ -1,12 +1,12 @@
 package enemies;
 import processing.core.PApplet;
-	public class Enemy {
+	public class Barbarian {
 		
 		private float x,y;
 		private int health;
 		private float movementSpeed;
 		
-		public Enemy(float xCord, float yCord,int h,float mS) {
+		public Barbarian(float xCord, float yCord,int h,float mS) {
 			x = xCord;
 			y= yCord;
 			h = health;
