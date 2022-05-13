@@ -9,12 +9,13 @@ import screens.MenuScreen;
 import screens.Screen;
 import screens.ScreenSwitcher;
 import screens.SelectScreen;
+import utility.field.friendly.unit.mecha.Vanguard;
 import screens.GameScreen;
 
 public class DrawingSurface extends PApplet implements ScreenSwitcher {
 
 	public float ratioX, ratioY;
-	
+	private Vanguard v; 
 	private ArrayList<Integer> keys;
 	
 	private Screen activeScreen;
@@ -38,6 +39,9 @@ public class DrawingSurface extends PApplet implements ScreenSwitcher {
 		screens.add(selectScreen); 
 		
 		activeScreen = screens.get(0); 
+		
+		v = new Vanguard(100,200);
+		v.draw();
 	}
 	
 	public void setup() {

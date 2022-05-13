@@ -2,6 +2,7 @@ package screens;
 
 import core.DrawingSurface;
 import processing.core.PConstants;
+import utility.field.friendly.unit.mecha.Vanguard;
 
 import java.awt.Rectangle;
 import java.awt.Point; 
@@ -11,7 +12,7 @@ public class SelectScreen extends Screen {
 
     private DrawingSurface surface; 
     private int selection; 
-
+    private Vanguard v = new Vanguard(100,200);
     private Rectangle[] selectionsRectangles; 
     private String[] selectionStrings; 
     private Rectangle confirmButton; 
@@ -45,7 +46,8 @@ public class SelectScreen extends Screen {
             DRAWING_HEIGHT - 70, 
             120, 
             30
-        ); 
+        );
+        
     }
 
 
@@ -107,8 +109,10 @@ public class SelectScreen extends Screen {
         surface.rect((float)confirmButton.getMinX(), (float)confirmButton.getMinY(), (float)confirmButton.getWidth(), (float)confirmButton.getHeight());
 
         surface.fill(0);
+        
         surface.text("CONFIRM PICK", (float)confirmButton.getCenterX(), (float)confirmButton.getCenterY());
 
+        v.draw(surface);
 
     }
 }

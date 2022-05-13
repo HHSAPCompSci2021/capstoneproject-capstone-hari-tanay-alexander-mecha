@@ -15,6 +15,10 @@ public class Mech implements Controllable {
 		movementSpeed = mS;
 	}
 	
+	public Mech() {
+		
+	}
+	
 	public float getX() {
 		return xpos;
 	}
@@ -32,16 +36,16 @@ public class Mech implements Controllable {
 	}
 	
 	public void draw() {
-		
+	
 	}
 	
 	public void changePos(int xposChange, int yposChange,int xnegChange, int ynegChange,DrawingSurface surface) {
 		if (surface.isPressed(1)) {
-			xpos+=xposChange;
+			xpos += xposChange;
 		} else if (surface.isPressed(2)) {
-			ypos+=yposChange;
+			ypos += yposChange;
 		} else if (surface.isPressed(3)) {
-			xpos-=xnegChange;
+			xpos -= xnegChange;
 		} else if(surface.isPressed(4)) {
 			ypos -= ynegChange;
 		}
