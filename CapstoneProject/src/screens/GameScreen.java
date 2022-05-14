@@ -47,11 +47,11 @@ public class GameScreen extends Screen {
 	private Map gameMap; 
 	private Mech player; 
 	
-	private Vanguard v = new Vanguard(100,100);
-	private Melner m = new Melner(200,200);
-	private Stelwart s = new Stelwart(300,300);
+	// private Vanguard v = new Vanguard(100,100);
+	// private Melner m = new Melner(200,200);
+	// private Stelwart s = new Stelwart(300,300);
 	
-	private Barbarian b = new Barbarian((float) 10, (float) 10, 150, (float) 3);
+	// private Barbarian b = new Barbarian((float) 10, (float) 10, 150, (float) 3);
 	
 	/**
 	 * <p>true recommended use of <code>GameScreen</code> constructor since it correctly initializes 
@@ -62,7 +62,7 @@ public class GameScreen extends Screen {
 	 */
 	public GameScreen(DrawingSurface surface, int selection) throws IllegalArgumentException {
 		this(surface); 
-		b.draw(surface);
+		// b.draw(surface);
 		
 		if (selection == 0) {
 			player = new Melner(200,200);
@@ -115,7 +115,6 @@ public class GameScreen extends Screen {
 			new Rectangle((DRAWING_WIDTH / 2) - 150, (int)(DRAWING_HEIGHT * 0.66), 300, 42)
 		}; 
 		
-		//TODO implement: 
 		pauseButtonStrings = new String[] {
 			"RESUME", 
 			"QUIT GAME", 

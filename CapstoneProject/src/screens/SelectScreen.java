@@ -107,7 +107,7 @@ public class SelectScreen extends Screen {
                 surface.rect((float)confirmButton.getX() - 7, (float)confirmButton.getY() - 7, (float)confirmButton.getWidth() + 14, (float)confirmButton.getHeight() + 14);
             } 
         } else {
-            surface.fill(150);
+            surface.fill(50);
         }
 
         
