@@ -302,9 +302,11 @@ public class GameScreen extends Screen {
 		}
 		
 		if (!onPause) {
+			// place all buttons and interactions when no pause exists here: 
 			if (pauseButton.contains(p))
 			onPause = true; 
 		} else {
+			// !Do not change, all buttons for pause menu interactions are here: 
 			if (pauseMenuButtonsRectangles[0].contains(p)) {
 				// Do 0. RESUME 
 				onPause = false; 

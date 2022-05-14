@@ -77,13 +77,14 @@ public class SelectScreen extends Screen {
     public void draw() {
         surface.background(255); 
 
-        //  
+        //  universally used mouseLocation for this method. 
         Point mouseLocation = new Point(surface.mouseX, surface.mouseY); 
 
+        // loop to draw all the options and its rectangles. 
         for (int i = 0; i < selectionsRectangles.length; i++) { 
             if (i == selection) {
                 surface.fill(255);
-                surface.rect((float)(selectionsRectangles[i].getMinX()) - 7, (float)(selectionsRectangles[i].getMinY()) - 7, (float)selectionsRectangles[i].getWidth() + 14, (float)selectionsRectangles[i].getHeight() + 14); 
+                surface.rect((float)(selectionsRectangles[i].x) - 7, (float)(selectionsRectangles[i].y) - 7, (float)selectionsRectangles[i].getWidth() + 14, (float)selectionsRectangles[i].getHeight() + 14); 
             }
             
             if (selectionsRectangles[i].contains(mouseLocation)) {
@@ -91,29 +92,27 @@ public class SelectScreen extends Screen {
             } else {
                 surface.fill(230); 
             }
-            surface.rect((float)(selectionsRectangles[i].getMinX()), (float)(selectionsRectangles[i].getMinY()), (float)selectionsRectangles[i].getWidth(), (float)selectionsRectangles[i].getHeight()); 
+            surface.rect((float)(selectionsRectangles[i].x), (float)(selectionsRectangles[i].y), (float)selectionsRectangles[i].getWidth(), (float)selectionsRectangles[i].getHeight()); 
 
             surface.textAlign(PConstants.CENTER, PConstants.CENTER); 
             surface.fill(0);
-            surface.text(selectionStrings[i], (float)selectionsRectangles[i].getCenterX(), (float)(selectionsRectangles[i].getMinY() + 30)); 
-            
-            
-            
-
+            surface.text(selectionStrings[i], (float)selectionsRectangles[i].getCenterX(), (float)(selectionsRectangles[i].getY() + 30)); 
             
         }
 
         surface.fill(255);
         if (selection >= 0) {
-            surface.rect((float)confirmButton.getMinX() - 7, (float)confirmButton.getMinY() - 7, (float)confirmButton.getWidth() + 14, (float)confirmButton.getHeight() + 14);
-        } 
-
-        if (confirmButton.contains(mouseLocation)) {
-            surface.fill(200);
+            surface.fill(230); 
+            if (confirmButton.contains(mouseLocation)) {
+                surface.rect((float)confirmButton.getX() - 7, (float)confirmButton.getY() - 7, (float)confirmButton.getWidth() + 14, (float)confirmButton.getHeight() + 14);
+            } 
         } else {
-            surface.fill(230);
+            surface.fill(150);
         }
-        surface.rect((float)confirmButton.getMinX(), (float)confirmButton.getMinY(), (float)confirmButton.getWidth(), (float)confirmButton.getHeight());
+
+        
+
+        surface.rect((float)confirmButton.getX(), (float)confirmButton.getY(), (float)confirmButton.getWidth(), (float)confirmButton.getHeight());
 
         surface.fill(0);
         
