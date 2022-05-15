@@ -36,15 +36,14 @@ public class GameScreen extends Screen {
 	private int gameClock, waveClock, prepClock; 
 	private boolean onPause, inShop; 	
 	
+	private int seconds, minutes;
+	
 	private float pauseButtonX, pauseButtonY, shopButtonX, shopButtonY; 
-<<<<<<< HEAD
+
 	private float homeX, homeY;
-	private Rectangle pauseButton, shopButton;
 	private HomeBase base;
-=======
 	private Rectangle2D.Float pauseButton, shopButton;
 	private HomeBase homeBase;
->>>>>>> 52e668886527e6f23b8d001156048b537f093a35
 	
 	private Rectangle[] shopMenuButtonsRectangles; 
 	private String[] pauseButtonStrings, shopButtonStrings; 
@@ -113,11 +112,8 @@ public class GameScreen extends Screen {
 		
 		pauseButtonX = DRAWING_WIDTH - 20; 
 		pauseButtonY = 20; 
-<<<<<<< HEAD
-		pauseButton = new Rectangle((int)(pauseButtonX - 20), (int)(pauseButtonY - 20), 30, 30); 
-=======
+
 		pauseButton = new Rectangle2D.Float(pauseButtonX - 20, pauseButtonY - 20, 30, 30); 
->>>>>>> 52e668886527e6f23b8d001156048b537f093a35
 		
 		// 0 - resume game 
 		// 1 - quit game (go back to home screen) 
