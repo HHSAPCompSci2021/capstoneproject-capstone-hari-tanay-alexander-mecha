@@ -13,5 +13,11 @@ public abstract class FieldObject {
         yPosition += yChange; 
     }
 
-
+    public float getX() {
+    	return xPosition;
+    }
+    
+    public float getY() {
+    	return yPosition;
+    }
 }

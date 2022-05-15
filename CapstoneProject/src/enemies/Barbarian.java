@@ -8,7 +8,7 @@ import processing.core.PApplet;
 		
 		public Barbarian(float xCord, float yCord,int h,float mS) {
 			x = xCord;
-			y= yCord;
+			y = yCord;
 			h = health;
 			movementSpeed = mS;
 		}

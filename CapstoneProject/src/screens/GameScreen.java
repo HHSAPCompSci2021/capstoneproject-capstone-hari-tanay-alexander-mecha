@@ -14,7 +14,8 @@ import utility.field.friendly.unit.mecha.Vanguard;
 
 import java.awt.Rectangle;
 import java.awt.Color;
-import java.awt.Point;
+import java.awt.Point; 
+import java.awt.geom.Rectangle2D;
 
 /**
 * class for GameScreen. 
@@ -26,6 +27,7 @@ import java.awt.Point;
 */
 public class GameScreen extends Screen {
 	
+	private boolean gameOver; 
 	private DrawingSurface surface; 
 	
 	private int waveLevel; 
@@ -34,15 +36,22 @@ public class GameScreen extends Screen {
 	private int gameClock, waveClock, prepClock; 
 	private boolean onPause, inShop; 	
 	
-	private int seconds, minutes;
-	
 	private float pauseButtonX, pauseButtonY, shopButtonX, shopButtonY; 
+<<<<<<< HEAD
 	private float homeX, homeY;
 	private Rectangle pauseButton, shopButton;
+	private HomeBase base;
+=======
+	private Rectangle2D.Float pauseButton, shopButton;
 	private HomeBase homeBase;
+>>>>>>> 52e668886527e6f23b8d001156048b537f093a35
 	
-	private Rectangle[] pauseMenuButtonsRectangles, shopMenuButtonsRectangles; 
+	private Rectangle[] shopMenuButtonsRectangles; 
 	private String[] pauseButtonStrings, shopButtonStrings; 
+
+	// TODO, finish conversion from Rectangle to Rectangle2D.Float 
+
+	private Rectangle2D.Float[] pauseMenuButtons; 
 
 	private Map gameMap; 
 	private Mech player; 
@@ -62,6 +71,7 @@ public class GameScreen extends Screen {
 	 */
 	public GameScreen(DrawingSurface surface, int selection) throws IllegalArgumentException {
 		this(surface); 
+		gameOver = false; 
 		// b.draw(surface);
 		
 		if (selection == 0) {
@@ -92,27 +102,32 @@ public class GameScreen extends Screen {
 		
 		gameMap = new Map(); 
 
-		waveLevel = 1; 
+		waveLevel = 0; 
 		
 		this.surface = surface; 
 		onPause = false; 
 		prepClock = 60 * 60;  
 		waveClock = 0; 
-		homeBase = new HomeBase(DRAWING_WIDTH / 2, DRAWING_HEIGHT / 2);
+		
+		base = new HomeBase(DRAWING_WIDTH / 2, DRAWING_HEIGHT / 2, 100);
 		
 		pauseButtonX = DRAWING_WIDTH - 20; 
 		pauseButtonY = 20; 
-		pauseButton = new Rectangle((int)pauseButtonX - 20, (int)pauseButtonY - 20, 30, 30); 
+<<<<<<< HEAD
+		pauseButton = new Rectangle((int)(pauseButtonX - 20), (int)(pauseButtonY - 20), 30, 30); 
+=======
+		pauseButton = new Rectangle2D.Float(pauseButtonX - 20, pauseButtonY - 20, 30, 30); 
+>>>>>>> 52e668886527e6f23b8d001156048b537f093a35
 		
 		// 0 - resume game 
 		// 1 - quit game (go back to home screen) 
 		// 2 - restart (restart game - at select screen) 
 		// 3 - close 
-		pauseMenuButtonsRectangles = new Rectangle[] {
-			new Rectangle((DRAWING_WIDTH / 2) - 150, (int)(DRAWING_HEIGHT * 0.30), 300, 42), 
-			new Rectangle((DRAWING_WIDTH / 2) - 150, (int)(DRAWING_HEIGHT * 0.42), 300, 42), 
-			new Rectangle((DRAWING_WIDTH / 2) - 150, (int)(DRAWING_HEIGHT * 0.54), 300, 42), 
-			new Rectangle((DRAWING_WIDTH / 2) - 150, (int)(DRAWING_HEIGHT * 0.66), 300, 42)
+		pauseMenuButtons = new Rectangle2D.Float[] {
+			new Rectangle.Float((DRAWING_WIDTH / 2) - 150, (int)(DRAWING_HEIGHT * 0.30), 300, 42), 
+			new Rectangle.Float((DRAWING_WIDTH / 2) - 150, (int)(DRAWING_HEIGHT * 0.42), 300, 42), 
+			new Rectangle.Float((DRAWING_WIDTH / 2) - 150, (int)(DRAWING_HEIGHT * 0.54), 300, 42), 
+			new Rectangle.Float((DRAWING_WIDTH / 2) - 150, (int)(DRAWING_HEIGHT * 0.66), 300, 42)
 		}; 
 		
 		pauseButtonStrings = new String[] {
@@ -122,23 +137,24 @@ public class GameScreen extends Screen {
 			"CLOSE"
 		};
 		
-		shopButtonX = 20;
-		shopButtonY = DRAWING_HEIGHT - 20;
-		shopButton = new Rectangle((int)shopButtonX - 20, (int)shopButtonY - 20, 15, 15);
+		// ??
+		// shopButtonX = 20;
+		// shopButtonY = DRAWING_HEIGHT - 20;
+		// shopButton = new Rectangle2D.Float((int)shopButtonX - 20, (int)shopButtonY - 20, 15, 15);
 		
-		shopMenuButtonsRectangles = new Rectangle[] {
-			new Rectangle((DRAWING_WIDTH / 2) - 150, (int)(DRAWING_HEIGHT * 0.30), 300, 42), 
-			new Rectangle((DRAWING_WIDTH / 2) - 150, (int)(DRAWING_HEIGHT * 0.42), 300, 42), 
-			new Rectangle((DRAWING_WIDTH / 2) - 150, (int)(DRAWING_HEIGHT * 0.54), 300, 42), 
-			new Rectangle((DRAWING_WIDTH / 2) - 150, (int)(DRAWING_HEIGHT * 0.66), 300, 42)
-		};
+		// shopMenuButtonsRectangles = new Rectangle[] {
+		// 	new Rectangle((DRAWING_WIDTH / 2) - 150, (int)(DRAWING_HEIGHT * 0.30), 300, 42), 
+		// 	new Rectangle((DRAWING_WIDTH / 2) - 150, (int)(DRAWING_HEIGHT * 0.42), 300, 42), 
+		// 	new Rectangle((DRAWING_WIDTH / 2) - 150, (int)(DRAWING_HEIGHT * 0.54), 300, 42), 
+		// 	new Rectangle((DRAWING_WIDTH / 2) - 150, (int)(DRAWING_HEIGHT * 0.66), 300, 42)
+		// };
 		
-		shopButtonStrings = new String[] {
-			"BUY TANK",
-			"DEPLOY SOLDIER",
-			"UPGRADE TANK",
-			"UPGRADE SOLDIER"
-		};
+		// shopButtonStrings = new String[] {
+		// 	"BUY TANK",
+		// 	"DEPLOY SOLDIER",
+		// 	"UPGRADE TANK",
+		// 	"UPGRADE SOLDIER"
+		// };
 	}
 	
 	
@@ -148,8 +164,6 @@ public class GameScreen extends Screen {
 	 * this setup method will have methods that establish the base functionality of the game, 
 	 * - including initialization of game player characters, 
 	 * - addition of money. 
-	 * 
-	 * TODO to be finished. 
 	 */
 	public void setup() {
 		
@@ -173,39 +187,30 @@ public class GameScreen extends Screen {
 		Point mouseLocation = surface.actualCoordinatesToAssumed(new Point(surface.mouseX, surface.mouseY)); 
 		
 		if (onPause) {
+			// draw pause window. 
 			surface.fill(0, 0, 153); 
 			surface.stroke(204, 153, 0);
 			surface.rect(DRAWING_WIDTH * 0.25f, DRAWING_HEIGHT * 0.20f, DRAWING_WIDTH * 0.50f, DRAWING_HEIGHT * 0.60f, 2); 
 			
-			
-			for (Rectangle rect : pauseMenuButtonsRectangles) {
-				surface.fill(240, 240, 240); 
-				surface.rect((float)rect.getMinX(), (float)rect.getMinY(), (float)rect.getWidth(), (float)rect.getHeight()); 
-				
-				// 0 - resume game 
-				// 1 - quit game (go back to home screen) 
-				// 2 - restart (restart game - at select screen) 
-				// 3 - close 
-				
-			}
-			
-			for (int i = 0; i < 4; i++) {
-				float topLeftX = (float)pauseMenuButtonsRectangles[i].getMinX(); 
-				float topLeftY = (float)pauseMenuButtonsRectangles[i].getMinY(); 
-				float boxWidth = (float)pauseMenuButtonsRectangles[i].getWidth(); 
-				float boxHeight = (float)pauseMenuButtonsRectangles[i].getHeight(); 
-				
-				if (pauseMenuButtonsRectangles[i].contains(mouseLocation)) {
+			for (int i = 0; i < 4; i++) {		
+				// values for each pause button. 		
+				float topLeftX = pauseMenuButtons[i].x; 
+				float topLeftY = pauseMenuButtons[i].y; 
+				float boxWidth = pauseMenuButtons[i].width; 
+				float boxHeight = pauseMenuButtons[i].height; 
+
+				// create a hover animation. 
+				if (pauseMenuButtons[i].contains(mouseLocation)) {
 					surface.fill(255, 255, 255);
 				} else {
 					surface.fill(200, 200, 200); 
 				}
 				
+				// base pause button draw. Add string in center of each box. 
 				surface.rect(topLeftX, topLeftY, boxWidth, boxHeight);
-				surface.textAlign(surface.CENTER, surface.CENTER);
+				surface.textAlign(PConstants.CENTER, PConstants.CENTER);
 				surface.fill(0); 
-				
-				surface.text(pauseButtonStrings[i], (float)pauseMenuButtonsRectangles[i].getCenterX(), (float)pauseMenuButtonsRectangles[i].getCenterY());
+				surface.text(pauseButtonStrings[i], (float)pauseMenuButtons[i].getCenterX(), (float)pauseMenuButtons[i].getCenterY());
 			}
 			
 		} else {
@@ -214,7 +219,6 @@ public class GameScreen extends Screen {
 			// NOTE Draw runs 60 times per second 
 			// TODO finish actions, called on Map class. 
 			
-			// TODO finish better background. 
 			surface.background(191, 255, 187); 
 			
 			// !clock and escape section. 
@@ -280,6 +284,7 @@ public class GameScreen extends Screen {
 			surface.fill(0);
 			surface.text("SHOP", shopButtonX - 2, shopButtonY + 6);
 		}
+
 	}
 	
 	public void mousePressed() {
@@ -306,16 +311,16 @@ public class GameScreen extends Screen {
 			onPause = true; 
 		} else {
 			// !Do not change, all buttons for pause menu interactions are here: 
-			if (pauseMenuButtonsRectangles[0].contains(p)) {
+			if (pauseMenuButtons[0].contains(p)) {
 				// Do 0. RESUME 
 				onPause = false; 
-			} else if (pauseMenuButtonsRectangles[1].contains(p)) {
+			} else if (pauseMenuButtons[1].contains(p)) {
 				// Do 1. QUIT GAME
 				surface.switchScreen(0);
-			} else if (pauseMenuButtonsRectangles[2].contains(p)) {
+			} else if (pauseMenuButtons[2].contains(p)) {
 				// Do 2. 
 				// TODO ? How
-			} else if (pauseMenuButtonsRectangles[3].contains(p)) {
+			} else if (pauseMenuButtons[3].contains(p)) {
 				// Do 3. CLOSE GAME. 
 			} 
 			
@@ -324,8 +329,8 @@ public class GameScreen extends Screen {
 	}
 	
 	private String timeCounterToClockDisplay(int t) {
-		seconds = (t / 60) % 60; 
-		minutes = t / 3600; 
+		int seconds = (t / 60) % 60; 
+		int minutes = t / 3600; 
 		
 		if (seconds < 10) {
 			return minutes + ":0" + seconds; 			

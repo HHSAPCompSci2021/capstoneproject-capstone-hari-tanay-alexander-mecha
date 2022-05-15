@@ -27,7 +27,9 @@ public class MenuScreen extends Screen {
 		selectScreenButton = new Rectangle(800/2-100,600/2+100,200,100); 
 	}
 
-
+	/** 
+	 * constructor for draw method of the <code>MeduScreen</code>. 
+	 */
 	public void draw() {
 		Point mouseLocation = new Point(surface.mouseX, surface.mouseY); 
 		

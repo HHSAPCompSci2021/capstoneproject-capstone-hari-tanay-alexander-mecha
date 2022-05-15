@@ -7,14 +7,22 @@ import utility.field.friendly.Allied;
 
 public class HomeBase extends Allied {
 	
-	private double radius;
+	private int hp;
 	
-    public HomeBase(float x, float y) {
+    public HomeBase(float x, float y, int hitpoints) {
         super(x, y); 
-        radius = 50;
+        hp = hitpoints;
+    }
+    
+    public float getX() {
+    	return getX();
+    }
+    
+    public float getY() {
+    	return getY();
     }
     
     public void draw(PApplet p) {
-    	
+    	p.image(p.loadImage("img/base.png"),getX(),getY(),400,300);
     }
 }
