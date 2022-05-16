@@ -36,6 +36,9 @@ public class ShopHandler {
         this.DRAWING_WIDTH = DRAWING_WIDTH; 
         this.DRAWING_HEIGHT = DRAWING_HEIGHT; 
         
+        shopPanelBoundary = new Rectangle2D.Float(0, 0.75f * DRAWING_HEIGHT, DRAWING_WIDTH * 0.24f, DRAWING_HEIGHT / 4f); 
+        shopWindowBoundary = new Rectangle2D.Float(DRAWING_WIDTH * 0.25f, DRAWING_HEIGHT * 0.20f, DRAWING_WIDTH * 0.75f, DRAWING_HEIGHT * 0.80F); 
+
         // * rectangles for shop menu functionality. 
         // 0 - purchase a tank.  
         // 1 - purchase a soldier.  
@@ -44,29 +47,19 @@ public class ShopHandler {
         // TODO make the buttons in the desired layout. 
         // ! running will cause exception, index-out-of-bounds error. 
         shopMenuButtonsRectangles = new Rectangle2D.Float[] {
-            new Rectangle2D.Float()
+            new Rectangle2D.Float(shopWindowBoundary.x + 40, shopWindowBoundary.y + 40, 100, 100), 
+            new Rectangle2D.Float((float)shopWindowBoundary.getMaxX() - 140, shopWindowBoundary.y + 40, 100, 100), 
+            new Rectangle2D.Float((float)shopWindowBoundary.getMaxX() - 140, (float)shopWindowBoundary.getMaxY() - 140, 100, 100), 
+            new Rectangle2D.Float(shopWindowBoundary.x + 40, (float)shopWindowBoundary.getMaxY() - 140, 100, 100) 
         };
         
         shopButtonStrings = new String[] {
             "BUY TANK", 
             "BUY SOLDIER", 
             "UPGRADE TANK", 
-            "UPGRADE SOLDIER" 
+            "UPGRADE SOLDIER"
         };
         
-        shopPanelBoundary = new Rectangle2D.Float(0, 0.75f * DRAWING_HEIGHT, DRAWING_WIDTH * 0.24f, DRAWING_HEIGHT / 4f); 
-        shopWindowBoundary = new Rectangle2D.Float(DRAWING_WIDTH * 0.25f, DRAWING_HEIGHT * 0.20f, DRAWING_WIDTH * 0.75f, DRAWING_HEIGHT * 0.80F); 
-    }
-    
-    /**
-    * interface to be displayed when shop window is open. 
-    * @param surface processing window that is used to draw. 
-    * @param mouseLocation current mouse location in the form of a <code>Point</code> 
-    */
-    public void showShopDisplay(DrawingSurface surface, Point mouseLocation) {
-        surface.fill(0, 0, 133);
-        surface.stroke(204, 153, 0); 
-        surface.rect(shopWindowBoundary.x, shopWindowBoundary.y, shopWindowBoundary.width, shopWindowBoundary.height); 
     }
     
     /**
@@ -74,11 +67,29 @@ public class ShopHandler {
     * @param surface processing window that is used to draw. 
     * @param mouseLocation current mouse location in the form of a <code>Point</code> 
     */
-    public void shopShopPanel(DrawingSurface surface, Point mouseLocation) {
+    public void showShopPanel(DrawingSurface surface, Point mouseLocation) {
+        surface.fill(0, 0, 133);
+        surface.stroke(204, 153, 0); 
+        surface.rect(shopPanelBoundary.x, shopPanelBoundary.y, shopPanelBoundary.width, shopPanelBoundary.height); 
+
+        // TODO include text which properly includes the credit amount. 
+        surface.textAlign(PConstants.CENTER, PConstants.CENTER); 
+        surface.fill(0); 
+        surface.text("TODO: [amount of points]", (float)shopPanelBoundary.getCenterX(), shopPanelBoundary.y + 50); 
+
+        
+    }
+    
+    /**
+    * interface to be displayed when shop window is accesed. . 
+    * @param surface processing window that is used to draw. 
+    * @param mouseLocation current mouse location in the form of a <code>Point</code> 
+    */
+    public void showShopDisplay(DrawingSurface surface, Point mouseLocation) {
         //  Background. 
         surface.stroke(0); 
         surface.fill(255); 
-        surface.rect(shopPanelBoundary.x, shopPanelBoundary.y, shopPanelBoundary.width, shopPanelBoundary.height); 
+        surface.rect(shopWindowBoundary.x, shopWindowBoundary.y, shopWindowBoundary.width, shopWindowBoundary.height); 
 
         // * display all buttons in a 'window' style layout, 2 on the top and 2 on the bottom. 
         for (int i = 0; i < 4; i++) {
