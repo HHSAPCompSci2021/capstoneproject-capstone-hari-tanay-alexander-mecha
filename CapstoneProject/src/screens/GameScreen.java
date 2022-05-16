@@ -134,23 +134,23 @@ public class GameScreen extends Screen {
 		};
 		
 		// ??
-		// shopButtonX = 20;
-		// shopButtonY = DRAWING_HEIGHT - 20;
-		// shopButton = new Rectangle2D.Float((int)shopButtonX - 20, (int)shopButtonY - 20, 15, 15);
+		shopButtonX = 20;
+		shopButtonY = DRAWING_HEIGHT - 20;
+		shopButton = new Rectangle2D.Float((int)shopButtonX - 20, (int)shopButtonY - 20, 15, 15);
 		
-		// shopMenuButtonsRectangles = new Rectangle[] {
-		// 	new Rectangle((DRAWING_WIDTH / 2) - 150, (int)(DRAWING_HEIGHT * 0.30), 300, 42), 
-		// 	new Rectangle((DRAWING_WIDTH / 2) - 150, (int)(DRAWING_HEIGHT * 0.42), 300, 42), 
-		// 	new Rectangle((DRAWING_WIDTH / 2) - 150, (int)(DRAWING_HEIGHT * 0.54), 300, 42), 
-		// 	new Rectangle((DRAWING_WIDTH / 2) - 150, (int)(DRAWING_HEIGHT * 0.66), 300, 42)
-		// };
+		shopMenuButtonsRectangles = new Rectangle[] {
+			new Rectangle((DRAWING_WIDTH / 2) - 150, (int)(DRAWING_HEIGHT * 0.30), 300, 42), 
+			new Rectangle((DRAWING_WIDTH / 2) - 150, (int)(DRAWING_HEIGHT * 0.42), 300, 42), 
+			new Rectangle((DRAWING_WIDTH / 2) - 150, (int)(DRAWING_HEIGHT * 0.54), 300, 42), 
+			new Rectangle((DRAWING_WIDTH / 2) - 150, (int)(DRAWING_HEIGHT * 0.66), 300, 42)
+		};
 		
-		// shopButtonStrings = new String[] {
-		// 	"BUY TANK",
-		// 	"DEPLOY SOLDIER",
-		// 	"UPGRADE TANK",
-		// 	"UPGRADE SOLDIER"
-		// };
+		shopButtonStrings = new String[] {
+			"BUY TANK",
+			"DEPLOY SOLDIER",
+			"UPGRADE TANK",
+			"UPGRADE SOLDIER"
+		};
 	}
 	
 	
