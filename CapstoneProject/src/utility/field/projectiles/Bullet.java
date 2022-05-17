@@ -1,5 +1,7 @@
 package utility.field.projectiles;
-	
+
+import core.DrawingSurface;
+
 /**
  * Bullet class represents the bullets in the different guns/projectiles
  *
@@ -14,9 +16,8 @@ public class Bullet extends Projectile {
 	 * @param damage
 	 * @param v (velocity) 
 	 */
-	public Bullet(float x, float y, int damage, double v) {
-		super(x, y, damage, v);
-		
+	public Bullet(float x, float y, int damage, double v, DrawingSurface surface) {
+		super(x, y, damage, v, surface.loadImage("img/bullet.png"));
 	}
 	/**
 	 * Set damage for a specific type of bullet
@@ -47,7 +48,4 @@ public class Bullet extends Projectile {
 		return range;
 	}
 	
-	public void draw() {
-		
-	}
 }

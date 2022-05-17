@@ -88,8 +88,7 @@ public class GameScreen extends Screen {
 		prepClock = 60 * 60;  
 		waveClock = 0; 
 		
-		base = new HomeBase(DRAWING_WIDTH / 2, DRAWING_HEIGHT / 2, 500); 
-		
+	
 	}
 	
 	

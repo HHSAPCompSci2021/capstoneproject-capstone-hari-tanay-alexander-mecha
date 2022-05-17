@@ -1,6 +1,8 @@
 package utility.field.projectiles;
 
-	/**
+import core.DrawingSurface;
+
+/**
 	 * Missile class 
 	 *
 	 */
@@ -15,8 +17,8 @@ public class Missile extends Projectile {
      * @param damageOverTime (Amount of health decreasing by second) 
      * @param v (velocity) 
      */
-    public Missile(float x, float y, int damage, int damageOverTime, double v) {
-        super(x, y, damage, v);
+    public Missile(float x, float y, int damage, int damageOverTime, double v, DrawingSurface surface) {
+        super(x, y, damage, v, surface.loadImage("img/missile.png"));
 
         this.damageOverTime = damageOverTime; 
         setHasDot(true); 

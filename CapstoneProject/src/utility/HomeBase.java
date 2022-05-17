@@ -2,16 +2,20 @@ package utility;
 
 import java.awt.Rectangle;
 
+import core.DrawingSurface;
 import processing.core.PApplet;
+import processing.core.PImage;
 import utility.field.friendly.Allied;
 
 public class HomeBase extends Allied {
 	
 	private int hp;
+	private PImage img;
 	
-    public HomeBase(float x, float y, int hitpoints) {
+    public HomeBase(float x, float y, int hitpoints, DrawingSurface surface) {
         super(x, y); 
         hp = hitpoints;
+        surface.loadImage("img/base.png");
     }
     
     public float getX() {
@@ -25,8 +29,5 @@ public class HomeBase extends Allied {
     public int getHealth() {
         return hp; 
     }
-    
-    public void draw(PApplet p) {
-    	p.image(p.loadImage("img/base.png"),getX(),getY(),400,300);
-    }
+ 
 }

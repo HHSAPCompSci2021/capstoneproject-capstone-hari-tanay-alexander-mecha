@@ -1,5 +1,6 @@
 package utility.field.projectiles;
 
+import processing.core.PImage;
 import utility.field.FieldObject;
 /**
  * The Projectile class is a parent class used for different type of weapons 
@@ -12,6 +13,8 @@ public abstract class Projectile extends FieldObject{
     // splash dmg is damage in an area. DOT is damage over time, like burn. 
     private boolean hasSplash, hasDOT; 
     private double velocity; 
+    
+    private PImage img;
 
     /**
      * Projectile instantiates the 4 parameters 
@@ -20,11 +23,12 @@ public abstract class Projectile extends FieldObject{
      * @param damage - damage of weapon 
      * @param v - velocity of projectile 
      */
-    public Projectile(float x, float y, int damage, double v) {
+    public Projectile(float x, float y, int damage, double v, PImage img) {
         super(x, y);
         //TODO Auto-generated constructor stub
         this.damage = damage; 
         velocity = v;
+        this.img = img;
     }
     
     /**

@@ -123,7 +123,7 @@ public class DrawingSurface extends PApplet implements ScreenSwitcher {
 	/**
 	 * Switches screen from current screen to screen i
 	 * @param i the screen in which you would like to switch to
-	 * @pre screen 
+	 * @pre screen must exist in menu
 	 */
 	public void switchScreen(int i) {
 		if (screens.get(i) instanceof GameScreen) {
@@ -137,9 +137,10 @@ public class DrawingSurface extends PApplet implements ScreenSwitcher {
 	}
 
 	/**
-	 * 
+	 * Switches screen using screen number to screen i
 	 * @param i
 	 * @param selectionKey
+	 * @pre selectionKey must exist in menu in order for user to go to that screen
 	 */
 	public void switchScreen(int i, int selectionKey) {
 		if (screens.get(i) instanceof GameScreen) {
