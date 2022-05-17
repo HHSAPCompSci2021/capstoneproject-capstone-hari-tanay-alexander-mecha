@@ -83,8 +83,6 @@ public class GameScreen extends Screen {
 
 		waveLevel = 0; 
 		
-		base = new HomeBase(homeX, homeY, 500, surface);
-		
 		this.surface = surface; 
 		onPause = false; 
 		prepClock = 60 * 60;  
@@ -240,6 +238,7 @@ public class GameScreen extends Screen {
 				// TODO ? How
 			} else if (pauseSystem.getMenuButton(3).contains(p)) {
 				// Do 3. CLOSE GAME. 
+				System.exit(0);
 			} 
 			
 		}

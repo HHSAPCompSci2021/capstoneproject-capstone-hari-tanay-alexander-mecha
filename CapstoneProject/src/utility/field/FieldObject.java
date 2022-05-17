@@ -1,7 +1,10 @@
 package utility.field;
 
+import processing.core.PImage;
+
 public abstract class FieldObject {
     protected float xPosition, yPosition; 
+    private PImage img;
 
     public FieldObject(float x, float y) {
         xPosition = x; 
