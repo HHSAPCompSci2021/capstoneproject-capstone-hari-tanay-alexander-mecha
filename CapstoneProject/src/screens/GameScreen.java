@@ -43,7 +43,6 @@ public class GameScreen extends Screen {
 	
 	private float homeX, homeY;
 	private HomeBase base;
-	private HomeBase homeBase; 
 
 	private PauseHandler pauseSystem; 
 	private ShopHandler shopSystem; 
@@ -74,6 +73,7 @@ public class GameScreen extends Screen {
 	 * @param surface
 	 */
 	public GameScreen(DrawingSurface surface) {
+		
 		super(800,600);
 		gameClock = 0; 
 		
@@ -83,12 +83,14 @@ public class GameScreen extends Screen {
 
 		waveLevel = 0; 
 		
+		base = new HomeBase(homeX, homeY, 500, surface);
+		
 		this.surface = surface; 
 		onPause = false; 
 		prepClock = 60 * 60;  
 		waveClock = 0; 
 		
-	
+		
 	}
 	
 	
