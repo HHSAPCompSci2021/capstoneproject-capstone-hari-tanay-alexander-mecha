@@ -157,7 +157,7 @@ public class GameScreen extends Screen {
 				waveClock += 1; 
 				surface.text("Time in current wave: " + timeCounterToClockDisplay(waveClock), (float)(DRAWING_WIDTH - (clockSectionWidth * 0.98)), clockSectionHeight * 0.90f);
 			}
-			surface.rect(player.getX(), player.getY(),20,20);
+
 			pauseSystem.pauseButtonInGameplay(surface, mouseLocation);
 			shopSystem.showShopPanel(surface, mouseLocation);
 
@@ -166,7 +166,7 @@ public class GameScreen extends Screen {
 				shopSystem.showShopDisplay(surface, mouseLocation);
 			} 
 
-			
+
 		}
 		
 
