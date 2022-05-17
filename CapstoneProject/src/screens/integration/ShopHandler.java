@@ -47,11 +47,15 @@ public class ShopHandler {
         // TODO make the buttons in the desired layout. 
         // ! running will cause exception, index-out-of-bounds error. 
         shopMenuButtonsRectangles = new Rectangle2D.Float[] {
+<<<<<<< HEAD
+            new Rectangle2D.Float(),new Rectangle2D.Float(),new Rectangle2D.Float(),new Rectangle2D.Float()
+=======
             new Rectangle2D.Float(shopWindowBoundary.x + 65, shopWindowBoundary.y + 60, 150, 100), 
             new Rectangle2D.Float((float)shopWindowBoundary.getMaxX() - 190, shopWindowBoundary.y + 60, 150, 100), 
             new Rectangle2D.Float((float)shopWindowBoundary.getMaxX() - 190, (float)shopWindowBoundary.getMaxY() - 130, 150, 100), 
             new Rectangle2D.Float(shopWindowBoundary.x + 65, (float)shopWindowBoundary.getMaxY() - 130, 150, 100), 
             new Rectangle2D.Float((float)shopWindowBoundary.getMaxX() - 50, shopWindowBoundary.y + 10, 30, 30) 
+>>>>>>> 8a09d0cd073b59ea7a6c5746b9ba23a125671ee6
         };
         
         shopButtonStrings = new String[] {
