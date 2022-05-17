@@ -47,7 +47,7 @@ public class Bullet extends Projectile {
 		return range;
 	}
 	
-	
-	
-	
+	public void draw() {
+		
+	}
 }

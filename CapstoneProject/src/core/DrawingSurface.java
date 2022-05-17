@@ -13,6 +13,12 @@ import utility.field.friendly.unit.mecha.Vanguard;
 import screens.EndGame;
 import screens.GameScreen;
 
+/**
+ * This class prints the different screen classes onto the user interface and updates
+ * whenever movement is recorded
+ * @author alexyue
+ *
+ */
 public class DrawingSurface extends PApplet implements ScreenSwitcher {
 
 	public float ratioX, ratioY;
@@ -50,6 +56,9 @@ public class DrawingSurface extends PApplet implements ScreenSwitcher {
 			s.setup(); 
 	}
 	
+	/**
+	 * Prints the screen that is actively being used by the player on the UI
+	 */
 	public void draw() {
 		
 		ratioX = (float)width/activeScreen.DRAWING_WIDTH;
@@ -64,6 +73,9 @@ public class DrawingSurface extends PApplet implements ScreenSwitcher {
 		pop();
 	}
 	
+	/**
+	 * Prevents the game from easily being closed using the escape key
+	 */
 	public void keyPressed() {
 		keys.add(keyCode);
 		if (key == ESC)  // This prevents a processing program from closing on escape key
@@ -108,6 +120,11 @@ public class DrawingSurface extends PApplet implements ScreenSwitcher {
 	}
 
 	@Override
+	/**
+	 * Switches screen from current screen to screen i
+	 * @param i the screen in which you would like to switch to
+	 * @pre screen 
+	 */
 	public void switchScreen(int i) {
 		if (screens.get(i) instanceof GameScreen) {
 			// this is for game restart functionality. 
@@ -119,6 +136,11 @@ public class DrawingSurface extends PApplet implements ScreenSwitcher {
 		activeScreen = screens.get(i);
 	}
 
+	/**
+	 * 
+	 * @param i
+	 * @param selectionKey
+	 */
 	public void switchScreen(int i, int selectionKey) {
 		if (screens.get(i) instanceof GameScreen) {
 			// this is for game restart functionality. 
