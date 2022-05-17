@@ -36,23 +36,38 @@ public class Mech implements Controllable {
 		this.img = img; 
 	}
 	
-	
+	/**
+	 * Gets x coordinate of the Mech
+	 * @return x coordinate
+	 */
 	public float getX() {
 		return xpos;
 	}
-	
+	/**
+	 * Gets y coordinate of the Mech 
+	 * @return y coordinate
+	 */
 	public float getY() {
 		return ypos;
 	}
-	
+	/**
+	 * Gets the health of the mech 
+	 * @return health 
+	 */
 	public int getHealth() {
 		return health;
 	}
-	
+	/**
+	 * Gets the movement speed of the mech 
+	 * @return movement speed 
+	 */
 	public int getMovementSpeed() {
 		return movementSpeed;
 	}
-	
+	/**
+	 * Draws mech sprite on to drawingSurface
+	 * @param surface of PApplet 
+	 */
 	public void draw(DrawingSurface surface) {
 		surface.image(img, getX(), getY(), 100, 100);
 	}
@@ -76,13 +91,20 @@ public class Mech implements Controllable {
 		}
 	}
 
-	@Override
+	/**
+	 * This method performs the movement of the different types of mechs
+	 * @param changeX - allows to move x to the right or to the left 
+	 * @param changeY- allows to move y to the right or to the left 
+	 */
 	public void performMovement(float changeX, float changeY) {
 		
 		
 	}
 
-	@Override
+	 /**
+     * This method allows us to fire and aim weapon  
+     * @param aim sensitivity 
+     */
 	public void performFire(float aim) {
 		
 		
