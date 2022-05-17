@@ -159,13 +159,12 @@ public class GameScreen extends Screen {
 			}
 			surface.rect(player.getX(), player.getY(),20,20);
 			pauseSystem.pauseButtonInGameplay(surface, mouseLocation);
-			
+			shopSystem.showShopPanel(surface, mouseLocation);
+
 			if (inShop) {
 				// Display shop. 
-				shopSystem.shopShopPanel(surface, mouseLocation);
-			} else {
-				shopSystem.shopShopPanel(surface, mouseLocation); 
-			}
+				shopSystem.showShopDisplay(surface, mouseLocation);
+			} 
 		}
 		
 
@@ -177,9 +176,30 @@ public class GameScreen extends Screen {
 
 		if (!onPause) {
 			// place all buttons and interactions when no pause exists here: 
-			if (pauseSystem.getPauseButton().contains(p))
-			onPause = true; 
-		} else {
+			if (pauseSystem.getPauseButton().contains(p)) {
+				onPause = true; 
+			}
+			if (shopSystem.getShopLaunchButton().contains(p)) {
+				inShop = true; 
+			}
+			
+		} 
+		if (inShop) {
+
+			if (shopSystem.getShopMenuButton(0).contains(p)) {
+				// Buy Tank. 
+			} else if (shopSystem.getShopMenuButton(1).contains(p)) {
+				// Buy Soldier. 
+			} else if (shopSystem.getShopMenuButton(2).contains(p)) {
+				// Upgrade Tank. 
+			} else if (shopSystem.getShopMenuButton(3).contains(p)) {
+				// Upgrade Soldier. 
+			} else if (shopSystem.getShopMenuButton(4).contains(p)) {
+				inShop = false; 
+			}
+
+		} 
+		if (onPause) {
 			// !Do not change, all buttons for pause menu interactions are here: 
 			if (pauseSystem.getMenuButton(0).contains(p)) {
 				// Do 0. RESUME 
