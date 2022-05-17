@@ -121,8 +121,6 @@ public class ShopHandler {
             float boxWidth = shopMenuButtonsRectangles[i].width; 
             float boxHeight = shopMenuButtonsRectangles[i].height; 
             
-            surface.imageMode(PConstants.CENTER);
-            surface.rect(shopMenuButtonsRectangles[2].getCenterX(), boxHeight, boxHeight, boxWidth);
             
             if (i < 4) {
                 // create a hover animation for each of the buttons. 
