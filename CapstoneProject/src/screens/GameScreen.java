@@ -3,6 +3,7 @@ package screens;
 
 import core.DrawingSurface;
 import enemies.Barbarian;
+import processing.core.PApplet;
 import processing.core.PConstants;
 import screens.integration.PauseHandler;
 import screens.integration.ShopHandler;
@@ -156,7 +157,7 @@ public class GameScreen extends Screen {
 				waveClock += 1; 
 				surface.text("Time in current wave: " + timeCounterToClockDisplay(waveClock), (float)(DRAWING_WIDTH - (clockSectionWidth * 0.98)), clockSectionHeight * 0.90f);
 			}
-			
+			surface.rect(player.getX(), player.getY(),20,20);
 			pauseSystem.pauseButtonInGameplay(surface, mouseLocation);
 			
 			if (inShop) {

@@ -2,6 +2,7 @@ package utility.field.friendly.unit.mecha;
 import core.DrawingSurface;
 import processing.core.PApplet;
 import screens.Screen;
+import processing.core.PImage;
 
 /***
  * 
@@ -18,6 +19,7 @@ public class Mech implements Controllable {
 	
 	private float xpos, ypos;
 	private int health, movementSpeed;
+	private PImage img;
 	
 	/**
 	 * Mech class takes 4 parameters (xCord, yCord, health, movementSpeed)
