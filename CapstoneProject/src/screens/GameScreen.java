@@ -95,12 +95,13 @@ public class GameScreen extends Screen {
 	
 	
 	/**
-	 * setup utility given by <code>DrawingSurface</code>. 
-	 * this setup method will have methods that establish the base functionality of the game, 
-	 * - including initialization of game player characters, 
-	 * - addition of money. 
+	 * NOTE this method is useless due to the way how the program initializes GameScreen. 
 	 */
 	public void setup() {
+		
+	}
+
+	public void initialize() {
 		if (selection == 0) {
 			player = new Melner(DRAWING_WIDTH / 2 + 200, DRAWING_WIDTH / 2, surface);
 			System.out.println("Created new Melner"); 
@@ -113,7 +114,6 @@ public class GameScreen extends Screen {
 		} else {
 			throw new IllegalArgumentException("invalid mech choice integer key"); 
 		}
-		
 	}
 	
 	public void keyPressed() {
@@ -143,12 +143,18 @@ public class GameScreen extends Screen {
 			surface.background(191, 255, 187); 
 
 			// TODO finish all draw methods here. 
-			gameMap.draw(surface, player);
+			if (player != null) {
+				gameMap.draw(surface, player);				
+			} else {
+				initialize(); 
+			}
 			
 			// !clock and escape section. 
 			float clockSectionWidth = (float)(DRAWING_WIDTH * 0.30); 
 			float clockSectionHeight = (float)(DRAWING_HEIGHT * 0.15); 
 			
+			surface.fill(255);
+			surface.stroke(0);
 			surface.rect(DRAWING_WIDTH - clockSectionWidth - 1, 0, clockSectionWidth, clockSectionHeight); 
 			surface.textSize(14); 
 			surface.fill(0, 0, 0);
@@ -236,6 +242,7 @@ public class GameScreen extends Screen {
 			return minutes + ":" + seconds;
 		}
 	}
+
 	
 	
 }

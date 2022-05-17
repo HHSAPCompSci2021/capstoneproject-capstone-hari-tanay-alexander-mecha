@@ -2,11 +2,13 @@ package screens;
 
 import core.DrawingSurface;
 import processing.core.PConstants;
+import utility.field.friendly.unit.mecha.Mech;
 import utility.field.friendly.unit.mecha.Melner;
 import utility.field.friendly.unit.mecha.Stelwart;
 import utility.field.friendly.unit.mecha.Vanguard;
 
 import java.awt.Rectangle;
+import java.awt.geom.Rectangle2D; 
 import java.awt.Point; 
 //TODO generate fonts
 
@@ -14,12 +16,10 @@ public class SelectScreen extends Screen {
 
     private DrawingSurface surface; 
     private int selection; 
-    private Vanguard v;
-    private Melner m;
-    private Stelwart s;
-    private Rectangle[] selectionsRectangles; 
+    private Mech v, m, s; 
+    private Rectangle2D.Float[] selectionsRectangles; 
     private String[] selectionStrings; 
-    private Rectangle confirmButton; 
+    private Rectangle2D.Float confirmButton; 
 
     public SelectScreen(DrawingSurface surface) {
         super(800, 600);
@@ -34,10 +34,10 @@ public class SelectScreen extends Screen {
          */
         selection = -1; 
 
-        selectionsRectangles = new Rectangle[] {
-            new Rectangle((int)(DRAWING_WIDTH * 0.05), (int)(DRAWING_HEIGHT * 0.20), (int)(DRAWING_WIDTH * 0.28), (int)(DRAWING_HEIGHT * 0.60)), 
-            new Rectangle((int)(DRAWING_WIDTH * 0.36), (int)(DRAWING_HEIGHT * 0.20), (int)(DRAWING_WIDTH * 0.28), (int)(DRAWING_HEIGHT * 0.60)), 
-            new Rectangle((int)(DRAWING_WIDTH * 0.68), (int)(DRAWING_HEIGHT * 0.20), (int)(DRAWING_WIDTH * 0.28), (int)(DRAWING_HEIGHT * 0.60))
+        selectionsRectangles = new Rectangle2D.Float[] {
+            new Rectangle2D.Float((DRAWING_WIDTH * 0.05f), (DRAWING_HEIGHT * 0.20f), (DRAWING_WIDTH * 0.28f), (DRAWING_HEIGHT * 0.60f)), 
+            new Rectangle2D.Float((DRAWING_WIDTH * 0.36f), (DRAWING_HEIGHT * 0.20f), (DRAWING_WIDTH * 0.28f), (DRAWING_HEIGHT * 0.60f)), 
+            new Rectangle2D.Float((DRAWING_WIDTH * 0.68f), (DRAWING_HEIGHT * 0.20f), (DRAWING_WIDTH * 0.28f), (DRAWING_HEIGHT * 0.60f))
         }; 
 
         selectionStrings = new String[] {
@@ -46,7 +46,7 @@ public class SelectScreen extends Screen {
             "Vanguard"
         }; 
 
-        confirmButton = new Rectangle(
+        confirmButton = new Rectangle2D.Float(
             (DRAWING_WIDTH / 2) - 60, 
             DRAWING_HEIGHT - 70, 
             120, 
@@ -58,9 +58,6 @@ public class SelectScreen extends Screen {
 
     public void setup() {
         
-        v = new Vanguard(100, 200, surface); 
-        m = new Melner(600, 250, surface); 
-        s = new Stelwart(350, 250, surface); 
     }
 
     public void mousePressed() {
@@ -86,7 +83,7 @@ public class SelectScreen extends Screen {
         surface.background(255); 
 
         //  universally used mouseLocation for this method. 
-        Point mouseLocation = new Point(surface.mouseX, surface.mouseY); 
+        Point mouseLocation = surface.actualCoordinatesToAssumed(new Point(surface.mouseX, surface.mouseY)); 
 
         // loop to draw all the options and its rectangles. 
         for (int i = 0; i < selectionsRectangles.length; i++) { 
@@ -126,9 +123,26 @@ public class SelectScreen extends Screen {
         
         surface.text("CONFIRM PICK", (float)confirmButton.getCenterX(), (float)confirmButton.getCenterY());
 
-        v.draw(surface);
-        s.draw(surface);
-        m.draw(surface);
-        
+        surface.imageMode(PConstants.CENTER);
+
+        // MSV
+        if (v != null) {
+            v.draw(surface, (int)v.getX(), (int)v.getY());
+        } else {
+            v = new Vanguard((float)selectionsRectangles[2].getCenterX(), 250, surface); 
+        }
+
+        if (m != null) {
+            m.draw(surface, (int)m.getX(), (int)m.getY());
+        } else {
+            m = new Melner((float)selectionsRectangles[0].getCenterX(), 250, surface); 
+        }
+        if (s != null) {
+            s.draw(surface, (int)s.getX(), (int)s.getY());
+        } else {
+            s = new Stelwart((float)selectionsRectangles[1].getCenterX(), 250, surface); 
+        }
+
+
     }
 }

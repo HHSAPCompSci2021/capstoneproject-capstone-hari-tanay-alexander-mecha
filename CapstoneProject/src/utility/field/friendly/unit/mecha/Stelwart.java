@@ -14,5 +14,6 @@ public class Stelwart extends Mech{
 		super(x, y, 1500, 1, surface.loadImage("img/mech3.png")); 
 	}
 	
+	
 
 }

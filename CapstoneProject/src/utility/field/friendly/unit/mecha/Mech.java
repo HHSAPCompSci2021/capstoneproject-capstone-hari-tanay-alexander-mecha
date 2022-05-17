@@ -1,6 +1,7 @@
 package utility.field.friendly.unit.mecha;
 import core.DrawingSurface;
 import processing.core.PApplet;
+import processing.core.PConstants;
 import screens.Screen;
 import processing.core.PImage;
 
@@ -19,7 +20,7 @@ public class Mech implements Controllable {
 	
 	private float xpos, ypos;
 	private int health, movementSpeed;
-	private PImage img;
+	protected PImage img;
 	
 	/**
 	 * Mech class takes 4 parameters (xCord, yCord, health, movementSpeed)
@@ -53,8 +54,9 @@ public class Mech implements Controllable {
 		return movementSpeed;
 	}
 	
-	public void draw(DrawingSurface surface) {
-		surface.image(img, getX(), getY(), 100, 100);
+	public void draw(DrawingSurface surface, int x, int y) {
+		surface.imageMode(PConstants.CENTER);
+		surface.image(img, x, y, 100, 100); 
 	}
 	/**
 	 * Method changes the position of the mech 

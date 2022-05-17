@@ -27,7 +27,8 @@ public class Map {
         mapWidth = x; 
         mapHeight = y; 
 
-        
+        this.DRAWING_WIDTH = DRAWING_WIDTH; 
+        this.DRAWING_HEIGHT = DRAWING_HEIGHT; 
     }
 
     public void addFieldObject(FieldObject obj) {
@@ -47,11 +48,11 @@ public class Map {
         surface.fill(0);
         surface.stroke(0);
         surface.rect(screenCenterX - player.getX(), screenCenterY - player.getY(), mapWidth, 50); 
-        surface.rect(screenCenterX - player.getX(), screenCenterY - player.getY(), mapHeight, 50); 
+        surface.rect(screenCenterX - player.getX(), screenCenterY - player.getY(), 50, mapHeight); 
         surface.rect(screenCenterX - player.getX(), screenCenterY - player.getY() + mapHeight, mapWidth, 50); 
-        surface.rect(screenCenterX - player.getX() + mapWidth, screenCenterY - player.getY(), mapHeight, 50); 
+        surface.rect(screenCenterX - player.getX() + mapWidth, screenCenterY - player.getY(), 50, mapHeight); 
 
-        
+        player.draw(surface, DRAWING_WIDTH / 2, DRAWING_HEIGHT / 2);
     }
 
     public void drawMiniMap(DrawingSurface surface) {

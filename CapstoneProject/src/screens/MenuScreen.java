@@ -31,8 +31,7 @@ public class MenuScreen extends Screen {
 	 * constructor for draw method of the <code>MeduScreen</code>. 
 	 */
 	public void draw() {
-		Point mouseLocation = new Point(surface.mouseX, surface.mouseY); 
-		
+		Point mouseLocation = surface.actualCoordinatesToAssumed(new Point(surface.mouseX, surface.mouseY)); 
 
 		surface.background(255,255,255);
 		
@@ -53,7 +52,6 @@ public class MenuScreen extends Screen {
 
 		surface.fill(0);
 		String str = "Start!";
-		float w = surface.textWidth(str); 
 
 		surface.textAlign(PConstants.CENTER, PConstants.CENTER);
 		surface.text(str, (float)startButton.getCenterX(), (float)startButton.getCenterY()); 
