@@ -5,10 +5,10 @@ import core.DrawingSurface;
 import enemies.Barbarian;
 import processing.core.PApplet;
 import processing.core.PConstants;
+import screens.integration.Map;
 import screens.integration.PauseHandler;
 import screens.integration.ShopHandler;
 import utility.HomeBase;
-import utility.Map;
 import utility.field.friendly.unit.mecha.Controllable;
 import utility.field.friendly.unit.mecha.Mech;
 import utility.field.friendly.unit.mecha.Melner;
@@ -51,6 +51,8 @@ public class GameScreen extends Screen {
 	private Map gameMap; 
 	private Mech player; 
 	
+	private int selection; 
+
 	/**
 	 * <p>recommended use of <code>GameScreen</code> constructor since it correctly initializes 
 	 * the Game with the <code>Mech</code> of the player's preference. </p>
@@ -61,19 +63,9 @@ public class GameScreen extends Screen {
 	public GameScreen(DrawingSurface surface, int selection) throws IllegalArgumentException {
 		this(surface); 
 		gameOver = false; 
+
+		this.selection = selection; 
 		
-		if (selection == 0) {
-			player = new Melner(200,200);
-			System.out.println("Created new Melner"); 
-		} else if (selection == 1) {
-			player = new Stelwart(300,300);
-			System.out.println("Created new Stelwart");
-		} else if (selection == 2) {
-			player = new Vanguard(100,100);
-			System.out.println("Created new Vanguard");
-		} else {
-			throw new IllegalArgumentException("invalid mech choice integer key"); 
-		}
 	}
 
 	/**
@@ -85,7 +77,7 @@ public class GameScreen extends Screen {
 		super(800,600);
 		gameClock = 0; 
 		
-		gameMap = new Map(); 
+		gameMap = new Map(800 * 5, 600 * 5, DRAWING_WIDTH, DRAWING_HEIGHT); 
 		pauseSystem = new PauseHandler(DRAWING_WIDTH, DRAWING_HEIGHT); 
 		shopSystem = new ShopHandler(DRAWING_WIDTH, DRAWING_HEIGHT); 
 
@@ -96,7 +88,7 @@ public class GameScreen extends Screen {
 		prepClock = 60 * 60;  
 		waveClock = 0; 
 		
-		base = new HomeBase(DRAWING_WIDTH / 2, DRAWING_HEIGHT / 2, 100);
+		base = new HomeBase(DRAWING_WIDTH / 2, DRAWING_HEIGHT / 2, 500); 
 		
 	}
 	
@@ -109,6 +101,18 @@ public class GameScreen extends Screen {
 	 * - addition of money. 
 	 */
 	public void setup() {
+		if (selection == 0) {
+			player = new Melner(DRAWING_WIDTH / 2 + 200, DRAWING_WIDTH / 2, surface);
+			System.out.println("Created new Melner"); 
+		} else if (selection == 1) {
+			player = new Stelwart(DRAWING_WIDTH / 2 + 200, DRAWING_WIDTH / 2, surface);
+			System.out.println("Created new Stelwart");
+		} else if (selection == 2) {
+			player = new Vanguard(DRAWING_WIDTH / 2 + 200, DRAWING_WIDTH / 2, surface); 
+			System.out.println("Created new Vanguard");
+		} else {
+			throw new IllegalArgumentException("invalid mech choice integer key"); 
+		}
 		
 	}
 	
@@ -135,10 +139,11 @@ public class GameScreen extends Screen {
 		} else {
 			gameClock += 1; 
 			
-			// NOTE Draw runs 60 times per second 
-			// TODO finish actions, called on Map class. 
-			
+			// NOTE Draw runs 60 times per seconds. 			
 			surface.background(191, 255, 187); 
+
+			// TODO finish all draw methods here. 
+			gameMap.draw(surface, player);
 			
 			// !clock and escape section. 
 			float clockSectionWidth = (float)(DRAWING_WIDTH * 0.30); 
@@ -159,7 +164,8 @@ public class GameScreen extends Screen {
 			}
 
 			pauseSystem.pauseButtonInGameplay(surface, mouseLocation);
-			shopSystem.showShopPanel(surface, mouseLocation);
+			shopSystem.showShopPanel(surface, mouseLocation); 
+			gameMap.drawMiniMap(surface);
 
 			if (inShop) {
 				// Display shop. 

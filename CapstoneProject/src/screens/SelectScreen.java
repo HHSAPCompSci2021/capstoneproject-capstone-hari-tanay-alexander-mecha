@@ -14,9 +14,9 @@ public class SelectScreen extends Screen {
 
     private DrawingSurface surface; 
     private int selection; 
-    private Vanguard v = new Vanguard(100,200);
-    private Melner m = new Melner(600,250);
-    private Stelwart s = new Stelwart(350,250);
+    private Vanguard v;
+    private Melner m;
+    private Stelwart s;
     private Rectangle[] selectionsRectangles; 
     private String[] selectionStrings; 
     private Rectangle confirmButton; 
@@ -24,6 +24,7 @@ public class SelectScreen extends Screen {
     public SelectScreen(DrawingSurface surface) {
         super(800, 600);
         this.surface = surface; 
+
 
         /**
          * selection 0 indicates no selecction made. 
@@ -54,6 +55,13 @@ public class SelectScreen extends Screen {
         
     }
 
+
+    public void setup() {
+        
+        v = new Vanguard(100, 200, surface); 
+        m = new Melner(600, 250, surface); 
+        s = new Stelwart(350, 250, surface); 
+    }
 
     public void mousePressed() {
         Point p = surface.actualCoordinatesToAssumed(new Point(surface.mouseX, surface.mouseY)); 

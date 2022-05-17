@@ -10,12 +10,12 @@ import screens.Screen;
 import screens.ScreenSwitcher;
 import screens.SelectScreen;
 import utility.field.friendly.unit.mecha.Vanguard;
+import screens.EndGame;
 import screens.GameScreen;
 
 public class DrawingSurface extends PApplet implements ScreenSwitcher {
 
 	public float ratioX, ratioY;
-	private Vanguard v; 
 	private ArrayList<Integer> keys;
 	
 	private Screen activeScreen;
@@ -37,11 +37,12 @@ public class DrawingSurface extends PApplet implements ScreenSwitcher {
 
 		SelectScreen selectScreen = new SelectScreen(this); 
 		screens.add(selectScreen); 
+
+		EndGame gameOverScreen = new EndGame(this); 
+		screens.add(gameOverScreen); 
 		
 		activeScreen = screens.get(0); 
 		
-		v = new Vanguard(100,200);
-		v.draw();
 	}
 	
 	public void setup() {
@@ -50,7 +51,7 @@ public class DrawingSurface extends PApplet implements ScreenSwitcher {
 	}
 	
 	public void draw() {
-		v.draw();
+		
 		ratioX = (float)width/activeScreen.DRAWING_WIDTH;
 		ratioY = (float)height/activeScreen.DRAWING_HEIGHT;
 

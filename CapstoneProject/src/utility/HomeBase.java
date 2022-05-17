@@ -21,6 +21,10 @@ public class HomeBase extends Allied {
     public float getY() {
     	return getY();
     }
+
+    public int getHealth() {
+        return hp; 
+    }
     
     public void draw(PApplet p) {
     	p.image(p.loadImage("img/base.png"),getX(),getY(),400,300);

@@ -47,9 +47,16 @@ public class GameEngine {
     * Clock system incrementation. 
     * @param increment
     */
-    public void runGame(int increment) {
+    public void runGame(int increment, DrawingSurface surface) {
         gameClock+=increment; 
         
+        if (base.getHealth() <= 0) {
+            endGame(surface);
+        }
+    }
+
+    public void endGame(DrawingSurface surface) {
+        surface.switchScreen(3);
     }
     
     public void displayClock(DrawingSurface surface, Point mouseLocation) {
@@ -59,6 +66,8 @@ public class GameEngine {
         
         surface.text("WAVE " + waveLevel, (float)(DRAWING_WIDTH - (clockSectionWidth * 0.98)), clockSectionHeight * 0.50f);
         surface.text("Time elapsed: " + timeCounterToClockDisplay(gameClock), (float)(DRAWING_WIDTH - (clockSectionWidth * 0.98)), clockSectionHeight * 0.70f); 
+
+        manageWave(surface);
     }
     
     private void manageWave(DrawingSurface surface) {
@@ -75,7 +84,7 @@ public class GameEngine {
 
 
         if (waveMode) {
-            
+            // TODO soon write a loop to check if there are no more characters left, if there are none, switch it back to preperation phase. 
         }
     }
     
@@ -91,6 +100,10 @@ public class GameEngine {
         }
     }
     
+    private boolean inSpawn(ArrayList<ArrayList<Enemy>> totalEnemies) {
+
+        return false; 
+    }
     
     /**
      * method to load the enemies given wave. Will hold all the enemeis, if the enemies are all finished, wave is completed. 
@@ -102,7 +115,17 @@ public class GameEngine {
      * @return array of enemies Loaded. 
      */
     private ArrayList<ArrayList<Enemy>> loadEnemies() {
-        return null; 
+        
+        ArrayList<ArrayList<Enemy>> totalEnemies = new ArrayList<ArrayList<Enemy>>(); 
+
+        for (int i = 0; i < 4; i++) {
+            ArrayList<Enemy> temp = new ArrayList<>(); 
+
+
+            totalEnemies.add(temp); 
+        }
+
+        return totalEnemies; 
     }
     
 }

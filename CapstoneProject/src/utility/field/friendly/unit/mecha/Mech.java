@@ -28,16 +28,14 @@ public class Mech implements Controllable {
 	 * @param h - health
 	 * @param mS - movementSpeed
 	 */
-	public Mech(float x, float y, int h, int mS) {
+	public Mech(float x, float y, int h, int mS, PImage img) {
 		xpos = x;
 		ypos = y;
 		health = h;
-		movementSpeed = mS;
+		movementSpeed = mS; 
+		this.img = img; 
 	}
 	
-	public Mech() {
-		
-	}
 	
 	public float getX() {
 		return xpos;
@@ -55,8 +53,8 @@ public class Mech implements Controllable {
 		return movementSpeed;
 	}
 	
-	public void draw() {
-	
+	public void draw(DrawingSurface surface) {
+		surface.image(img, getX(), getY(), 100, 100);
 	}
 	/**
 	 * Method changes the position of the mech 
