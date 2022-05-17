@@ -8,7 +8,7 @@ public class Melner extends Mech {
 	private PImage melnerGraphic; 
 
 	public Melner(float x, float y, DrawingSurface surface) {
-		super(x, y, 1200, 3, surface.loadImage("img/mechaa.jpg"));
+		super(x, y, 1200, 3, surface.loadImage("img/mechaa.jpeg"));
 
 	}
 	
