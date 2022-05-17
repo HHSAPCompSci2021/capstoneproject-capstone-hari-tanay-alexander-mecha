@@ -3,11 +3,14 @@ package screens.integration;
 import java.util.ArrayList;
 
 import core.DrawingSurface;
-import utility.field.FieldObject;
+import utility.field.FieldObject; 
+import java.awt.geom.Rectangle2D; 
 import utility.field.friendly.unit.mecha.Mech;
 
 public class Map {
     private ArrayList<FieldObject> fieldObjects; 
+
+    private Rectangle2D.Float mapRectangle; 
     private int DRAWING_WIDTH, DRAWING_HEIGHT; 
 
     private int mapWidth, mapHeight; 
@@ -52,10 +55,11 @@ public class Map {
         surface.rect(screenCenterX - player.getX(), screenCenterY - player.getY() + mapHeight, mapWidth, 50); 
         surface.rect(screenCenterX - player.getX() + mapWidth, screenCenterY - player.getY(), 50, mapHeight); 
 
-        player.draw(surface, DRAWING_WIDTH / 2, DRAWING_HEIGHT / 2);
+        player.draw(surface, screenCenterX, screenCenterY); 
+        
     }
 
     public void drawMiniMap(DrawingSurface surface) {
-
+        
     }
 }

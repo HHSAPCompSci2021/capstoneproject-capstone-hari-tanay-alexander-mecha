@@ -121,6 +121,7 @@ public class ShopHandler {
             float boxWidth = shopMenuButtonsRectangles[i].width; 
             float boxHeight = shopMenuButtonsRectangles[i].height; 
             
+            
             if (i < 4) {
                 // create a hover animation for each of the buttons. 
                 if (shopMenuButtonsRectangles[i].contains(mouseLocation)) {

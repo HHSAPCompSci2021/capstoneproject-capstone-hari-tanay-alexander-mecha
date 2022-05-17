@@ -78,16 +78,9 @@ public class Mech implements Controllable {
 	 * @param ynegChange - Mech moves up 
 	 * @param surface - PApplet surface
 	 */
-	public void changePos(int xposChange, int yposChange,int xnegChange, int ynegChange,DrawingSurface surface) {
-		if (surface.isPressed(1)) {
-			xpos += xposChange;
-		} else if (surface.isPressed(2)) {
-			ypos += yposChange;
-		} else if (surface.isPressed(3)) {
-			xpos -= xnegChange;
-		} else if(surface.isPressed(4)) {
-			ypos -= ynegChange;
-		}
+	public void changePos(int xChange, int yChange) {
+		this.xpos += xChange; 
+		this.ypos += yChange; 
 	}
 
 	/**

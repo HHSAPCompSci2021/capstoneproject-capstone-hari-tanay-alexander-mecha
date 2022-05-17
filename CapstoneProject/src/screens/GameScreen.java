@@ -121,6 +121,19 @@ public class GameScreen extends Screen {
 		if (surface.key == PConstants.ESC) {
 			onPause = !onPause; 
 		}
+
+		// TODO, maybe make a velocity component instead. 
+		if (surface.key == 'W' || surface.key == 'w') {
+			player.changePos(0, -5);
+		} else if (surface.key == 'S' || surface.key == 's') {
+			player.changePos(0, 5);
+		}
+
+		if (surface.key == 'A' || surface.key == 'a') {
+			player.changePos(-5, 0);
+		} else if (surface.key == 'D' || surface.key == 'd') {
+			player.changePos(5, 0);
+		}
 	}
 	
 	/**
