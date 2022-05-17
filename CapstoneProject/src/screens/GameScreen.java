@@ -165,6 +165,8 @@ public class GameScreen extends Screen {
 				// Display shop. 
 				shopSystem.showShopDisplay(surface, mouseLocation);
 			} 
+
+			
 		}
 		
 
