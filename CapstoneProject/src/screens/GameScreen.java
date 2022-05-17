@@ -163,9 +163,7 @@ public class GameScreen extends Screen {
 			if (inShop) {
 				// Display shop. 
 				shopSystem.showShopDisplay(surface, mouseLocation);
-			} else {
-
-			}
+			} 
 		}
 		
 
@@ -184,7 +182,8 @@ public class GameScreen extends Screen {
 				inShop = true; 
 			}
 			
-		} else if (inShop) {
+		} 
+		if (inShop) {
 
 			if (shopSystem.getShopMenuButton(0).contains(p)) {
 				// Buy Tank. 
@@ -194,9 +193,12 @@ public class GameScreen extends Screen {
 				// Upgrade Tank. 
 			} else if (shopSystem.getShopMenuButton(3).contains(p)) {
 				// Upgrade Soldier. 
+			} else if (shopSystem.getShopMenuButton(4).contains(p)) {
+				inShop = false; 
 			}
 
-		} else {
+		} 
+		if (onPause) {
 			// !Do not change, all buttons for pause menu interactions are here: 
 			if (pauseSystem.getMenuButton(0).contains(p)) {
 				// Do 0. RESUME 
