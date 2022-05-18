@@ -23,4 +23,8 @@ public abstract class FieldObject {
     public float getY() {
     	return yPosition;
     }
+    
+    public void draw() {
+    	
+    }
 }
