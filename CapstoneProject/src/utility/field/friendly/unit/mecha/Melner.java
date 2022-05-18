@@ -9,7 +9,7 @@ import processing.core.PImage;
 public class Melner extends Mech {
 	
 	public Melner(float x, float y, DrawingSurface surface) {
-		super(x, y, 1200, 3, surface.loadImage("img/mechaa.jpeg"));
+		super(x, y, 1200, 3, surface.loadImage("img/Melner.png"));
 
 	}
 	

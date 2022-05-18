@@ -20,7 +20,7 @@ public class Stelwart extends Mech{
 	 * @param surface
 	 */
 	public Stelwart(float x, float y, DrawingSurface surface) {
-		super(x, y, 1500, 1, surface.loadImage("img/mech3.png")); 
+		super(x, y, 1500, 1, surface.loadImage("img/Stelwart.png")); 
 	}
 	
 	
