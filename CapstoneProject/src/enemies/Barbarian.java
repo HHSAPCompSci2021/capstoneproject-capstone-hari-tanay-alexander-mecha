@@ -1,16 +1,15 @@
 package enemies;
+import core.DrawingSurface;
 import processing.core.PApplet;
-	public class Barbarian {
+import utility.field.enemy.Enemy;
+	public class Barbarian extends Enemy {
 		
 		private float x,y;
 		private int health;
 		private float movementSpeed;
 		
-		public Barbarian(float xCord, float yCord,int h,float mS) {
-			x = xCord;
-			y = yCord;
-			h = health;
-			movementSpeed = mS;
+		public Barbarian(float xCord, float yCord,DrawingSurface surface) {
+			super(xCord, yCord, 1500, 1, surface.loadImage("img/barb.jpg"));
 		}
 		
 		public float getX() {

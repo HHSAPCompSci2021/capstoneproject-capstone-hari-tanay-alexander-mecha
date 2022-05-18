@@ -3,7 +3,9 @@ package screens.integration;
 import java.util.ArrayList;
 
 import core.DrawingSurface;
-import utility.field.FieldObject; 
+import utility.field.FieldObject;
+import utility.field.enemy.Enemy;
+
 import java.awt.geom.Rectangle2D; 
 import utility.field.friendly.unit.mecha.Mech;
 
@@ -42,7 +44,7 @@ public class Map {
      * To draw the objects in the map including the player. Everything should be drawn relative to player position. 
      * @param surface
      */
-    public void draw(DrawingSurface surface, Mech player) {
+    public void draw(DrawingSurface surface, Mech player, Enemy e) {
         // * first draw borders. 
         // get total distance between border and player. 
         int screenCenterX = DRAWING_WIDTH / 2; 
@@ -56,6 +58,7 @@ public class Map {
         surface.rect(screenCenterX - player.getX() + mapWidth, screenCenterY - player.getY(), 50, mapHeight); 
 
         player.draw(surface, screenCenterX, screenCenterY); 
+        e.draw(surface, 0, 15);
         
     }
 

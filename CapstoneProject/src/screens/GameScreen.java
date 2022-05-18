@@ -9,6 +9,7 @@ import screens.integration.Map;
 import screens.integration.PauseHandler;
 import screens.integration.ShopHandler;
 import utility.HomeBase;
+import utility.field.enemy.Enemy;
 import utility.field.friendly.unit.mecha.Controllable;
 import utility.field.friendly.unit.mecha.Mech;
 import utility.field.friendly.unit.mecha.Melner;
@@ -49,7 +50,7 @@ public class GameScreen extends Screen {
 
 	private Map gameMap; 
 	private Mech player; 
-	
+	private Enemy e;
 	private int selection; 
 
 	/**
@@ -102,12 +103,15 @@ public class GameScreen extends Screen {
 
 	public void initialize() {
 		if (selection == 0) {
+			e = new Barbarian(DRAWING_WIDTH / 2 + 400, DRAWING_WIDTH / 2, surface);
 			player = new Melner(DRAWING_WIDTH / 2 + 200, DRAWING_WIDTH / 2, surface);
 			System.out.println("Created new Melner"); 
 		} else if (selection == 1) {
+			e = new Barbarian(DRAWING_WIDTH / 2 + 400, DRAWING_WIDTH / 2, surface);
 			player = new Stelwart(DRAWING_WIDTH / 2 + 200, DRAWING_WIDTH / 2, surface);
 			System.out.println("Created new Stelwart");
 		} else if (selection == 2) {
+			e = new Barbarian(DRAWING_WIDTH / 2 + 400, DRAWING_WIDTH / 2, surface);
 			player = new Vanguard(DRAWING_WIDTH / 2 + 200, DRAWING_WIDTH / 2, surface); 
 			System.out.println("Created new Vanguard");
 		} else {
@@ -156,7 +160,7 @@ public class GameScreen extends Screen {
 
 			// TODO finish all draw methods here. 
 			if (player != null) {
-				gameMap.draw(surface, player);				
+				gameMap.draw(surface, player, e);				
 			} else {
 				initialize(); 
 			}

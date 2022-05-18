@@ -70,6 +70,7 @@ public class Mech implements Controllable {
 		surface.imageMode(PConstants.CENTER);
 		surface.image(img, x, y, 100, 100); 
 	}
+	
 	/**
 	 * Method changes the position of the mech 
 	 * @param xposChange - Mech moves to the right 
