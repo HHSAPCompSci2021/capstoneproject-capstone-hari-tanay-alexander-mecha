@@ -3,6 +3,7 @@ import core.DrawingSurface;
 import processing.core.PApplet;
 import processing.core.PConstants;
 import screens.Screen;
+import utility.field.FieldObject;
 import processing.core.PImage;
 
 /***
@@ -16,7 +17,7 @@ import processing.core.PImage;
  * @author tbartwal666
  *
  */
-public class Mech implements Controllable {
+public class Mech extends FieldObject {
 	
 	private float xpos, ypos;
 	private int health, movementSpeed;
@@ -29,7 +30,8 @@ public class Mech implements Controllable {
 	 * @param h - health
 	 * @param mS - movementSpeed
 	 */
-	public Mech(float x, float y, int h, int mS, PImage img) {
+	public Mech(float x, float y, int h, int mS, PImage img) { 
+		super(x, y); 
 		xpos = x;
 		ypos = y;
 		health = h;
