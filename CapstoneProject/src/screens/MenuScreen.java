@@ -14,7 +14,6 @@ public class MenuScreen extends Screen {
 	private DrawingSurface surface;
 	
 	private Rectangle startButton;
-
 	private Rectangle selectScreenButton; 
 	
 	public MenuScreen(DrawingSurface surface) {

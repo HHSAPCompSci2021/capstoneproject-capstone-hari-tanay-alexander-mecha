@@ -3,6 +3,8 @@ import core.DrawingSurface;
 import processing.core.PApplet;
 import processing.core.PImage;
 import utility.field.projectiles.Bullet;
+import java.awt.Point; 
+
 /**
  * Class represents Melner a type of Mech 
  *
@@ -14,8 +16,8 @@ public class Melner extends Mech {
 
 	}
 	
-	public void performFire() {
-		Bullet b = new Bullet(getX(), getY(), 200, 2, surface);
+	public void performFire(Point mouseLocation) {
+		
 	}
 	
 	

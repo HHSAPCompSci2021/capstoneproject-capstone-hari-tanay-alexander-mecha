@@ -50,8 +50,8 @@ public class GameEngine {
     public void runGame(int increment, DrawingSurface surface) {
         gameClock+=increment; 
         
-        if (base.getHealth() <= 0) {
-            endGame(surface);
+        if (base.getCurrentHealth() <= 0) {
+            endGame(surface); 
         }
     }
 

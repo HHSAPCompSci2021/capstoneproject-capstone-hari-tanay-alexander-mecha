@@ -58,6 +58,8 @@ public class Map {
         int screenCenterX = DRAWING_WIDTH / 2; 
         int screenCenterY = DRAWING_HEIGHT / 2; 
 
+
+        // map borders, may be needed to placed into its own class. 
         surface.fill(0);
         surface.stroke(0);
         surface.rect(screenCenterX - player.getX(), screenCenterY - player.getY(), mapWidth, 50); 
@@ -65,6 +67,7 @@ public class Map {
         surface.rect(screenCenterX - player.getX(), screenCenterY - player.getY() + mapHeight, mapWidth, 50); 
         surface.rect(screenCenterX - player.getX() + mapWidth, screenCenterY - player.getY(), 50, mapHeight); 
 
+        // ! should be changed, each of the classes should be responsible for their own draw method. 
         player.draw(surface, screenCenterX, screenCenterY); 
 
         for (FieldObject mapComponent : fieldObjects) {
