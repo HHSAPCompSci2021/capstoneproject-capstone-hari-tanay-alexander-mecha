@@ -1,6 +1,7 @@
 package utility.field.projectiles;
 
 import core.DrawingSurface;
+import processing.core.PImage;
 
 import java.awt.*;
 
@@ -10,9 +11,11 @@ import java.awt.*;
  */
 public class Bullet extends Projectile {
 	
-	private float dmg, range;
+	private float range;
 	private boolean seen;
-	private float x = getX(), y = getY();
+	private float x, y;
+	
+	private PImage img;
 	
 	/**
 	 * Bullet class takes 4 parameters
@@ -21,31 +24,27 @@ public class Bullet extends Projectile {
 	 * @param damage
 	 * @param v (velocity) 
 	 */
-	public Bullet(float x, float y, int damage, double v, DrawingSurface surface) {
-		super(x, y, damage, v, surface.loadImage("img/bullet.png"));
+	public Bullet(float x, float y, int damage, double v) {
+		super(x, y, damage, v);
 		seen = true;
+		DrawingSurface surface = new DrawingSurface();
+		img = surface.loadImage("img/bullet.png");
 	}
 	/**
 	 * Set damage for a specific type of bullet
 	 * @param x (amount) 
 	 */
 	public void setDmg(float x) {
-		dmg=x;
+		setDamage((int) x);
 	}
 	/**
 	 * Set how far bullet will shoot 
 	 * @param y (range) 
 	 */
 	public void setRange(float y) {
-		dmg=y;
+		range = y;
 	}
-	/**
-	 * Get Damage for a specific type of bullet
-	 * @return amount of damage
-	 */
-	public float getDmg() {
-		return dmg;
-	}
+	
 	/**
 	 * Get Range for a specific type of bullet
 	 * @return the range of the bullet

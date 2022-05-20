@@ -15,11 +15,13 @@ import utility.field.friendly.unit.mecha.Mech;
 import utility.field.friendly.unit.mecha.Melner;
 import utility.field.friendly.unit.mecha.Stelwart;
 import utility.field.friendly.unit.mecha.Vanguard;
+import utility.field.projectiles.Bullet;
 
 import java.awt.Rectangle;
 import java.awt.Color;
 import java.awt.Point; 
 import java.awt.geom.Rectangle2D;
+import java.util.ArrayList;
 
 /**
 * class for GameScreen. 
@@ -197,7 +199,11 @@ public class GameScreen extends Screen {
 
 		}
 		
-
+		ArrayList<Bullet> bullets = Melner.getBullets();
+		
+		for(int j=0; j<bullets.size(); j++) {
+			Bullet b = bullets.get(j);
+		}
 	}
 	
 	public void mousePressed() {
