@@ -160,7 +160,7 @@ public class GameScreen extends Screen {
 
 			// TODO finish all draw methods here. 
 			if (player != null) {
-				gameMap.draw(surface, player, e);				
+				gameMap.draw(surface, player);				
 			} else {
 				initialize(); 
 			}
