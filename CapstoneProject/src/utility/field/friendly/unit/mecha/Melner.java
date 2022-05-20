@@ -1,11 +1,12 @@
 package utility.field.friendly.unit.mecha;
-import java.awt.event.KeyEvent;
-import java.util.ArrayList;
-
 import core.DrawingSurface;
 import processing.core.PApplet;
 import processing.core.PImage;
 import utility.field.projectiles.Bullet;
+import java.awt.Point;
+import java.awt.event.KeyEvent;
+import java.util.ArrayList; 
+
 /**
  * Class represents Melner a type of Mech 
  *

@@ -5,16 +5,16 @@ import processing.core.PImage;
 import java.awt.geom.Rectangle2D; 
 
 public abstract class FieldObject {
-    private float mapX, mapY;           // coordinates relative to map. 
+    private float centerX, centerY;           // coordinates relative to map. 
 
     /**
      * Initialize a new field object at <code>Map</code> position <code>x</code>, <code>y</code>. 
-     * @param x map x locaiton. 
-     * @param y map y location. 
+     * @param x map x locaiton. - defines center of the object. 
+     * @param y map y location. - defines center of the object. 
      */
     public FieldObject(float x, float y) {
-        mapX = x; 
-        mapY = y; 
+        centerX = x; 
+        centerY = y; 
     }
 
     /**
@@ -23,8 +23,8 @@ public abstract class FieldObject {
      * @param yChange change in y 
      */
     public void changePos(float xChange, float yChange) {
-        mapX += xChange; 
-        mapY += yChange; 
+        centerX += xChange; 
+        centerY += yChange; 
     }
 
     /**
@@ -32,7 +32,7 @@ public abstract class FieldObject {
      * @return x 
      */
     public float getX() {
-    	return mapX;
+    	return centerX;
     }
     
     /**
@@ -40,16 +40,22 @@ public abstract class FieldObject {
      * @return y
      */
     public float getY() {
-    	return mapY;
+    	return centerY;
     }
     
     /**
      * method to draw the specific <code>FieldObject</code>. 
+     * this will use adjusted values, since the <code>DrawingSurface</code> view is different from appearance due to map structure. 
+     * 
      */
-    public void draw(DrawingSurface surface) {
+    public void draw(DrawingSurface surface, float adjustedX, float adjustedY) {
     	
     }
 
+    /**
+     * get the bounding rectangle of the specific <code>FieldObject</code>
+     * @return an instance of Rectangle2D.Float specifying the boundary of the <code>FieldObject</code> 
+     */
     public Rectangle2D.Float getBoundary() {
         return null; 
     }
