@@ -50,11 +50,10 @@ public class MenuScreen extends Screen {
 		surface.rect(selectScreenButton.x, selectScreenButton.y, selectScreenButton.width, selectScreenButton.height, 10, 10, 10, 10);
 
 		surface.fill(0);
-		String str = "Start!";
-
+		String str = "Preview!";
 		surface.textAlign(PConstants.CENTER, PConstants.CENTER);
 		surface.text(str, (float)startButton.getCenterX(), (float)startButton.getCenterY()); 
-		surface.text("select", (float)selectScreenButton.getCenterX(), (float)selectScreenButton.getCenterY());
+		surface.text("Start!", (float)selectScreenButton.getCenterX(), (float)selectScreenButton.getCenterY());
 		
 	}
 
