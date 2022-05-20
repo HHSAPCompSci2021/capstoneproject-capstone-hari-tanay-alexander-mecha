@@ -120,7 +120,12 @@ public class SelectScreen extends Screen {
         surface.rect((float)confirmButton.getX(), (float)confirmButton.getY(), (float)confirmButton.getWidth(), (float)confirmButton.getHeight());
 
         surface.fill(0);
-        
+        surface.text("Moderate Mobility and Health", (float) selectionsRectangles[0].getCenterX(), (float) selectionsRectangles[0].getCenterY()+70);
+        surface.text("Shoots slow bullets with high damage", (float) selectionsRectangles[0].getCenterX(), (float) selectionsRectangles[0].getCenterY()+90);
+        surface.text("Slow Mobility and High Health", (float) selectionsRectangles[1].getCenterX(), (float) selectionsRectangles[1].getCenterY()+70);
+        surface.text("Weapon deals damage over time", (float) selectionsRectangles[1].getCenterX(), (float) selectionsRectangles[1].getCenterY()+90);
+        surface.text("High Mobility and Low Health", (float) selectionsRectangles[2].getCenterX(), (float) selectionsRectangles[2].getCenterY()+70);
+        surface.text("Shoots fast bullets with low damage", (float) selectionsRectangles[2].getCenterX(), (float) selectionsRectangles[2].getCenterY()+90);
         surface.text("CONFIRM PICK", (float)confirmButton.getCenterX(), (float)confirmButton.getCenterY());
 
         surface.imageMode(PConstants.CENTER);

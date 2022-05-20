@@ -1,8 +1,6 @@
 package utility.field.friendly;
 
-import java.util.logging.Handler;
 
-import utility.field.friendly.unit.mecha.Controllable;
 /**
  * A DefenseUnit is a type of Ally which protects the Base 
  * @author tbartwal666

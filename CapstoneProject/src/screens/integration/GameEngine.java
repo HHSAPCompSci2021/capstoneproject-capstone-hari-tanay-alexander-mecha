@@ -9,8 +9,8 @@ import java.util.ArrayList;
 import java.awt.Point; 
 
 /**
-* class designed to manage all game events, including wave and preperation management, 
-*/
+ * class that handles waves of enemies and clock systems. 
+ */
 public class GameEngine {
     
     public int gameClock; 
@@ -67,7 +67,7 @@ public class GameEngine {
         surface.text("WAVE " + waveLevel, (float)(DRAWING_WIDTH - (clockSectionWidth * 0.98)), clockSectionHeight * 0.50f);
         surface.text("Time elapsed: " + timeCounterToClockDisplay(gameClock), (float)(DRAWING_WIDTH - (clockSectionWidth * 0.98)), clockSectionHeight * 0.70f); 
 
-        manageWave(surface);
+        manageWave(surface); 
     }
     
     private void manageWave(DrawingSurface surface) {
@@ -101,7 +101,7 @@ public class GameEngine {
     }
     
     private boolean inSpawn(ArrayList<ArrayList<Enemy>> totalEnemies) {
-
+        
         return false; 
     }
     

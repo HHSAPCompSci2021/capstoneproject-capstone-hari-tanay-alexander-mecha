@@ -34,6 +34,14 @@ public abstract class FieldObject {
     public float getX() {
     	return centerX;
     }
+
+    /**
+     * set a new X position individually relative to map. 
+     * @return new x position. 
+     */
+    public void setXPosition(float newXPos) {
+        centerX = newXPos; 
+    }
     
     /**
      * get map oriented Y position. 
@@ -42,11 +50,21 @@ public abstract class FieldObject {
     public float getY() {
     	return centerY;
     }
+
+    /**
+     * set a new X position individually relative to map. 
+     * @return new x position. 
+     */
+    public void setYPosition(float newYPos) {
+        centerY = newYPos; 
+    }
     
     /**
      * method to draw the specific <code>FieldObject</code>. 
      * this will use adjusted values, since the <code>DrawingSurface</code> view is different from appearance due to map structure. 
-     * 
+     * @param surface 
+     * @param adjustedX
+     * @param adjustedY
      */
     public void draw(DrawingSurface surface, float adjustedX, float adjustedY) {
     	
