@@ -9,6 +9,15 @@ import processing.core.PConstants;
 public class ShopHandler {
     
     private int DRAWING_WIDTH, DRAWING_HEIGHT; 
+    private int credits; 
+
+    /**
+     * Increment specified number of credits, this should be as a result of clearing waves and killing enemies. 
+     * @param addition number of credits to add 
+     */
+    public void addCredits(int addition) {
+        credits += addition; 
+    }
     
     // in game UI
     private Rectangle2D.Float launchShopButton; 
@@ -28,6 +37,10 @@ public class ShopHandler {
         return shopMenuButtonsRectangles[index]; 
     }
     
+    /**
+     * Bounding rectangle for the shop launch button, which is initialized to the bottom left corner of the screen. 
+     * @return
+     */
     public Rectangle2D.Float getShopLaunchButton() {
         return launchShopButton; 
     }
@@ -150,11 +163,43 @@ public class ShopHandler {
                 surface.textAlign(PConstants.CENTER, PConstants.CENTER); 
                 surface.fill(0); 
                 surface.text(shopButtonStrings[i], (float)shopMenuButtonsRectangles[i].getCenterX(), (float)shopMenuButtonsRectangles[i].getCenterY());
-                
-                
-                
-                
             }
+        }
+    }
+
+    public boolean canUpgradeTank() {
+        return false; 
+    }
+
+    public boolean canUpgradeSoldier() {
+        return false; 
+    }
+
+    public boolean canBuyTank() {
+        return false; 
+    }
+
+    public boolean canBuySoldier() {
+        return false; 
+    }
+
+
+    /**
+     * "BUY TANK", 
+            "BUY SOLDIER", 
+            "UPGRADE TANK", 
+            "UPGRADE SOLDIER", 
+     * @param option
+     */
+    public void makeBuyOperation(int option) {
+        if (option == 0) {
+            // Buy Tank. 
+        } else if (option == 1) {
+            // Buy Soldier. 
+        } else if (option == 2) {
+            // Upgrade tank. 
+        } else if (option == 3) {
+            // Upgrade soldier. 
         }
     }
 }
