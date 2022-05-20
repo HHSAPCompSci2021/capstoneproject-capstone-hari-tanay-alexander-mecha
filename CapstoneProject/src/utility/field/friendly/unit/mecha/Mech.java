@@ -90,8 +90,8 @@ public class Mech implements Controllable {
 	 * @param changeY- allows to move y to the right or to the left 
 	 */
 	public void performMovement(float changeX, float changeY) {
-		
-		
+		xpos += changeX;
+		ypos += changeY;
 	}
 
 	 /**
@@ -99,7 +99,6 @@ public class Mech implements Controllable {
      * @param aim sensitivity 
      */
 	public void performFire(float aim) {
-		
 		
 	}
 	

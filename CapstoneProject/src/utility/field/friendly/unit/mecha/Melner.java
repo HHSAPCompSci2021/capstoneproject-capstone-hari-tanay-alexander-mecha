@@ -2,6 +2,7 @@ package utility.field.friendly.unit.mecha;
 import core.DrawingSurface;
 import processing.core.PApplet;
 import processing.core.PImage;
+import utility.field.projectiles.Bullet;
 /**
  * Class represents Melner a type of Mech 
  *
@@ -13,5 +14,9 @@ public class Melner extends Mech {
 
 	}
 	
-
+	public void performFire() {
+		Bullet b = new Bullet(getX(), getY(), 200, 2, surface);
+	}
+	
+	
 }

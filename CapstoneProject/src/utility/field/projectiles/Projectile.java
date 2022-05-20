@@ -6,13 +6,15 @@ import utility.field.FieldObject;
  * The Projectile class is a parent class used for different type of weapons 
  *
  */
-public abstract class Projectile extends FieldObject{
+public abstract class Projectile {
     
     private int damage; 
 
     // splash dmg is damage in an area. DOT is damage over time, like burn. 
     private boolean hasSplash, hasDOT; 
     private double velocity; 
+    
+    private float x, y;
     
     private PImage img;
 
@@ -24,7 +26,8 @@ public abstract class Projectile extends FieldObject{
      * @param v - velocity of projectile 
      */
     public Projectile(float x, float y, int damage, double v, PImage img) {
-        super(x, y);
+        this.x = x;
+        this.y = y;
         //TODO Auto-generated constructor stub
         this.damage = damage; 
         velocity = v;
@@ -80,11 +83,17 @@ public abstract class Projectile extends FieldObject{
     public double getVelocity() {
     	return velocity;
     }
-    @Override
-    /**
-     * Changes the position of projectile 
-     */
-    public void changePos(float xChange, float yChange) {
 
+    public void changePos(float xChange, float yChange) {
+    	x += xChange;
+    	y += yChange;
+    }
+    
+    public float getX() {
+    	return x;
+    }
+    
+    public float getY() {
+    	return y;
     }
 }

@@ -2,6 +2,8 @@ package utility.field.projectiles;
 
 import core.DrawingSurface;
 
+import java.awt.*;
+
 /**
  * Bullet class represents the bullets in the different guns/projectiles
  *
@@ -9,6 +11,9 @@ import core.DrawingSurface;
 public class Bullet extends Projectile {
 	
 	private float dmg, range;
+	private boolean seen;
+	private float x = getX(), y = getY();
+	
 	/**
 	 * Bullet class takes 4 parameters
 	 * @param x (where bullet shot from)
@@ -18,6 +23,7 @@ public class Bullet extends Projectile {
 	 */
 	public Bullet(float x, float y, int damage, double v, DrawingSurface surface) {
 		super(x, y, damage, v, surface.loadImage("img/bullet.png"));
+		seen = true;
 	}
 	/**
 	 * Set damage for a specific type of bullet
@@ -48,4 +54,11 @@ public class Bullet extends Projectile {
 		return range;
 	}
 	
+	public void fire() {
+		x -= 2;
+		
+		if(x < 5) 
+			seen = false;
+		
+	}
 }
