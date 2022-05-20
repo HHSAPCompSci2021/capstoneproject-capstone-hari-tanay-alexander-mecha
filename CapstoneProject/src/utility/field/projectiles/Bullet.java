@@ -29,6 +29,8 @@ public class Bullet extends Projectile {
 		seen = true;
 		DrawingSurface surface = new DrawingSurface();
 		img = surface.loadImage("img/bullet.png");
+		setHasDot(true);
+		setHasSplash(false);
 	}
 	/**
 	 * Set damage for a specific type of bullet

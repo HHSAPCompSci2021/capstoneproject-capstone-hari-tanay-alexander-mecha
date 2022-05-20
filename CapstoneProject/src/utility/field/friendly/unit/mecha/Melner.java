@@ -20,7 +20,7 @@ public class Melner extends Mech {
 		bullets = new ArrayList();
 	}
 	
-	public ArrayList getBullets() {
+	public static ArrayList getBullets() {
 		return bullets;
 	}
 	
