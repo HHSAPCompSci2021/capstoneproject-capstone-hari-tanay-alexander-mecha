@@ -22,9 +22,7 @@ public class Map {
 
     private int mapWidth, mapHeight; 
 
-    public Map() {
-        fieldObjects = new ArrayList<FieldObject>(); 
-    }
+    
 
     /**
      * Recommended constructor, constructs map to specified dimentions, 
@@ -37,6 +35,8 @@ public class Map {
         mapWidth = x; 
         mapHeight = y; 
 
+        fieldObjects = new ArrayList<>(); 
+
         this.DRAWING_WIDTH = DRAWING_WIDTH; 
         this.DRAWING_HEIGHT = DRAWING_HEIGHT; 
 
@@ -46,6 +46,7 @@ public class Map {
 
     public void addFieldObject(FieldObject obj) {
         fieldObjects.add(obj); 
+        System.out.println("An object was just added. ");
     }
 
     /**
@@ -94,6 +95,11 @@ public class Map {
             } else if (mapComponent instanceof Inanimate) {
                 surface.fill(89);
             }
+
+            float minimapRelativeX = (minimapWidth) * (mapComponent.getX() / this.mapWidth); 
+            float minimapRelativeY = (minimapHeight) * (mapComponent.getY() / this.mapHeight); 
+
+            surface.circle(minimapRelativeX, minimapRelativeY, 10);
         }
     }
 }

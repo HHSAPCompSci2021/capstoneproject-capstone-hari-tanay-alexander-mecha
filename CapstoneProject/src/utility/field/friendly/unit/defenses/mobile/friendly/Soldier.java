@@ -6,7 +6,8 @@ import processing.core.PApplet;
 import processing.core.PConstants;
 import processing.core.PImage;
 import utility.field.enemy.Enemy;
-import utility.field.friendly.MobileUnit;
+import utility.field.friendly.MobileUnit; 
+import java.awt.geom.Rectangle2D; 
 
 public class Soldier extends MobileUnit {
 
@@ -18,7 +19,7 @@ public class Soldier extends MobileUnit {
 	public Soldier(float x, float y, float health, float width, float height, float moveSpeed, float damage, DrawingSurface surface) {
 		super(x, y, health, width, height, moveSpeed, damage); 
 
-		left = surface.loadImage(""); 
+		left = surface.loadImage("CapstoneProject\\img\\solder_looking_left.png"); 
 		right = surface.loadImage("CapstoneProject\\img\\solder_looking_right.png"); 
 
 		graphic = right; 
@@ -26,9 +27,9 @@ public class Soldier extends MobileUnit {
 	
 	/**
 	 * Draw the solder. 
-	 * @param surface 
-	 * @param adjustedX
-	 * @param adjustedY 
+	 * @param surface game window 
+	 * @param adjustedX adjusted x value based on view coordinates. 
+	 * @param adjustedY adjusted y value based on view coordinates. 
 	 */
 	public void draw(DrawingSurface surface, float adjustedX, float adjustedY) {
 		surface.imageMode(PConstants.CENTER); 
@@ -64,5 +65,18 @@ public class Soldier extends MobileUnit {
 		 * else: 
 		 * 		go through all enemies and move and attack the nearest enemy. 
 		 */
+	}
+
+	/**
+	 * return a boundring rect that represents the boundary of the rectangle. 
+	 * @return Rectangle2D.Float rectangle. 
+	 */
+	public Rectangle2D.Float getBoundary() {
+		return new Rectangle2D.Float(
+			getX() - (getWidth()/2), 
+			getY() - (getHeight()/2), 
+			getWidth(), 
+			getHeight()
+		); 
 	}
 }

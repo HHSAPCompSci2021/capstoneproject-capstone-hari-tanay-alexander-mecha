@@ -3,21 +3,18 @@ package screens;
 
 import core.DrawingSurface;
 import enemies.Barbarian;
-import processing.core.PApplet;
 import processing.core.PConstants;
 import screens.integration.Map;
 import screens.integration.PauseHandler;
 import screens.integration.ShopHandler;
 import utility.HomeBase;
 import utility.field.enemy.Enemy;
-import utility.field.friendly.unit.mecha.Controllable;
 import utility.field.friendly.unit.mecha.Mech;
 import utility.field.friendly.unit.mecha.Melner;
 import utility.field.friendly.unit.mecha.Stelwart;
 import utility.field.friendly.unit.mecha.Vanguard;
 import utility.field.projectiles.Bullet;
 
-import java.awt.Rectangle;
 import java.awt.Color;
 import java.awt.Point; 
 import java.awt.geom.Rectangle2D;
@@ -105,20 +102,19 @@ public class GameScreen extends Screen {
 
 	public void initialize() {
 		if (selection == 0) {
-			e = new Barbarian(DRAWING_WIDTH / 2 + 400, DRAWING_WIDTH / 2, surface);
 			player = new Melner(DRAWING_WIDTH / 2 + 200, DRAWING_WIDTH / 2, surface);
 			System.out.println("Created new Melner"); 
 		} else if (selection == 1) {
-			e = new Barbarian(DRAWING_WIDTH / 2 + 400, DRAWING_WIDTH / 2, surface);
 			player = new Stelwart(DRAWING_WIDTH / 2 + 200, DRAWING_WIDTH / 2, surface);
 			System.out.println("Created new Stelwart");
 		} else if (selection == 2) {
-			e = new Barbarian(DRAWING_WIDTH / 2 + 400, DRAWING_WIDTH / 2, surface);
 			player = new Vanguard(DRAWING_WIDTH / 2 + 200, DRAWING_WIDTH / 2, surface); 
 			System.out.println("Created new Vanguard");
 		} else {
 			throw new IllegalArgumentException("invalid mech choice integer key"); 
 		}
+
+		gameMap.addFieldObject(player); 
 	}
 	
 	public void keyPressed() {
