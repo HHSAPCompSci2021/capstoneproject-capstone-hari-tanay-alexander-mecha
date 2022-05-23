@@ -102,13 +102,13 @@ public class GameScreen extends Screen {
 
 	public void initialize() {
 		if (selection == 0) {
-			player = new Melner(DRAWING_WIDTH / 2 + 200, DRAWING_WIDTH / 2, surface);
+			player = new Melner(gameMap.getMapWidth() / 2 + 200, gameMap.getMapHeight() / 2, surface);
 			System.out.println("Created new Melner"); 
 		} else if (selection == 1) {
-			player = new Stelwart(DRAWING_WIDTH / 2 + 200, DRAWING_WIDTH / 2, surface);
+			player = new Stelwart(gameMap.getMapWidth() / 2 + 200, gameMap.getMapHeight() / 2, surface);
 			System.out.println("Created new Stelwart");
 		} else if (selection == 2) {
-			player = new Vanguard(DRAWING_WIDTH / 2 + 200, DRAWING_WIDTH / 2, surface); 
+			player = new Vanguard(gameMap.getMapWidth() / 2 + 200, gameMap.getMapHeight() / 2, surface); 
 			System.out.println("Created new Vanguard");
 		} else {
 			throw new IllegalArgumentException("invalid mech choice integer key"); 

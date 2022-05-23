@@ -22,7 +22,21 @@ public class Map {
 
     private int mapWidth, mapHeight; 
 
-    
+    public int getMapWidth() {
+        return mapWidth;
+    }
+
+    public void setMapWidth(int mapWidth) {
+        this.mapWidth = mapWidth;
+    }
+
+    public int getMapHeight() {
+        return mapHeight;
+    }
+
+    public void setMapHeight(int mapHeight) {
+        this.mapHeight = mapHeight;
+    }
 
     /**
      * Recommended constructor, constructs map to specified dimentions, 
@@ -51,7 +65,8 @@ public class Map {
 
     /**
      * To draw the objects in the map including the player. Everything should be drawn relative to player position. 
-     * @param surface
+     * @param surface game window where the objects should be drawn. 
+     * @param player Mech player with which the view is configured to. 
      */
     public void draw(DrawingSurface surface, Mech player) {
         // * first draw borders. 
@@ -71,8 +86,19 @@ public class Map {
         // ! should be changed, each of the classes should be responsible for their own draw method. 
         player.draw(surface, screenCenterX, screenCenterY); 
 
+        //  viewX and viewY will define the coordinates of the upper left corner of the current window view of the map. 
+        float viewX = player.getX() - (DRAWING_WIDTH / 2); 
+        float viewY = player.getY() - (DRAWING_HEIGHT / 2); 
+
+        /**
+         * cycle through all the items in the list, and create 
+         */
         for (FieldObject mapComponent : fieldObjects) {
             // draw the object onto the map, using adjusted coordinates. 
+            float perspectiveX = mapComponent.getX() - viewX; 
+            float perspectiveY = mapComponent.getY() - viewY; 
+
+            mapComponent.draw(surface, perspectiveX, perspectiveY); 
         }
         
         
