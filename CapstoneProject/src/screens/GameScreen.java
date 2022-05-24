@@ -233,6 +233,12 @@ public class GameScreen extends Screen {
 				for (FieldObject mapComponent : gameMap.getObjects()) {
 					if (mapComponent instanceof Enemy) {
 						enemyExists = true; 
+
+						Enemy unit = (Enemy)mapComponent; 
+						unit.auto(gameMap.getObjects()); 
+						if (unit.getTarget() != null) {
+							unit.performFire(); 
+						} 
 					}
 				}
 

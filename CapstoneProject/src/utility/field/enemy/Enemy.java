@@ -34,6 +34,10 @@ public class Enemy extends GameUnit {
 		surface.image(current, x, y, 100, 100); 
 	}
 
+	public Allied getTarget() {
+		return target; 
+	}
+
 
 	public void auto(ArrayList<FieldObject> fieldObjects) {
 		
@@ -55,15 +59,33 @@ public class Enemy extends GameUnit {
 		if (fieldObjects.get(closest_index).getPosition().distance(this.getPosition()) < 200) {
 			// Close enough, fire it. 
 			target = (Allied)fieldObjects.get(closest_index); 
+		} else {
+			target = null; 
+			
+			int xChange, yChange; 
+			if (fieldObjects.get(closest_index).getX() > this.getX()) {
+				xChange = 5; 
+			} else {
+				xChange = -5; 
+			}
+
+			if (fieldObjects.get(closest_index).getY() > this.getY()) {
+				yChange = 5; 				
+			} else {
+				yChange = -5; 
+			}
+
+			changePos(xChange, yChange);
 		}
 	}
 
 	public Bullet performFire() {
+		System.out.println("this function is called");
 		float yChange = this.getY() - target.getY(); 
 		float xChange = this.getX() - target.getX(); 
 		float angle = (float)Math.tan(yChange / xChange); 
 
-		Bullet fired = new Bullet(getX(), getY(), 30, 25, 500, angle, "ENEMY"); 
+		Bullet fired = new Bullet(getX(), getY(), 30, 4, 500, angle, "ENEMY"); 
 
 		return fired; 
 	}
