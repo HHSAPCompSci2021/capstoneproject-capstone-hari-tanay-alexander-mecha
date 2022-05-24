@@ -194,7 +194,11 @@ public class GameScreen extends Screen {
 			}
 			
 			// NOTE Draw runs 60 times per seconds. 			
-			surface.background(191, 255, 187); 
+			if (player instanceof Melner) {
+				surface.background(204, 102, 0);
+			} else {
+				surface.background(191, 255, 187); 
+			}
 
 			// TODO finish all draw methods here. 
 			if (player != null) {
@@ -233,6 +237,12 @@ public class GameScreen extends Screen {
 				for (FieldObject mapComponent : gameMap.getObjects()) {
 					if (mapComponent instanceof Enemy) {
 						enemyExists = true; 
+
+						Enemy unit = (Enemy)mapComponent; 
+						unit.auto(gameMap.getObjects()); 
+						if (unit.getTarget() != null) {
+							unit.performFire(); 
+						} 
 					}
 				}
 
