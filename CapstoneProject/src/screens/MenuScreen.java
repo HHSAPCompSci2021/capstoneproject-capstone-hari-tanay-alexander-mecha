@@ -32,8 +32,8 @@ public class MenuScreen extends Screen {
 	public void draw() {
 		Point mouseLocation = surface.actualCoordinatesToAssumed(new Point(surface.mouseX, surface.mouseY)); 
 
-		surface.background(255,255,255);
-		
+		surface.background(135,206,235);
+		surface.loadImage("img/Melner.png");
 		if (startButton.contains(mouseLocation)) {
 			surface.fill(200);
 		} else {
@@ -50,10 +50,14 @@ public class MenuScreen extends Screen {
 		surface.rect(selectScreenButton.x, selectScreenButton.y, selectScreenButton.width, selectScreenButton.height, 10, 10, 10, 10);
 
 		surface.fill(0);
+		surface.textSize(12);
 		String str = "Preview!";
 		surface.textAlign(PConstants.CENTER, PConstants.CENTER);
 		surface.text(str, (float)startButton.getCenterX(), (float)startButton.getCenterY()); 
 		surface.text("Start!", (float)selectScreenButton.getCenterX(), (float)selectScreenButton.getCenterY());
+		surface.textSize(50);
+		surface.text("Mecha Wars", (float) selectScreenButton.getCenterX(), (float)selectScreenButton.getCenterY()-350);
+		surface.textSize(12);
 		
 	}
 
