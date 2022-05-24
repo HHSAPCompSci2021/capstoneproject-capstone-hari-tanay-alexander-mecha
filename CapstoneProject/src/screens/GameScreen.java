@@ -361,7 +361,9 @@ public class GameScreen extends Screen {
 				// TODO ? How
 			} else if (pauseSystem.getMenuButton(3).contains(p)) {
 				// Do 3. CLOSE GAME. 
-				System.exit(0);
+				surface.exit();
+				System.exit(0); 
+				
 			} 
 			
 		}
