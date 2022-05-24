@@ -31,7 +31,7 @@ public class Enemy extends GameUnit {
 
 	public void draw(DrawingSurface surface, int x, int y) {
 		surface.imageMode(PConstants.CENTER);
-		surface.image(current, x, y, 100, 100); 
+		surface.image(current, x, y, getWidth(), getHeight()); 
 	}
 
 	public Allied getTarget() {

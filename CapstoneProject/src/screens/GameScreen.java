@@ -194,7 +194,11 @@ public class GameScreen extends Screen {
 			}
 			
 			// NOTE Draw runs 60 times per seconds. 			
-			surface.background(191, 255, 187); 
+			if (player instanceof Melner) {
+				surface.background(204, 102, 0);
+			} else {
+				surface.background(191, 255, 187); 
+			}
 
 			// TODO finish all draw methods here. 
 			if (player != null) {
