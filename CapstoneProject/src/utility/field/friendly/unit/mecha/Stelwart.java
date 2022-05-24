@@ -33,8 +33,8 @@ public class Stelwart extends Mech {
 	public Stelwart(float x, float y, DrawingSurface surface) {
 		super(x, y, 50, 50, 250f, 0.8f, 5); 
 		
-		left = surface.loadImage("CapstoneProject" + fileSeparator + "img" + fileSeparator + "Stelwart_facing_left.png"); 
-		right = surface.loadImage("CapstoneProject" + fileSeparator + "img" + fileSeparator + "Stelwart_facing_right.png"); 
+		left = surface.loadImage("img/Stelwart_facing_left.png"); 
+		right = surface.loadImage("img/Stelwart_facing_right.png"); 
 
 		currentImage = left; 
 		energy = 500; 

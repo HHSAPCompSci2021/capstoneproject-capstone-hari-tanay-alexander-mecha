@@ -23,8 +23,8 @@ public class Melner extends Mech {
 		// super(x, y, 1200, 3, surface.loadImage("img/Melner.png"));
 		super(x, y, 50, 50, 210, 1, 100); 
 
-		left = surface.loadImage("CapstoneProject" + fileSeperator + "img" + fileSeperator + "melner_facing_left.png"); 
-		right = surface.loadImage("CapstoneProject" + fileSeperator + "img" + fileSeperator + "melner_facing_right.png"); 
+		left = surface.loadImage("img/melner_facing_left.png"); 
+		right = surface.loadImage("img/melner_facing_right.png"); 
 
 		currentImage = left; 
 		ammo = 300; 

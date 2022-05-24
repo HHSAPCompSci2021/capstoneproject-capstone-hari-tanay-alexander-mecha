@@ -19,8 +19,8 @@ public class Soldier extends MobileUnit {
 	public Soldier(float x, float y, float health, float width, float height, float moveSpeed, float damage, DrawingSurface surface) {
 		super(x, y, health, width, height, moveSpeed, damage); 
 
-		left = surface.loadImage("CapstoneProject\\img\\solder_looking_left.png"); 
-		right = surface.loadImage("CapstoneProject\\img\\solder_looking_right.png"); 
+		left = surface.loadImage("img/solder_looking_left.png"); 
+		right = surface.loadImage("img/solder_looking_right.png"); 
 
 		graphic = right; 
 	}

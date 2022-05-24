@@ -22,8 +22,8 @@ public class Enemy extends GameUnit {
 	public Enemy(float x, float y, float health, float width, float height, DrawingSurface surface) {
 		super(x, y, health, width, height);
 
-		left = surface.loadImage("CapstoneProject" + fileSeperator +  "img" + fileSeperator + "enemy_soldier_left.png"); 
-		right = surface.loadImage("CapstoneProject" + fileSeperator +  "img" + fileSeperator + "enemy_soldier_right.png"); 
+		left = surface.loadImage("img/enemy_soldier_left.png"); 
+		right = surface.loadImage("img/enemy_soldier_right.png"); 
 		current = left; 
 		
 		

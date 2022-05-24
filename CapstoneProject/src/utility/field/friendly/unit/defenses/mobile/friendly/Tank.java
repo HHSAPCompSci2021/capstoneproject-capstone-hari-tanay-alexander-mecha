@@ -13,8 +13,8 @@ import utility.field.projectiles.Missile;
 public class Tank extends MobileUnit {
 	
 	private PImage graphic, left, right; 
-	private static String graphicPathRight = "CapstoneProject\\img\\tank_pointing_right.png"; 
-	private static String graphicPathLeft = "CapstoneProject\\img\\tank_pointing_left.png"; 
+	private static String graphicPathRight = "CapstoneProject/img/tank_pointing_right.png"; 
+	private static String graphicPathLeft = "CapstoneProject/img/tank_pointing_left.png"; 
 	
 	public Tank(float x, float y, float health, float width, float height, float moveSpeed, float damage, DrawingSurface surface) {
 		super(x, y, health, width, height, moveSpeed, damage); 

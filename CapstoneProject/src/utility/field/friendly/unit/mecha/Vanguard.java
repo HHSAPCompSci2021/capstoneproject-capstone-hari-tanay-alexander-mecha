@@ -16,8 +16,8 @@ public class Vanguard extends Mech {
 		// super(x,y, 1000, 5, surface.loadImage("img/Vanguard.png")); 
 		super(x, y, 50, 50, 180f, 1.5f, 60); 
 		
-		left = surface.loadImage("CapstoneProject" + fileSeperator + "img" + fileSeperator + "vanguard_facing_left.png");  
-		right = surface.loadImage("CapstoneProject" + fileSeperator + "img" + fileSeperator + "vanguard_facing_left.png"); 
+		left = surface.loadImage("img/vanguard_facing_left.png");  
+		right = surface.loadImage("img/vanguard_facing_left.png"); 
 
 		currentImage = left; 
 		ammo = 600; 
