@@ -18,6 +18,9 @@ public class DefenseUnit extends Allied {
 
 	}
 	
+	/**
+	 * Draws the defense to the screen
+	 */
 	public void draw() {
 		
 	}

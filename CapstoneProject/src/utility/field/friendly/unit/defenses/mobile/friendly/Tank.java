@@ -10,6 +10,11 @@ import utility.field.enemy.Enemy;
 import utility.field.friendly.MobileUnit;
 import utility.field.projectiles.Missile;
 
+/**
+ * Class for tank; mobile vehicle on screen
+ * @author alexyue
+ *
+ */
 public class Tank extends MobileUnit {
 	
 	private PImage graphic, left, right; 
@@ -37,6 +42,9 @@ public class Tank extends MobileUnit {
 	}
 	
 	
+	/**
+	 * adjusts the position of the tank on screen
+	 */
 	public void changePos(float xChange, float yChange) {
 		setXPosition(getX() + xChange);
 		setYPosition(getY() + yChange);

@@ -31,10 +31,18 @@ public class Melner extends Mech {
 		max_ammo = 300; 
 	}
 
+	/**
+	 * returns the maximum amount of ammo the melner can hold
+	 * @return the max clip of ammo
+	 */
 	public int getMaxAmmoValue() {
 		return max_ammo; 
 	}
 
+	/**
+	 * gets the current clip of ammo the melner is holding 
+	 * @return the current clip of ammo
+	 */
 	public int getAmmoValue() {
 		return ammo; 
 	}

@@ -1,6 +1,10 @@
 package utility.field.friendly;
 
-
+/**
+ * Superclass for units that can be moved using keyboard
+ * @author alexyue
+ *
+ */
 public class MobileUnit extends Allied {
 
 	private float moveSpeed; 

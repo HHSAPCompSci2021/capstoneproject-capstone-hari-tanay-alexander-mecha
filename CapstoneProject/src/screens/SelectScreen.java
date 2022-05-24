@@ -12,6 +12,11 @@ import java.awt.geom.Rectangle2D;
 import java.awt.Point; 
 //TODO generate fonts
 
+/**
+ * The screen in which the mech chosen for gameplay is selected
+ * @author alexyue
+ *
+ */
 public class SelectScreen extends Screen {
 
     private DrawingSurface surface; 

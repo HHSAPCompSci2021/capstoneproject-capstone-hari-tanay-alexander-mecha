@@ -9,6 +9,11 @@ import utility.field.enemy.Enemy;
 import utility.field.friendly.MobileUnit; 
 import java.awt.geom.Rectangle2D; 
 
+/**
+ * Class for soldier; mobile unit on screen
+ * @author alexyue
+ *
+ */
 public class Soldier extends MobileUnit {
 
 	private PImage graphic, left, right; 

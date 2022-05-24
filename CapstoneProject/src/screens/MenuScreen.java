@@ -8,7 +8,11 @@ import java.awt.Rectangle;
 import core.DrawingSurface;
 import processing.core.PConstants;
 
-
+/**
+ * The first loading screen of the game; mechs are picked and the game starts here
+ * @author alexyue
+ *
+ */
 public class MenuScreen extends Screen {
 
 	private DrawingSurface surface;

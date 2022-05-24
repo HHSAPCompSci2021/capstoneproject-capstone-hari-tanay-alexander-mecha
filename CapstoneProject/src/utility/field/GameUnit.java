@@ -5,6 +5,7 @@ import java.awt.geom.Rectangle2D;
 
 /**
 * class representing all the game relevant actors on the field, this will include enemies and allies with health. 
+* @author alexyue
 */
 public abstract class GameUnit extends FieldObject {
     private float currentHealth;
@@ -12,18 +13,34 @@ public abstract class GameUnit extends FieldObject {
     
     private float width, height; 
     
+    /**
+     * gets the width of the object on screen
+     * @return the width of the object on screen
+     */
     public float getWidth() {
         return width;
     }
     
+    /**
+     * sets the width of the object on screen
+     * @param width the new width of the object on screen
+     */
     public void setWidth(float width) {
         this.width = width;
     }
     
+    /**
+     * gets the height of the object on screen
+     * @return the height of the object on screen
+     */
     public float getHeight() {
         return height;
     }
     
+    /**
+     * sets the height of the object on screen
+     * @param height the new height of the object on screen
+     */
     public void setHeight(float height) {
         this.height = height;
     }
@@ -44,14 +61,26 @@ public abstract class GameUnit extends FieldObject {
         maxHealth = this.currentHealth; 
     }
     
+    /**
+     * gets the current hitpoints of the object on screen
+     * @return the width of the object on screen
+     */
     public float getCurrentHealth() {
         return currentHealth; 
     }
     
+    /**
+     * sets the health of specified object on screen to custom amount
+     * @param newHealthVal the custom health amount to be set to
+     */
     public void setCurrentHealth(float newHealthVal) {
         currentHealth = newHealthVal; 
     }
     
+    /**
+     * gets the maximum hitpoints of the object on screen
+     * @return the max potential health of the object on screen
+     */
     public float getMaxHealth() {
         return maxHealth; 
     }

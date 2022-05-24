@@ -24,10 +24,18 @@ public class Vanguard extends Mech {
 		max_ammo = 600; 
 	}
 
+	/**
+	 * gets the current clip of ammo the vanguard is holding 
+	 * @return the current clip of ammo
+	 */
 	public int getAmmoValue() {
 		return ammo; 
 	} 
 
+	/**
+	 * returns the maximum amount of ammo the vanguard can hold
+	 * @return the max clip of ammo
+	 */
 	public int getMaxAmmoValue() {
 		return max_ammo; 
 	}

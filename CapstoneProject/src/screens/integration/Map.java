@@ -14,6 +14,11 @@ import utility.field.friendly.Allied;
 import utility.field.friendly.unit.mecha.Mech;
 import utility.field.projectiles.Bullet;
 
+/**
+ * This class defines a game map where the player can see where the mech and the home base is placed
+ * @author alexyue
+ *
+ */
 public class Map {
     private ArrayList<FieldObject> fieldObjects; 
 
@@ -24,18 +29,34 @@ public class Map {
 
     private int mapWidth, mapHeight; 
 
+    /**
+     * gets the width of the current map
+     * @return the width of the map
+     */
     public int getMapWidth() {
         return mapWidth;
     }
 
+    /**
+     * sets the width of the map to a custom length
+     * @param mapWidth the new val of the width the player wishes to set it to
+     */
     public void setMapWidth(int mapWidth) {
         this.mapWidth = mapWidth;
     }
 
+    /**
+     * gets the current height of the map
+     * @return the height of the current map
+     */
     public int getMapHeight() {
         return mapHeight;
     }
 
+    /**
+     * sets the height of the map to a custom length
+     * @param mapHeight the new val of the width the player wishes to set it to
+     */
     public void setMapHeight(int mapHeight) {
         this.mapHeight = mapHeight;
     }
@@ -60,11 +81,19 @@ public class Map {
         minimapHeight = 0.2F * DRAWING_HEIGHT; 
     }
 
+    /**
+     * adds a defense/troop/mech to the game screen
+     * @param obj the item to be placed on the screen
+     */
     public void addFieldObject(FieldObject obj) {
         fieldObjects.add(obj); 
         System.out.println("An object was just added. ");
     }
 
+    /**
+     * gets all of the objects currently on the screen
+     * @return a list of items that are being used on screen
+     */
     public ArrayList<FieldObject> getObjects() {
         return fieldObjects; 
     }
@@ -118,6 +147,10 @@ public class Map {
         
     }
 
+    /**
+     * draws the mini map at the top left of the screen
+     * @param surface the surface of the game screen
+     */
     public void drawMiniMap(DrawingSurface surface) {
         surface.fill(255);
         surface.stroke(0);

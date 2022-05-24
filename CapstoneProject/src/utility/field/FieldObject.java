@@ -5,6 +5,11 @@ import processing.core.PImage;
 import java.awt.geom.Rectangle2D; 
 import java.awt.Point; 
 
+/**
+ * The superclass for all objects that can be placed on the screen at a time
+ * @author alexyue
+ *
+ */
 public abstract class FieldObject {
     private float centerX, centerY;           // coordinates relative to map. 
 

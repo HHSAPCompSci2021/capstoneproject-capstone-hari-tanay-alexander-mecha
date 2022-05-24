@@ -6,6 +6,11 @@ import java.awt.Point;
 import core.DrawingSurface;
 import processing.core.PConstants;
 
+/**
+ * Invoked whenever a pause is initiated in the game
+ * @author alexyue
+ *
+ */
 public class PauseHandler {
     
     //  Button exists in regular gameplay at top right corner. 
@@ -17,10 +22,19 @@ public class PauseHandler {
     
     private String[] pauseButtonStrings; 
 
+    /**
+     * Gets the menu button
+     * @param index the index at which the desired menu button is located
+     * @return the menu button at specified index
+     */
     public Rectangle2D.Float getMenuButton(int index) {
         return pauseMenuButtons[index]; 
     }
 
+    /**
+     * Gets the pause button
+     * @return the pause button
+     */
     public Rectangle2D.Float getPauseButton() {
         return pauseButton; 
     }

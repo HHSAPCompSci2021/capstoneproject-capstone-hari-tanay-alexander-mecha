@@ -3,6 +3,11 @@ package screens;
 import core.DrawingSurface;
 import processing.core.PConstants;
 
+/**
+ * The screen is used at the end of the game once the home base is defeated
+ * @author alexyue
+ *
+ */
 public class EndGame extends Screen {
 
     private DrawingSurface surface; 

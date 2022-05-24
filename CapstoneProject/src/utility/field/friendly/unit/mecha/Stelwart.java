@@ -42,6 +42,10 @@ public class Stelwart extends Mech {
 
 	}
 
+	/**
+	 * Gets maximum amount of energy the stelwart has
+	 * @return the max energy the stelwart has
+	 */
 	public int getMaxEnergyValue() {
 		return max_energy; 
 	}
@@ -55,10 +59,21 @@ public class Stelwart extends Mech {
 		return null;
 	}
 
+	/**
+	 * Gets current energy value of the stelwart
+	 * @return the current energy value
+	 */
 	public int getEnergyValue() {
 		return energy; 
 	}
 
+	/**
+	 * Alternate fire method
+	 * @param allObjects the list of all objects on screen
+	 * @param surface the game surface
+	 * @param screenX the x-coordinate
+	 * @param screenY the y-coordinate
+	 */
 	public void alternateFire(ArrayList<FieldObject> allObjects, DrawingSurface surface, float screenX, float screenY) {
 		surface.noFill();
 		surface.stroke(255, 0, 0);

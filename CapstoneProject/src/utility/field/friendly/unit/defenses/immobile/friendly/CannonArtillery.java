@@ -9,6 +9,11 @@ import processing.core.PImage;
 import utility.field.enemy.Enemy;
 import utility.field.friendly.DefenseUnit;
 
+/**
+ * Cannon artillery launches missiles in single target mechanic
+ * @author alexyue
+ *
+ */
 public class CannonArtillery extends DefenseUnit {
 
 	private PImage graphic; 
@@ -19,8 +24,7 @@ public class CannonArtillery extends DefenseUnit {
 	}
 
 	/**
-	 * draw the cannon 
-	 * TODO, finish javadoc here. 
+	 * draws the cannon to the screen
 	 */
 	public void draw(DrawingSurface surface, float adjustedX, float adjustedY) {
 		surface.imageMode(PConstants.CENTER); 
@@ -34,6 +38,10 @@ public class CannonArtillery extends DefenseUnit {
 		// DO NOTHING. 
 	}
 
+	/**
+	 * Attacks enemies if they are in the list
+	 * @param enemies the list of enemies on screen
+	 */
 	public void attack(ArrayList<Enemy> enemies) {
 		
 	}

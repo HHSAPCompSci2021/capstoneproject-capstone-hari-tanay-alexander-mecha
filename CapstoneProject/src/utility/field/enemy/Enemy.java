@@ -12,6 +12,11 @@ import utility.field.GameUnit;
 import utility.field.friendly.Allied;
 import utility.field.projectiles.Bullet;
 
+/**
+ * class to emulate the enemies that appear on-screen to fend off
+ * @author alexyue
+ *
+ */
 public class Enemy extends GameUnit {
 
 	private PImage current, left, right; 
@@ -34,11 +39,19 @@ public class Enemy extends GameUnit {
 		surface.image(current, x, y, getWidth(), getHeight()); 
 	}
 
+	/**
+	 * gets the target of the enemy
+	 * @return the object the enemy will be targeting
+	 */
 	public Allied getTarget() {
 		return target; 
 	}
 
 
+	/**
+	 * method that finds target and locks onto it
+	 * @param fieldObjects list of objects on screen for the enemy to lock onto
+	 */
 	public void auto(ArrayList<FieldObject> fieldObjects) {
 		
 
@@ -79,6 +92,10 @@ public class Enemy extends GameUnit {
 		}
 	}
 
+	/**
+	 * fires at specified object with bullets
+	 * @return bullet to be drawn on screen and fire at specified target
+	 */
 	public Bullet performFire() {
 		System.out.println("this function is called");
 		float yChange = this.getY() - target.getY(); 

@@ -8,6 +8,11 @@ import processing.core.PConstants;
 import processing.core.PImage;
 import utility.field.friendly.Allied;
 
+/**
+ * The home base class and its defined properties are here
+ * @author alexyue
+ *
+ */
 public class HomeBase extends Allied {
 	
     private PImage graphic; 
@@ -26,7 +31,7 @@ public class HomeBase extends Allied {
     }
 
     /**
-     * draw the building for the 
+     * draw the base onto the screen
      */
     public void draw(DrawingSurface surface, float adjustedX, float adjustedY) {
         surface.imageMode(PConstants.CENTER);

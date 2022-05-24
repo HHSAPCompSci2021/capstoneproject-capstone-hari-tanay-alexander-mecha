@@ -12,7 +12,7 @@ import processing.core.PImage;
 import java.awt.Point; 
 
 /**
- * 
+ * Superclass for all starter mechs
  * @author tbartwal666 
  */
 public abstract class Mech extends Allied {
@@ -33,11 +33,21 @@ public abstract class Mech extends Allied {
 		this.damage = damage; 
 	}	
 	
+	/**
+	 * Draws all mechs to the screen
+	 * @param surface the specified screen on which it is drawn on
+	 * @param x x-coord
+	 * @param y y-coord
+	 */
 	public void draw(DrawingSurface surface, int x, int y) {
 		surface.imageMode(PConstants.CENTER);
 		surface.image(currentImage, x, y, getWidth(), getHeight()); 
 	}
 
+	/**
+	 * Gets the damage per hit value
+	 * @return the hp damage value
+	 */
 	public float getDamage() {
 		return damage; 
 	}

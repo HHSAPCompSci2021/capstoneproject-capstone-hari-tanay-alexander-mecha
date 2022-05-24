@@ -6,6 +6,11 @@ import java.awt.Point;
 import core.DrawingSurface;
 import processing.core.PConstants; 
 
+/**
+ * Invoked whenever the shop is called in the game
+ * @author alexyue
+ *
+ */
 public class ShopHandler {
     
     private int DRAWING_WIDTH, DRAWING_HEIGHT; 
@@ -167,18 +172,34 @@ public class ShopHandler {
         }
     }
 
+    /**
+     * checks condition if upgraded tank is affordable
+     * @return true/false whether tank can be upgraded
+     */
     public boolean canUpgradeTank() {
         return false; 
     }
 
+    /**
+     * checks condition if upgraded soldier is affordable
+     * @return true/false whether soldier can be upgraded
+     */
     public boolean canUpgradeSoldier() {
         return false; 
     }
 
+    /**
+     * checks condition if new tank is affordable
+     * @return true/false whether new tank can be bought
+     */
     public boolean canBuyTank() {
-        return false; 
+    	return false; 
     }
 
+    /**
+     * checks condition if new soldier is affordable
+     * @return true/false whether new soldier can be bought
+     */
     public boolean canBuySoldier() {
         return false; 
     }

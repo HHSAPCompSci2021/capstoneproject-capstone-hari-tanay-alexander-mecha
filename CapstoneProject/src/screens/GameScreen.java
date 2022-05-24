@@ -111,6 +111,9 @@ public class GameScreen extends Screen {
 
 	}
 
+	/**
+	 * Generates mechs on the screen depending on the value of the selection
+	 */
 	public void initialize() {
 		if (selection == 0) {
 			player = new Melner(gameMap.getMapWidth() / 2 + 200, gameMap.getMapHeight() / 2, surface);
@@ -312,6 +315,9 @@ public class GameScreen extends Screen {
 		}
 	}
 
+	/**
+	 * defaults for when the wave ends (is ended by the player)
+	 */
 	public void endWave() {
 		prepClock = 30 * 60;  
 		waveClock = 0;
@@ -370,6 +376,11 @@ public class GameScreen extends Screen {
 
 	}
 	
+	/**
+	 * generates the time clock conditionally on screen
+	 * @param t the value of time in seconds
+	 * @return the timer that is seen on screen
+	 */
 	private String timeCounterToClockDisplay(int t) {
 		int seconds = (t / 60) % 60; 
 		int minutes = t / 3600; 
