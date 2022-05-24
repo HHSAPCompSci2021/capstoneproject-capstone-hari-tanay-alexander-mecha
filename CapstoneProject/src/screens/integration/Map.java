@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import core.DrawingSurface;
 import utility.field.FieldObject;
+import utility.field.GameUnit;
 import utility.field.Inanimate;
 import utility.field.enemy.Enemy;
 
@@ -11,6 +12,7 @@ import java.awt.geom.Rectangle2D;
 
 import utility.field.friendly.Allied;
 import utility.field.friendly.unit.mecha.Mech;
+import utility.field.projectiles.Bullet;
 
 public class Map {
     private ArrayList<FieldObject> fieldObjects; 
@@ -63,6 +65,10 @@ public class Map {
         System.out.println("An object was just added. ");
     }
 
+    public ArrayList<FieldObject> getObjects() {
+        return fieldObjects; 
+    }
+
     /**
      * To draw the objects in the map including the player. Everything should be drawn relative to player position. 
      * @param surface game window where the objects should be drawn. 
@@ -99,6 +105,14 @@ public class Map {
             float perspectiveY = mapComponent.getY() - viewY; 
 
             mapComponent.draw(surface, perspectiveX, perspectiveY); 
+            if (mapComponent instanceof GameUnit) {
+                GameUnit unit = (GameUnit)mapComponent; 
+                unit.showHealthBar(surface, perspectiveX, perspectiveY); 
+            } 
+            if (mapComponent instanceof Bullet) {
+                Bullet unit = (Bullet)mapComponent; 
+                unit.run(fieldObjects); 
+            }
         }
         
         

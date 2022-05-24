@@ -12,19 +12,26 @@ public class MobileUnit extends Allied {
 		this.damage = damage; 
 	}
 
-		
+	/**
+	 * get <code>moveSpeed</code> value, value is permanant. 
+	 * @return moveSpeed 
+	 */	
     public float getMoveSpeed() {
 		return moveSpeed;
 	}
 
-	public void setMoveSpeed(float moveSpeed) {
-		this.moveSpeed = moveSpeed;
-	}
-
+	/**
+	 * get <code>damage</code> value. 
+	 * @return damage 
+	 */
 	public float getDamage() {
 		return damage; 
 	}
 
+	/**
+	 * set a new value for <code>damage</code>
+	 * @param damage new <code>damage</code> value. 
+	 */
 	public void setDamage(float damage) {
 		this.damage = damage;
 	}

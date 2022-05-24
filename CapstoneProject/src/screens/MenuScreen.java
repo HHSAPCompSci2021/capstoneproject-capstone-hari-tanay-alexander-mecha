@@ -33,7 +33,7 @@ public class MenuScreen extends Screen {
 		Point mouseLocation = surface.actualCoordinatesToAssumed(new Point(surface.mouseX, surface.mouseY)); 
 
 		surface.background(135,206,235);
-		surface.loadImage("img/Melner.png");
+		surface.loadImage("img/melner_facing_left.png");
 		if (startButton.contains(mouseLocation)) {
 			surface.fill(200);
 		} else {

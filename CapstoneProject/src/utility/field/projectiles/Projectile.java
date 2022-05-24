@@ -1,96 +1,61 @@
 package utility.field.projectiles;
 
+import core.DrawingSurface;
 import utility.field.FieldObject;
+import utility.field.Inanimate;
+import java.awt.Point; 
 /**
  * The Projectile class is a parent class used for different type of weapons 
  *
  */
-public abstract class Projectile {
+public abstract class Projectile extends FieldObject {
     
-    private int damage; 
-
-    // splash dmg is damage in an area. DOT is damage over time, like burn. 
-    private boolean hasSplash, hasDOT; 
-    private double velocity; 
-    
-    private float x, y;
-    
+    private float damage, velocity; 
+    protected float range, angle; 
+    protected String source; 
 
     /**
-     * Projectile instantiates the 4 parameters 
-     * @param x - x coordinate
-     * @param y - y coordinate
-     * @param damage - damage of weapon 
-     * @param v - velocity of projectile 
+     * constrctor which creates a new projectile. 
+     * @param x current map position. 
+     * @param y current map position. 
+     * @param velocity speed of <code>Projectile</code> 
+     * @param damage damage of <code>Projectile</code> 
+     * @param range range of <code>Projectile</code> 
+     * @param angle angle of <code>Projectile</code> 
+     * @param source describes what object shot the <code>Projectile</code> 
      */
-    public Projectile(float x, float y, int damage, double v) {
-        this.x = x;
-        this.y = y;
-        //TODO Auto-generated constructor stub
+    public Projectile(float x, float y, float velocity, float damage, float range, float angle, String source) {
+        super(x, y); 
+        this.velocity = velocity; 
         this.damage = damage; 
-        velocity = v;
+        this.range = range; 
+        this.angle = angle; 
+        this.source = source; 
+    }
+
+    @Override
+    public void draw(DrawingSurface surface, float adjustedX, float adjustedY) {
+        return; 
     }
     
     /**
-     * Sets the damage of the weapon 
-     * @param damage - damage of projectile 
+     * get the damage value of the projectile. 
+     * @return damage 
      */
-    public void setDamage(int damage) {
-    	this.damage = damage;
-    }
-    /**
-     * Sets whether or not projectile does Area Damage
-     * @param splash - weapon has splash damage
-     */
-    public void setHasSplash(boolean splash) {
-    	splash = hasSplash;
-    }
-    /**
-     * Sets weapon to have burning damage 
-     * @param dot - weapon has damage after intial hit
-     */
-    public void setHasDot(boolean dot) {
-    	dot = hasDOT;
-    }
-    /**
-     * Gets the amount of damage the weapon deals 
-     * @return the amount of damage 
-     */
-    public int getDamage() {
+    public float getDamage() {
         return damage; 
     }
+    
     /**
-     * Gets the amount of damage the splash weapon does
-     * @return splash damage 
+     * return the velocity of the particle, should not change later. 
+     * @return velocity of projectile. 
      */
-    public boolean getHasSplash() {
-    	return hasSplash;
-    }
-    /**
-     * Gets the amount of damage weapon does after initial hit
-     * @return damage of the weapon 
-     */
-    public boolean getHasDot() {
-    	return hasDOT;
-    }
-    /**
-     * Gets the velocity of the projectile 
-     * @return velocity of bullet/missile
-     */
-    public double getVelocity() {
-    	return velocity;
+    public float getVelocity() {
+        return velocity; 
     }
 
-    public void changePos(float xChange, float yChange) {
-    	x += xChange;
-    	y += yChange;
+    public Point getPosition() {
+        return new Point((int)this.getX(), (int)(this.getY())); 
     }
-    
-    public float getX() {
-    	return x;
-    }
-    
-    public float getY() {
-    	return y;
-    }
+
 }

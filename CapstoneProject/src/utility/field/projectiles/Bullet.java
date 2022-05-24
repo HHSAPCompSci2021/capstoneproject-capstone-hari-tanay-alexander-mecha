@@ -1,9 +1,12 @@
 package utility.field.projectiles;
 
-import core.DrawingSurface;
-import processing.core.PImage;
+import java.util.ArrayList;
 
-import java.awt.*;
+import core.DrawingSurface;
+import utility.field.FieldObject;
+import utility.field.GameUnit;
+import utility.field.enemy.Enemy;
+import utility.field.friendly.Allied;
 
 /**
  * Bullet class represents the bullets in the different guns/projectiles
@@ -11,55 +14,73 @@ import java.awt.*;
  */
 public class Bullet extends Projectile {
 	
-	private float range;
-	private boolean seen;
-	private float x, y;
-	
-	private PImage img;
-	
+		
 	/**
 	 * Bullet class takes 4 parameters
-	 * @param x (where bullet shot from)
-	 * @param y (where bullet shot from) 
-	 * @param damage
-	 * @param v (velocity) 
+	 * @param x current map position. 
+	 * @param y current map position. 
+	 * @param damage damage of the <code>Bullet</code>. 
+	 * @param velocity speed of the <code>Bullet</code>. 
+	 * @param range range of the <code>Bullet</code>. 
+	 * @param angle angle at which the bullet travels. 
+	 * @param source describes what object shot the <code>Bullet</code>. 
 	 */
-	public Bullet(float x, float y, int damage, double v) {
-		super(x, y, damage, v);
-		seen = true;
-		DrawingSurface surface = new DrawingSurface();
-		img = surface.loadImage("img/bullet.png");
-		setHasDot(true);
-		setHasSplash(false);
+	public Bullet(float x, float y, float damage, float velocity, float range, float angle, String source) {
+		super(x, y, damage, velocity, range, angle, source); 
+
+
 	}
-	/**
-	 * Set damage for a specific type of bullet
-	 * @param x (amount) 
-	 */
-	public void setDmg(float x) {
-		setDamage((int) x);
-	}
-	/**
-	 * Set how far bullet will shoot 
-	 * @param y (range) 
-	 */
-	public void setRange(float y) {
-		range = y;
-	}
-	
-	/**
-	 * Get Range for a specific type of bullet
-	 * @return the range of the bullet
-	 */
-	public float getRange() {
-		return range;
-	}
-	
-	public void fire() {
-		x -= 2;
-		
-		if(x < 5) 
-			seen = false;
+
+	@Override
+	public void draw(DrawingSurface surface, float adjustedX, float adjustedY) {
+		surface.fill(0);
+		surface.stroke(0);
+		surface.circle(adjustedX, adjustedY, 5); 
+
 		
 	}
+
+	/**
+	 * 
+	 * @return true if the bullet is finished. 
+	 */
+	public boolean run(ArrayList<FieldObject> fieldObjects) {
+		float x_increment = getVelocity() * (float)Math.cos(angle); 
+		float y_increment = getVelocity() * (float)Math.sin(angle); 
+
+		changePos(x_increment, y_increment); 
+
+		if (source == "ENEMY") {
+			for (FieldObject mapComponent : fieldObjects) {
+				if (mapComponent instanceof Allied) {
+					if (mapComponent.getBoundary().contains(this.getPosition())) {
+						// Detected a collision, damage ally. 
+						GameUnit unit = (GameUnit)mapComponent; 
+						unit.inflictDamage(getDamage()); 
+						return true; 
+					}
+				}
+			}
+		} else if (source == "ALLY") {
+			for (FieldObject mapComponent : fieldObjects) {
+				if (mapComponent instanceof Enemy) {
+					if (mapComponent.getBoundary().contains(this.getPosition())) {
+						// detected a collision, damage enemy. 
+						GameUnit unit = (GameUnit)mapComponent; 
+						unit.inflictDamage(getDamage()); 
+						return true; 
+					}
+				}
+			}
+		}
+
+		range--; 
+		if (range <= 0) {
+			return true; 
+		}
+
+		return false; 
+	}
+	
+
 }

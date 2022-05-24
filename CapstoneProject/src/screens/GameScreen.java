@@ -2,12 +2,14 @@ package screens;
 
 
 import core.DrawingSurface;
-import enemies.Barbarian;
 import processing.core.PConstants;
+import processing.event.KeyEvent;
 import screens.integration.Map;
 import screens.integration.PauseHandler;
 import screens.integration.ShopHandler;
 import utility.HomeBase;
+import utility.field.FieldObject;
+import utility.field.GameUnit;
 import utility.field.enemy.Enemy;
 import utility.field.friendly.unit.mecha.Mech;
 import utility.field.friendly.unit.mecha.Melner;
@@ -46,6 +48,7 @@ public class GameScreen extends Screen {
 
 	private PauseHandler pauseSystem; 
 	private ShopHandler shopSystem; 
+	private Rectangle2D.Float HUDbox, ammunitionBar; 
 
 	private Map gameMap; 
 	private Mech player; 
@@ -85,10 +88,16 @@ public class GameScreen extends Screen {
 		
 		this.surface = surface; 
 		onPause = false; 
-		prepClock = 60 * 60;  
+		prepClock = 30 * 60;  
 		waveClock = 0; 
 		
-		
+		HUDbox = new Rectangle2D.Float(DRAWING_WIDTH * 0.3f, DRAWING_HEIGHT - 40, DRAWING_WIDTH * 0.4F, 40); 
+		ammunitionBar = new Rectangle2D.Float(
+			DRAWING_WIDTH * 0.35f, 
+			DRAWING_HEIGHT - 30, 
+			DRAWING_WIDTH * 0.30F, 
+			20
+		); 
 	}
 	
 	
@@ -97,7 +106,9 @@ public class GameScreen extends Screen {
 	 * NOTE this method is useless due to the way how the program initializes GameScreen. 
 	 */
 	public void setup() {
-		
+		this.base = new HomeBase(gameMap.getMapWidth() / 2, gameMap.getMapHeight() / 2, 600, surface, 200, 200); 
+		gameMap.addFieldObject(this.base);
+
 	}
 
 	public void initialize() {
@@ -124,15 +135,34 @@ public class GameScreen extends Screen {
 
 		// TODO, maybe make a velocity component instead. 
 		if (surface.key == 'W' || surface.key == 'w') {
-			player.changePos(0, -5);
+			player.performMovement(0, -5);
 		} else if (surface.key == 'S' || surface.key == 's') {
-			player.changePos(0, 5);
+			player.performMovement(0, 5); 
 		}
 
 		if (surface.key == 'A' || surface.key == 'a') {
-			player.changePos(-5, 0);
+			player.performMovement(-5, 0);
 		} else if (surface.key == 'D' || surface.key == 'd') {
-			player.changePos(5, 0);
+			player.performMovement(5, 0);
+		}
+
+		//	shooting system. 
+		if (surface.key == java.awt.event.KeyEvent.VK_SPACE) {
+			if (player instanceof Vanguard || player instanceof Melner) {
+				// TODO Call the performFire method here, then add it into the FieldObject ArrayList. 
+
+				gameMap.addFieldObject(player.performFire(surface.actualCoordinatesToAssumed(new Point(surface.mouseX, surface.mouseY))));
+
+				// gameMap.addFieldObject(obj); 
+			} else if (player instanceof Stelwart) {
+				Stelwart tempReference = (Stelwart)player; 
+				if (tempReference.getEnergyValue() >= 10) {
+					tempReference.alternateFire(gameMap.getObjects(), surface, DRAWING_WIDTH / 2, DRAWING_HEIGHT / 2); 
+				}
+
+			}
+
+			
 		}
 	}
 	
@@ -152,6 +182,16 @@ public class GameScreen extends Screen {
 			pauseSystem.pauseButtonInPause(surface, mouseLocation);
 		} else {
 			gameClock += 1; 
+
+			for (int i = 0; i < gameMap.getObjects().size(); i++) {
+				if (gameMap.getObjects().get(i) instanceof GameUnit) {
+					GameUnit unit = (GameUnit)gameMap.getObjects().get(i); 
+					if (unit.getCurrentHealth() <= 0) {
+						gameMap.getObjects().remove(i); 
+						i--; 
+					}
+				}
+			}
 			
 			// NOTE Draw runs 60 times per seconds. 			
 			surface.background(191, 255, 187); 
@@ -161,7 +201,10 @@ public class GameScreen extends Screen {
 				gameMap.draw(surface, player);				
 			} else {
 				initialize(); 
-			}
+			} 
+
+
+			
 			
 			// !clock and escape section. 
 			float clockSectionWidth = (float)(DRAWING_WIDTH * 0.30); 
@@ -179,9 +222,45 @@ public class GameScreen extends Screen {
 				prepClock -= 1; 
 				surface.text("Preperation time remaining: " + timeCounterToClockDisplay(prepClock),(float)(DRAWING_WIDTH - (clockSectionWidth * 0.98)), clockSectionHeight * 0.90f);
 			} else {
+				if (waveClock == 0) {
+					initializeWave(); 
+				}
+
 				waveClock += 1; 
-				surface.text("Time in current wave: " + timeCounterToClockDisplay(waveClock), (float)(DRAWING_WIDTH - (clockSectionWidth * 0.98)), clockSectionHeight * 0.90f);
+				surface.text("Time in current wave: " + timeCounterToClockDisplay(waveClock), (float)(DRAWING_WIDTH - (clockSectionWidth * 0.98)), clockSectionHeight * 0.90f); 
+
+				boolean enemyExists = false; 
+				for (FieldObject mapComponent : gameMap.getObjects()) {
+					if (mapComponent instanceof Enemy) {
+						enemyExists = true; 
+					}
+				}
+
+				if (!enemyExists) {
+					endWave(); 
+				}
 			}
+
+			surface.fill(230); 
+			surface.rect(HUDbox.x, HUDbox.y, HUDbox.width, HUDbox.height); 
+			surface.fill(200);
+			surface.rect(ammunitionBar.x, ammunitionBar.y, ammunitionBar.width, ammunitionBar.height);
+			
+			float currentSupply = 0; 
+
+			if (player instanceof Stelwart) {
+				Stelwart temporaryReference = (Stelwart)player; 
+				currentSupply = (float)temporaryReference.getEnergyValue() / (float)temporaryReference.getMaxEnergyValue(); 
+			} else if (player instanceof Melner) {
+				Melner temporaryReference = (Melner)player; 
+				currentSupply = (float)temporaryReference.getAmmoValue() / (float)temporaryReference.getMaxAmmoValue(); 
+			} else if (player instanceof Vanguard) {
+				Vanguard temporaryReference = (Vanguard)player; 
+				currentSupply = (float)temporaryReference.getAmmoValue() / (float)temporaryReference.getMaxAmmoValue(); 
+			}
+
+			surface.fill(255, 153, 0); 
+			surface.rect(ammunitionBar.x, ammunitionBar.y, ammunitionBar.width * currentSupply, ammunitionBar.height);
 
 			pauseSystem.pauseButtonInGameplay(surface, mouseLocation);
 			shopSystem.showShopPanel(surface, mouseLocation); 
@@ -195,12 +274,40 @@ public class GameScreen extends Screen {
 
 		}
 		
-		ArrayList<Bullet> bullets = Melner.getBullets();
 		
-		for(int j=0; j<bullets.size(); j++) {
-			Bullet b = bullets.get(j);
+		
+		
+	}
+
+
+	/**
+	 * method that automatically adds new enemies on the map, once the preperation phase is over. 
+	 */
+	public void initializeWave() {
+		for (int i = 0; i < 3; i++) {
+			Enemy e = new Enemy((float)(100 + (15f * Math.random())), (float)(100 + (15f * Math.random())), 50 + (30 * waveLevel), 50, 50, surface); 
+			gameMap.addFieldObject(e); 
+		}
+		for (int i = 0; i < 3; i++) {
+			Enemy e = new Enemy((float)(3500 + (15f * Math.random())), (float)(100 + (15f * Math.random())), 50 + (30 * waveLevel), 50, 50, surface); 
+			gameMap.addFieldObject(e); 
+		}
+		for (int i = 0; i < 3; i++) {
+			Enemy e = new Enemy((float)(3500 + (15f * Math.random())), (float)(2500 + (15f * Math.random())), 50 + (30 * waveLevel), 50, 50, surface); 
+			gameMap.addFieldObject(e); 
+		}
+		for (int i = 0; i < 3; i++) {
+			Enemy e = new Enemy((float)(100 + (15f * Math.random())), (float)(2500 + (15f * Math.random())), 50 + (30 * waveLevel), 50, 50, surface); 
+			gameMap.addFieldObject(e); 
 		}
 	}
+
+	public void endWave() {
+		prepClock = 30 * 60;  
+		waveClock = 0;
+		waveLevel++;  
+	}
+
 	
 	public void mousePressed() {
 		Point p = surface.actualCoordinatesToAssumed(new Point(surface.mouseX,surface.mouseY));

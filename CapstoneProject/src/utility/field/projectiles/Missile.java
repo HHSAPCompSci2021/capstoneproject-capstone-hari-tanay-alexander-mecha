@@ -18,13 +18,9 @@ public class Missile extends Projectile {
      * @param v (velocity) 
      */
     public Missile(float x, float y, int damage, int damageOverTime, double v) {
-        super(x, y, damage, v);
+        super(x, y, 0, 0, 0, 0, ""); 
         DrawingSurface surface = new DrawingSurface();
-        surface.loadImage("img/missile.png");
-        this.damageOverTime = damageOverTime; 
-        setHasDot(true); 
-        setHasSplash(true);
-        
+        surface.loadImage("img/missile.png"); 
     }
     
 }

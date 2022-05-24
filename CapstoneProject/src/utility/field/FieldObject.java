@@ -3,6 +3,7 @@ package utility.field;
 import core.DrawingSurface;
 import processing.core.PImage;
 import java.awt.geom.Rectangle2D; 
+import java.awt.Point; 
 
 public abstract class FieldObject {
     private float centerX, centerY;           // coordinates relative to map. 
@@ -58,13 +59,18 @@ public abstract class FieldObject {
     public void setYPosition(float newYPos) {
         centerY = newYPos; 
     }
+
+
+    public Point getPosition() {
+        return new Point((int)centerX, (int)centerY); 
+    }
     
     /**
      * method to draw the specific <code>FieldObject</code>. 
      * this will use adjusted values, since the <code>DrawingSurface</code> view is different from appearance due to map structure. 
-     * @param surface 
-     * @param adjustedX
-     * @param adjustedY
+     * @param surface game window 
+     * @param adjustedX view adjusted x 
+     * @param adjustedY view adjusted y 
      */
     public void draw(DrawingSurface surface, float adjustedX, float adjustedY) {
     	
